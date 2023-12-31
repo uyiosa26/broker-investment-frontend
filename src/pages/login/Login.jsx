@@ -1,7 +1,35 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import supabase from "../../utils/client"
+import { useState } from "react"
 
 export default function Login() {
 
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const navigate = useNavigate()
+
+    const handleLogin = async function(e){
+        e.preventDefault()
+
+        try {
+            const {data, error} = await supabase.auth.signInWithPassword({
+                password,
+                email
+            })
+
+            if(data.user){
+                localStorage.setItem("userToken", data.user.id)
+                alert("Logged in succesfull")
+                navigate("/dashboard")
+            } else {
+                console.log(error)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <>
@@ -19,7 +47,7 @@ export default function Login() {
                             <div className="bg-white shadow card login-page roundedd border-1 ">
                                 <div className="card-body">
                                     <h4 className="text-center card-title">User Login</h4>
-                                    <form method="POST" action="https://valuetrades.online/login" className="mt-4 login-form">
+                                    <form onSubmit={handleLogin} className="mt-4 login-form">
                                         <input type="hidden" name="_token" value="KOrGxEGcpVCxXYPvVkB5mwg1aVuLv0Z3wMB3OSSi"/>
                                             <div className="row">
                                                 <div className="col-lg-12">
@@ -35,8 +63,8 @@ export default function Login() {
                                                                 </path>
                                                                 <polyline points="22,6 12,13 2,6"></polyline>
                                                             </svg>
-                                                            <input type="email" className="pl-5 form-control" name="email" value=""
-                                                                id="email" placeholder="name@example.com" required=""/>
+                                                            <input type="email" value={email} onChange={(e)=> setEmail(e.target.value)} className="pl-5 form-control" name="email"
+                                                                id="email" placeholder="name@example.com" required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -54,8 +82,8 @@ export default function Login() {
                                                                     d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4">
                                                                 </path>
                                                             </svg>
-                                                            <input type="password" className="pl-5 form-control" name="password"
-                                                                id="password" placeholder="Enter Password" required=""/>
+                                                        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" className="pl-5 form-control" name="password"
+                                                                id="password" placeholder="Enter Password" required/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -70,9 +98,9 @@ export default function Login() {
                                                                         me</label>
                                                             </div>
                                                         </div>
-                                                        <p className="mb-0 forgot-pass"><a
-                                                            href="https://valuetrades.online/forgot-password"
-                                                            className="text-dark font-weight-bold">Forgot password ?</a></p>
+                                                        <p className="mb-0 forgot-pass"><Link
+                                                            to="https://valuetrades.online/forgot-password"
+                                                            className="text-dark font-weight-bold">Forgot password ?</Link></p>
                                                     </div>
                                                 </div>
 
@@ -85,8 +113,8 @@ export default function Login() {
                                                 
                                                 <div className="text-center col-12">
                                                     <p className="mt-3 mb-0"><small className="mr-2 text-dark">Don't have an account
-                                                        ?</small> <a href="https://valuetrades.online/register"
-                                                            className="text-dark font-weight-bold">Sign Up</a></p>
+                                                        ?</small> <Link to="https://valuetrades.online/register"
+                                                            className="text-dark font-weight-bold">Sign Up</Link></p>
                                                 </div>
                                                 
 

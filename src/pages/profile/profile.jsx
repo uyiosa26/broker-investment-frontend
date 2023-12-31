@@ -1,6 +1,33 @@
 import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import supabase from "../../utils/client"
 
 export default function Profile() {
+
+    const [user, setUser] = useState("")
+  
+    const userToken = localStorage.getItem("userToken")
+
+    useEffect(() => {
+
+        const getData = async function () {
+
+            try {
+                const { data, error } = await supabase
+                    .from("users")
+                    .select("*")
+                    .eq("id", userToken)
+                if (error) return console.log(error.message)
+                setUser(data[0]);
+                console.log(user)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getData()
+
+    }, [])
+
     return (
         <>
             <div className="container-fluid container-application">
@@ -38,7 +65,7 @@ export default function Profile() {
                                 <i className="fas fa-user-circle fa-4x" />
                             </a>
                             <div className="mt-4">
-                                <h5 className="mb-0 text-white"> sunday adeleke</h5>
+                                <h5 className="mb-0 text-white">{user.full_name}</h5>
                                 <span className="mb-3 text-sm text-white d-block opacity-8">
                                     online
                                 </span>
@@ -49,7 +76,7 @@ export default function Profile() {
                                     <span className="btn-inner--icon">
                                         <i className="far fa-coins" />
                                     </span>
-                                    <span className="btn-inner--text">$0.00</span>
+                                    <span className="btn-inner--text">${user.balance}</span>
                                 </a>
                             </div>
                         </div>
@@ -99,13 +126,6 @@ export default function Profile() {
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Trading Plans</span>
                         </Link>
-                        <Link className="text-sm btn btn-square" to="/">
-                            <span className="btn-inner--icon d-block">
-                                <i className="far fa-hand-holding-seedling fa-2x" />
-                            </span>
-                            <span className="pt-2 btn-inner--icon d-block">My Plans</span>
-                        </Link>
-
                     </div>
                     {/* Misc area */}
                     <div className="card bg-gradient-warning">
@@ -163,7 +183,7 @@ export default function Profile() {
                                             </span>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                                            <h6 className="px-0 dropdown-header">Hi, sunday adeleke!</h6>
+                                            <h6 className="px-0 dropdown-header">Hi,{user.full_name}!</h6>
                                             <Link className="dropdown-item" to="/account">
                                                 <span>My profile</span>
                                             </Link>
@@ -220,13 +240,13 @@ export default function Profile() {
                                                 </span>
                                                 <div className="ml-2 d-none d-lg-block">
                                                     <span className="mb-0 text-sm font-weight-bold">
-                                                        sunday adeleke
+                                                       {user.full_name}
                                                     </span>
                                                 </div>
                                             </div>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                                            <h6 className="px-0 dropdown-header">Hi, sunday adeleke!</h6>
+                                            <h6 className="px-0 dropdown-header">Hi,{user.full_name}!</h6>
                                             <Link className="dropdown-item" to="/account">
                                                 <i className="far fa-user" />
                                                 <span>My profile</span>
@@ -316,8 +336,8 @@ export default function Profile() {
                                                                     <label className="">Fullname</label>
                                                                     <input
                                                                         type="text"
+                                                                        value={user.full_name}
                                                                         className="form-control "
-                                                                        defaultValue="sunday adeleke"
                                                                         name="name"
                                                                     />
                                                                 </div>
@@ -325,9 +345,9 @@ export default function Profile() {
                                                                     <label className="">Email Address</label>
                                                                     <input
                                                                         type="email"
-                                                                        className="form-control "
-                                                                        defaultValue="kelvindean451@gmail.com"
+                                                                        className="form-control"
                                                                         name="email"
+                                                                        value={user.email}
                                                                     />
                                                                 </div>
                                                                 <div className="form-group col-md-6">
@@ -335,7 +355,7 @@ export default function Profile() {
                                                                     <input
                                                                         type="text"
                                                                         className="form-control "
-                                                                        defaultValue={+132536789}
+                                                                        defaultValue={user.phone}
                                                                         name="phone"
                                                                     />
                                                                 </div>
@@ -352,7 +372,7 @@ export default function Profile() {
                                                                     <label className="">Country</label>
                                                                     <input
                                                                         type="text"
-                                                                        defaultValue="United States of America"
+                                                                        value={user.country}
                                                                         className="form-control "
                                                                         name="country"
                                                                         readOnly=""
@@ -365,7 +385,7 @@ export default function Profile() {
                                                                         placeholder="Full Address"
                                                                         name="address"
                                                                         row={3}
-                                                                        defaultValue={""}
+                                                                        value={user.address || null}
                                                                     />
                                                                 </div>
                                                             </div>

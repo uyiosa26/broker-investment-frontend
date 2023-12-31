@@ -14,6 +14,7 @@ import Plan from './pages/plan/plan.jsx';
 import Profile from './pages/profile/profile.jsx';
 import About from './pages/about/about.jsx';
 import Contact from './pages/contact/contact.jsx';
+import Payment from './pages/payment/payment.jsx';
 
 const router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/buy-plan",
-        element: <Plan />
+        element: <Plan/>
       },
       {
         path: "/account",
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />
+      },
+       {
+        path: "/payment",
+        element: <Payment />
       }
     ]
   },

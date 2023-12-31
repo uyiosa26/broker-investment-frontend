@@ -1,39 +1,49 @@
 import { Link } from "react-router-dom"
+import supabase from "../../utils/client"
+import { useEffect, useState } from "react"
 
 export default function Dashboard() {
+
+    const [user, setUser] = useState("")
+
+    const profit = Number(100) * 2.5
+
+    const userToken = localStorage.getItem("userToken")
+
+    useEffect(() => {
+
+        const getData = async function () {
+
+            try {
+                const { data, error } = await supabase
+                    .from("users")
+                    .select("*")
+                    .eq("id", userToken)
+                if (error) return console.log(error.message)
+                setUser(data[0]);
+                console.log(user)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getData()
+
+    }, [])
+
     return (
         <>
-            <script src="https://kit.fontawesome.com/83006b2a72.js" crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-                integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-                crossorigin="anonymous" referrerpolicy="no-referrer" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.4.47/css/materialdesignicons.min.css" integrity="sha512-/k658G6UsCvbkGRB3vPXpsPHgWeduJwiWGPCGS14IQw3xpr63AEMdA8nMYG2gmYkXitQxDTn6iiK/2fD4T87qA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+           
             <meta charSet="utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="csrf-token" content="5afAv7w3xU1kzTYm1HcRaxUhndTvtCtjUq87rcZr" />
             <title>Value Trades | About Us</title>
             <meta name="description" content="We are online" />
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"></link>
-            {/* Google / Search Engine Tags */}
             <meta itemProp="name" content="Value Trades - Welcome to Value Trades" />
-            <meta itemProp="description" content="We are online" />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.4.47/css/materialdesignicons.min.css" integrity="sha512-/k658G6UsCvbkGRB3vPXpsPHgWeduJwiWGPCGS14IQw3xpr63AEMdA8nMYG2gmYkXitQxDTn6iiK/2fD4T87qA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-            <meta
-                itemProp="image"
-                content="https://valuetrades.online/temp/images/meta.png"
-            />
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-icons-iconfont@6.7.0/dist/material-design-icons.min.css"></link>
-            <script src="https://cdn.jsdelivr.net/npm/material-design-icons-iconfont@6.7.0/build/build.min.js"></script>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-                integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-                crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <meta itemProp="image" content="https://valuetrades.online/temp/images/meta.png" />
             <link
                 rel="icon"
                 href="https://valuetrades.online/storage/app/public/photos/LgdRs2mNck5LrxS9AaN9aIhtaLKfzoxGSswCqiv0.ico"
-                type="image/png"
-            />
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+                type="image/png" />
             <style
                 type="text/css"
                 dangerouslySetInnerHTML={{
@@ -55,7 +65,7 @@ export default function Dashboard() {
             />
             {/* CSRF Token */}
             <meta name="csrf-token" content="5afAv7w3xU1kzTYm1HcRaxUhndTvtCtjUq87rcZr" />
-            
+
             <link
                 rel="stylesheet"
                 type="text/css"
@@ -94,7 +104,7 @@ export default function Dashboard() {
                                 src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
                                 className="navbar-brand-img"
                                 alt="logo"
-                                />
+                            />
                         </Link>
                         <div className="ml-auto">
                             {/* Sidenav toggler */}
@@ -119,19 +129,14 @@ export default function Dashboard() {
                                 <i className="fas fa-user-circle fa-4x" />
                             </a>
                             <div className="mt-4">
-                                <h5 className="mb-0 text-white"> sunday adeleke</h5>
+                                <h5 className="mb-0 text-white">{user.full_name}</h5>
                                 <span className="mb-3 text-sm text-white d-block opacity-8">
                                     online
                                 </span>
-                                <a
-                                    href="#"
-                                    className="shadow btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3"
-                                >
-                                    <span className="btn-inner--icon">
-                                        <i className="far fa-coins" />
-                                    </span>
+                                <Link to="#" className="shadow btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3">
+                                    <span className="btn-inner--icon"><i className="far fa-coins"></i></span>
                                     <span className="btn-inner--text">$0.00</span>
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         {/* User info */}
@@ -140,18 +145,18 @@ export default function Dashboard() {
                     </div>
                     {/* Application nav */}
                     <div className="clearfix nav-application">
-                    <Link className="text-sm btn btn-square active" to="/dashboard">
+                        <Link className="text-sm btn btn-square active" to="/dashboard">
 
                             <span className="btn-inner--icon d-block">
-                                <i className="far fa-home fa-2x" />
+                                <i className="fa-solid fa-house fa-2x"></i>
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Home</span>
-                    
-                    </Link>
+
+                        </Link>
                         <Link className="text-sm btn btn-square  " to="/deposit">
 
                             <span className="btn-inner--icon d-block">
-                                <i className="far fa-download fa-2x" />
+                                <i className="fa-solid fa-circle-dollar-to-slot fa-2x"></i>
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Deposit</span>
                         </Link>
@@ -160,7 +165,7 @@ export default function Dashboard() {
                                 <i className="fas fa-arrow-alt-circle-up fa-2x" />
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Withdraw</span>
-                        
+
                         </Link>
                         <Link className="text-sm btn btn-square" to="/transactions">
                             <span className="btn-inner--icon d-block">
@@ -176,17 +181,10 @@ export default function Dashboard() {
                         </Link>
                         <Link className="text-sm btn btn-square" to="/buy-plan">
                             <span className="btn-inner--icon d-block">
-                                <i className="fas fa-hand-holding-seedling fa-2x" />
+                                <i className="fa-solid fa-chart-pie fa-2x"></i>
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Trading Plans</span>
                         </Link>
-                        <Link className="text-sm btn btn-square" to="/">
-                            <span className="btn-inner--icon d-block">
-                                <i className="far fa-hand-holding-seedling fa-2x" />
-                            </span>
-                            <span className="pt-2 btn-inner--icon d-block">My Plans</span>
-                        </Link>
-                       
                     </div>
                     {/* Misc area */}
                     <div className="card bg-gradient-warning">
@@ -214,7 +212,7 @@ export default function Dashboard() {
                                     <img
                                         src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
                                         className="navbar-brand-img"
-                                        alt="..."/>
+                                        alt="..." />
                                 </Link>
                             </div>
                             {/* User's navbar */}
@@ -227,7 +225,7 @@ export default function Dashboard() {
                                             data-action="sidenav-pin"
                                             data-target="#sidenav-main"
                                         >
-                                            <i className="far fa-bars" />
+                                            <i className="fa fa-bars" />
                                         </a>
                                     </li>
                                     <li className="nav-item dropdown dropdown-animate">
@@ -244,10 +242,10 @@ export default function Dashboard() {
                                             </span>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                                            <h6 className="px-0 dropdown-header">Hi, sunday adeleke!</h6>
+                                            <h6 className="px-0 dropdown-header">Hi, {user.full_name}!</h6>
                                             <Link className="dropdown-item" to="/account">
                                                 <span>My profile</span>
-                                                </Link>
+                                            </Link>
                                             <div className="dropdown-divider" />
                                             <Link to="#" className="dropdown-item text-danger">
                                                 <i className="far fa-sign-out-alt" />
@@ -301,13 +299,13 @@ export default function Dashboard() {
                                                 </span>
                                                 <div className="ml-2 d-none d-lg-block">
                                                     <span className="mb-0 text-sm font-weight-bold">
-                                                        sunday adeleke
+                                                        {user.full_name}
                                                     </span>
                                                 </div>
                                             </div>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                                            <h6 className="px-0 dropdown-header">Hi, sunday adeleke!</h6>
+                                            <h6 className="px-0 dropdown-header">Hi, {user.full_name}!</h6>
                                             <Link className="dropdown-item" to="/account">
                                                 <i className="far fa-user" />
                                                 <span>My profile</span>
@@ -342,7 +340,7 @@ export default function Dashboard() {
                             <div className="row justify-content-between align-items-center">
                                 <div className="mb-3 col-md-6 mb-md-0">
                                     <h5 className="mb-0 text-white h3 font-weight-400">
-                                        Welcome, sunday adeleke!
+                                        Welcome, {user.full_name}!
                                     </h5>
                                 </div>
                             </div>
@@ -375,7 +373,7 @@ export default function Dashboard() {
                                                             <div className="col">
                                                                 <h6 className="mb-1 text-muted">Account balance</h6>
                                                                 <span className="mb-0 h5 font-weight-bold">
-                                                                    $0.00
+                                                                    ${user.balance}
                                                                 </span>
                                                             </div>
                                                             <div className="col-auto">
@@ -395,7 +393,7 @@ export default function Dashboard() {
                                                             <div className="col">
                                                                 <h6 className="mb-1 text-muted">Total Profit</h6>
                                                                 <span className="mb-0 h5 font-weight-bold">
-                                                                    $0.00
+                                                                    ${profit}
                                                                 </span>
                                                             </div>
                                                             <div className="col-auto">
@@ -415,7 +413,7 @@ export default function Dashboard() {
                                                             <div className="col">
                                                                 <h6 className="mb-1 text-muted">Bonus</h6>
                                                                 <span className="mb-0 h5 font-weight-bold">
-                                                                    $0.00
+                                                                    ${profit}
                                                                 </span>
                                                             </div>
                                                             <div className="col-auto">
@@ -427,26 +425,7 @@ export default function Dashboard() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-xl-4 col-md-6">
-                                                <div className="card card-stats">
-                                                    {/* Card body */}
-                                                    <div className="card-body">
-                                                        <div className="row">
-                                                            <div className="col">
-                                                                <h6 className="mb-1 text-muted">Referral Bonus</h6>
-                                                                <span className="mb-0 h5 font-weight-bold">
-                                                                    $0.00
-                                                                </span>
-                                                            </div>
-                                                            <div className="col-auto">
-                                                                <div className="text-white icon bg-gradient-primary rounded-circle icon-shape">
-                                                                    <i className="fas fa-gifts" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                             <div className="col-xl-4 col-md-6">
                                                 <div className="card card-stats">
                                                     {/* Card body */}

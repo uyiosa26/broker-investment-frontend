@@ -1,10 +1,39 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import supabase from "../../utils/client";
+import { useEffect, useState } from "react"
 
-export default function Plan() {
+export default function Payment() {
+
+    const [user, setUser] = useState("")
+
+
+    const userToken = localStorage.getItem("userToken")
+
+    useEffect(() => {
+
+        const getData = async function () {
+
+            try {
+                const { data, error } = await supabase
+                    .from("users")
+                    .select("*")
+                    .eq("id", userToken)
+                if (error) return console.log(error.message)
+                setUser(data[0]);
+                console.log(user)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getData()
+
+    }, [])
+
     return (
+
         <>
             <div className="container-fluid container-application">
-
+                {/* Sidenav */}
                 <div className="sidenav" id="sidenav-main">
                     {/* Sidenav header */}
                     <div className="sidenav-header d-flex align-items-center">
@@ -38,7 +67,7 @@ export default function Plan() {
                                 <i className="fas fa-user-circle fa-4x" />
                             </a>
                             <div className="mt-4">
-                                <h5 className="mb-0 text-white"> sunday adeleke</h5>
+                                <h5 className="mb-0 text-white">{user.full_name}</h5>
                                 <span className="mb-3 text-sm text-white d-block opacity-8">
                                     online
                                 </span>
@@ -49,7 +78,7 @@ export default function Plan() {
                                     <span className="btn-inner--icon">
                                         <i className="far fa-coins" />
                                     </span>
-                                    <span className="btn-inner--text">$0.00</span>
+                                    <span className="btn-inner--text">{user.balance}</span>
                                 </a>
                             </div>
                         </div>
@@ -99,7 +128,6 @@ export default function Plan() {
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Trading Plans</span>
                         </Link>
-
                     </div>
                     {/* Misc area */}
                     <div className="card bg-gradient-warning">
@@ -157,7 +185,7 @@ export default function Plan() {
                                             </span>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                                            <h6 className="px-0 dropdown-header">Hi, sunday adeleke!</h6>
+                                            <h6 className="px-0 dropdown-header">Hi, {user.full_name}!</h6>
                                             <Link className="dropdown-item" to="/account">
                                                 <span>My profile</span>
                                             </Link>
@@ -214,13 +242,13 @@ export default function Plan() {
                                                 </span>
                                                 <div className="ml-2 d-none d-lg-block">
                                                     <span className="mb-0 text-sm font-weight-bold">
-                                                        sunday adeleke
+                                                        {user.full_name}
                                                     </span>
                                                 </div>
                                             </div>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                                            <h6 className="px-0 dropdown-header">Hi, sunday adeleke!</h6>
+                                            <h6 className="px-0 dropdown-header">Hi, {user.full_name}!</h6>
                                             <Link className="dropdown-item" to="/account">
                                                 <i className="far fa-user" />
                                                 <span>My profile</span>
@@ -248,142 +276,123 @@ export default function Plan() {
                             </div>
                         </div>
                     </nav>
-
                     <div className="page-content">
-
+                        {/* Page title */}
                         <div className="page-title">
                             <div className="row justify-content-between align-items-center">
                                 <div className="mb-3 col-md-6 mb-md-0">
-                                    <h5 className="mb-0 text-white h3 font-weight-400">Get started with your investment.</h5>
+                                    <h5 className="mb-0 text-white h3 font-weight-400">Make Payment</h5>
                                 </div>
                             </div>
                         </div>
-
+                        <div></div>
+                        <div></div>
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="card">
                                     <div className="card-body">
-                                        <div>
-                                            <div className="mt-4 row">
-                                                <div className="col-md-8">
-                                                    
-                                                    <div className="mt-5">
-                                                        <div className="">
-                                                            <p>Choose Quick Amount to Invest</p>
-                                                        </div>
-                                                        <div className="flex-wrap mb-1 d-flex justify-content-start align-items-center">
-                                                            <button className="mb-2 border-black rounded-none btn btn-light" >$100</button>
-                                                            <button className="mb-2 border-black rounded-none btn btn-light" >$250</button>
-                                                            <button className="mb-2 border-black rounded-none btn btn-light" >$500</button>
-                                                            <button className="mb-2 border-black rounded-none btn btn-light" >$1,000</button>
-                                                            <button className="mb-2 border-black rounded-none btn btn-light" >$1,500</button>
-                                                            <button className="mb-2 border-black rounded-none btn btn-light" >$2,000</button>
-                                                        </div>
+                                        <div className="row">
+                                            <div className="col-md-8 offset-md-2">
+                                                <div className="p-2 shadow-lg card p-md-4">
+                                                    <div className="alert alert-modern alert-warning">
+                                                        <span className="badge badge-warning badge-pill">
+                                                            Your payment method
+                                                        </span>
+                                                        <span className="alert-content">Litecoin</span>
                                                     </div>
-
-                                                    <div className="mt-5">
-                                                        <div className="">
-                                                            <p>Or Enter Your Amount</p>
-                                                            <div>
-                                                                <input type="number" required="" name="" id="" className="form-control d-block w-100" placeholder="1000" min="1000" max="100000" />
+                                                    <div className="card-body">
+                                                        <div>
+                                                            <h6 className="">
+                                                                You are to make payment of
+                                                                <strong>$100</strong> using your selected payment
+                                                                method.
+                                                            </h6>
+                                                            <h4>
+                                                                <img src="https://lulo.com" alt="" className="w-25" />
+                                                            </h4>
+                                                        </div>
+                                                        <div className="mt-5">
+                                                            <h6 className="">
+                                                                <strong>Litecoin Address:</strong>
+                                                            </h6>
+                                                            <div className="mb-3 form-group">
+                                                                <div className="input-group">
+                                                                    <input
+                                                                        type="text"
+                                                                        className="form-control readonly "
+                                                                        defaultValue="ltc1qf66rhmg9ttslefxauzr2jv7s8umzavx4wkl3p8"
+                                                                        id="reflink"
+                                                                        readOnly=""
+                                                                    />
+                                                                    <div className="input-group-append">
+                                                                        <button
+                                                                            className="btn btn-outline-secondary"
+                                                                            onclick="myFunction()"
+                                                                            type="button"
+                                                                            id="button-addon2"
+                                                                        >
+                                                                            <i className="fas fa-copy" />
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <small className="">
+                                                                    <strong>Network Type:</strong>
+                                                                    Erc
+                                                                </small>
                                                             </div>
                                                         </div>
-                                                    </div>
-
-                                                    <div className="mt-5">
-                                                        <p>Choose Payment Method</p>
-                                                    </div>
-                                                    <div className="select-menu2">
-                                                        <ul className="options2 d-block">
-                                                            <li className="mb-3 shadow option2 bg-light border border-primary" id="acnt">
-                                                                <i className="fas fa-wallet"></i>
-                                                                {/* <span className="option-text2 d-block">Balance</span> <br /> */}
-                                                                <span className="small">
-                                                                    <strong> Balance:
-                                                                    </strong>$0
-                                                                </span>
-                                                            </li>
-
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <div className="card">
-                                                <div className="card-body">
-                                                    <p>Your Investment Details</p>
-                                                    <div className="row">
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Name of plan</p>
-                                                            <span className="text-primary small">Starter</span>
+                                                        <div>
+                                                            <form
+                                                                method="post"
+                                                                action="https://valuetrades.online/dashboard/savedeposit"
+                                                                encType="multipart/form-data"
+                                                            >
+                                                                <input
+                                                                    type="hidden"
+                                                                    name="_token"
+                                                                    defaultValue="W0vZVICts0PLL8ivtzrVAZVBIkXBkAgsIss2f8d0"
+                                                                />{" "}
+                                                                <div className="form-group">
+                                                                    <p className="">
+                                                                        Upload Payment proof after payment.
+                                                                    </p>
+                                                                    <input
+                                                                        type="file"
+                                                                        name="proof"
+                                                                        className="form-control col-lg-8 "
+                                                                        required=""
+                                                                    />
+                                                                </div>
+                                                                <input
+                                                                    type="hidden"
+                                                                    name="amount"
+                                                                    defaultValue={100}
+                                                                />
+                                                                <input
+                                                                    type="hidden"
+                                                                    name="paymethd_method"
+                                                                    defaultValue="Litecoin"
+                                                                />
+                                                                <div className="form-group">
+                                                                    <input
+                                                                        type="submit"
+                                                                        className="btn btn-primary"
+                                                                        defaultValue="Submit Payment"
+                                                                    />
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Plan Price</p>
-                                                            <span className="text-primary small">$1000</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Duration</p>
-                                                            <span className="text-primary small">1 Days</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Profit</p>
-                                                            <span className="text-primary small">
-                                                                1000%
-                                                                Daily
-                                                            </span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Minimum Deposit</p>
-                                                            <span className="text-primary small">$1000</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Maximum Deposit</p>
-                                                            <span className="text-primary small">$100000</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Minimum Return</p>
-                                                            <span className="text-primary small">10000%</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Maximum Return</p>
-                                                            <span className="text-primary small">1000000%</span>
-                                                        </div>
-                                                    </div>
-                                                    <hr />
-                                                    <div className="justify-content-between d-md-flex">
-                                                        <span className="small d-block d-md-inline">Payment method:</span>
-                                                        <span className="small text-primary">Account Balance</span>
-                                                    </div>
-                                                    <hr />
-                                                    <div className="justify-content-between d-md-flex">
-                                                        <span className="d-block d-md-inline font-weight-bold">Amount to Invest:</span>
-                                                        <span className="text-primary font-weight-bold">$0</span>
-                                                    </div>
-                                                    <div className="mt-3 text-center">
-                                                        <form action="">
-                                                            <button className="px-3 btn btn-primary" disabled="">
-                                                                Confirm &amp; Invest
-                                                            </button>
-                                                        </form>
-                                                        <span className="mt-2 small text-primary">
-                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
 
         </>
     )
