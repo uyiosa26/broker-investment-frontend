@@ -1,6 +1,6 @@
 import "./admin.css"
 import supabase from "../../utils/client"
-import {  useMemo, useState } from "react"
+import {  useEffect, useState } from "react"
 
 export default function Admin() {
 
@@ -9,34 +9,36 @@ export default function Admin() {
     const [edit, setEdit] = useState(false)
     const [balance, setBalance] = useState(0)
     const [id, setId] = useState("")
+    const [loading, setLoading] = useState(false)
 
-    useMemo(()=>{
 
-        const getUsers = async function () {
+    const getUsers = async function () {
 
-            try {
-                const { data, error } = await supabase
-                    .from("users")
-                    .select()
-                if (error) return console.log(error.message)
-                setUsers(data);
-                console.log(users)
-            } catch (error) {
-                console.log(error)
-            }
+        try {
+            const { data, error } = await supabase
+                .from("users")
+                .select()
+            if (error) return console.log(error.message)
+            setUsers(data);
+        } catch (error) {
+            console.log(error)
         }
+    }
+
+    useEffect(()=>{
         getUsers() 
     },[])
 
     async function updateBalance(e){
         e.preventDefault()
         try {
-            const { error, data } = await supabase
+            const { error } = await supabase
                 .from('users')
                 .update({ balance: balance })
                 .eq('id', id )
-                if(error) return console.log(error)
-                console.log(data)
+                if(error) return console.log(error.message)
+                getUsers()
+                alert("balance updated")
         } catch (error) {
             console.log(error)
         }
@@ -64,7 +66,7 @@ export default function Admin() {
 
     return (
         <>
-            <h3>Welcome</h3>
+            <p style={{textAlign:"center", fontWeight: "bold", padding: "1rem"}}>All users</p>
 
             <div className="users-container">
                 <div className="wrapper">
@@ -72,6 +74,7 @@ export default function Admin() {
                         <div key={user.id} className="user-details">
                             <span><i className="fa-solid fa-circle-user fa-2x"></i></span>
                             <span className="user-name">{user.full_name}</span>
+                            <span className="user-name">${user.balance}</span>
                             <button data-id={user.id} onClick={fecthUser} className="btn-success user-btn">Edit</button>
                         </div> 
                     ))}

@@ -35,7 +35,7 @@ export default function Plan() {
 
         e.preventDefault()
 
-        if(wallet < value || wallet === undefined) return alert("Please Fund account to continue");
+        if(wallet < value || wallet === undefined) return alert("Insuficient funds Please fund account to continue");
   
     }
 

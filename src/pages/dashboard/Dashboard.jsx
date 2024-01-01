@@ -571,11 +571,6 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
-            {/* Scripts */}
-            {/* Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit */}
-            {/* Page JS */}
-            {/* Purpose JS */}
-            {/* Bootstrap Notify */}
         </>
 
 
