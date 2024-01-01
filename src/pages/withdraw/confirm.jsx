@@ -1,49 +1,18 @@
-import { Link } from "react-router-dom";
-import supabase from "../../utils/client";
-import { useEffect, useState } from "react"
-
-export default function Payment() {
-
-    const [user, setUser] = useState("")
-
-
-    const userToken = localStorage.getItem("userToken")
-
-    useEffect(() => {
-
-        const getData = async function () {
-
-            try {
-                const { data, error } = await supabase
-                    .from("users")
-                    .select("*")
-                    .eq("id", userToken)
-                if (error) return console.log(error.message)
-                setUser(data[0]);
-                console.log(user)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        getData()
-
-    }, [])
-
+export default function Confirm() {
     return (
-
         <>
             <div className="container-fluid container-application">
                 {/* Sidenav */}
                 <div className="sidenav" id="sidenav-main">
                     {/* Sidenav header */}
                     <div className="sidenav-header d-flex align-items-center">
-                        <Link className="navbar-brand" to="/dashboard">
+                        <a className="navbar-brand" href="https://valuetrades.online/dashboard">
                             <img
                                 src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
                                 className="navbar-brand-img"
                                 alt="logo"
                             />
-                        </Link>
+                        </a>
                         <div className="ml-auto">
                             {/* Sidenav toggler */}
                             <div
@@ -67,14 +36,19 @@ export default function Payment() {
                                 <i className="fas fa-user-circle fa-4x" />
                             </a>
                             <div className="mt-4">
-                                <h5 className="mb-0 text-white">{user.full_name}</h5>
+                                <h5 className="mb-0 text-white"> sunday adeleke</h5>
                                 <span className="mb-3 text-sm text-white d-block opacity-8">
                                     online
                                 </span>
-                                <Link to="#" className="shadow custom-btn btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3">
-                                    <i className="fa fa-coins"></i>
-                                    <span className="btn-inner--text">${user.balance}</span>
-                                </Link>
+                                <a
+                                    href="#"
+                                    className="shadow btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3"
+                                >
+                                    <span className="btn-inner--icon">
+                                        <i className="far fa-coins" />
+                                    </span>
+                                    <span className="btn-inner--text">$0.00</span>
+                                </a>
                             </div>
                         </div>
                         {/* User info */}
@@ -83,46 +57,114 @@ export default function Payment() {
                     </div>
                     {/* Application nav */}
                     <div className="clearfix nav-application">
-                        <Link className="text-sm btn btn-square active" to="/dashboard">
-
+                        <a
+                            href="https://valuetrades.online/dashboard"
+                            className="text-sm btn btn-square "
+                        >
                             <span className="btn-inner--icon d-block">
-                                <i className="fa-solid fa-house fa-2x"></i>
+                                <i className="far fa-home fa-2x" />
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Home</span>
-
-                        </Link>
-                        <Link className="text-sm btn btn-square  " to="/deposit">
-
+                        </a>
+                        <a
+                            href="https://valuetrades.online/dashboard/deposits"
+                            className="text-sm btn btn-square  "
+                        >
                             <span className="btn-inner--icon d-block">
-                                <i className="fa-solid fa-circle-dollar-to-slot fa-2x"></i>
+                                <i className="far fa-download fa-2x" />
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Deposit</span>
-                        </Link>
-                        <Link className="text-sm btn btn-square" to="/withdraw">
+                        </a>
+                        <a
+                            href="https://valuetrades.online/dashboard/withdrawals"
+                            className="text-sm btn btn-square  active"
+                        >
                             <span className="btn-inner--icon d-block">
                                 <i className="fas fa-arrow-alt-circle-up fa-2x" />
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Withdraw</span>
-
-                        </Link>
-                        <Link className="text-sm btn btn-square" to="/transactions">
+                        </a>
+                        <a
+                            href="https://valuetrades.online/dashboard/tradinghistory"
+                            className="text-sm btn btn-square "
+                        >
+                            <span className="btn-inner--icon d-block">
+                                <i className="fal fa-history fa-2x" />
+                            </span>
+                            <span className="pt-2 btn-inner--icon d-block">Profit History</span>
+                        </a>
+                        <a
+                            href="https://valuetrades.online/dashboard/accounthistory"
+                            className="text-sm btn btn-square "
+                        >
                             <span className="btn-inner--icon d-block">
                                 <i className="fas fa-money-check-alt fa-2x" />
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Transactions</span>
-                        </Link>
-                        <Link className="text-sm btn btn-square" to="/account">
+                        </a>
+                        <a
+                            href="https://valuetrades.online/dashboard/asset-balance"
+                            className="text-sm btn btn-square  "
+                        >
+                            <span className="btn-inner--icon d-block">
+                                <i className="fab fa-stack-exchange fa-2x" />
+                            </span>
+                            <span className="pt-2 btn-inner--icon d-block">Swap Crypto</span>
+                        </a>
+                        <a
+                            href="https://valuetrades.online/dashboard/transfer-funds"
+                            className="text-sm btn btn-square "
+                        >
+                            <span className="btn-inner--icon d-block">
+                                <i className="fas fa-exchange fa-2x" />
+                            </span>
+                            <span className="pt-2 btn-inner--icon d-block">Transfer funds</span>
+                        </a>
+                        <a
+                            href="https://valuetrades.online/dashboard/subtrade"
+                            className="text-sm btn btn-square "
+                        >
+                            <span className="btn-inner--icon d-block">
+                                <i className="far fa-receipt fa-2x" />
+                            </span>
+                            <span className="pt-2 btn-inner--icon d-block">Managed Accounts</span>
+                        </a>
+                        <a
+                            href="https://valuetrades.online/dashboard/account-settings"
+                            className="text-sm btn btn-square "
+                        >
                             <span className="btn-inner--icon d-block">
                                 <i className="fas fa-address-card fa-2x" />
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Profile</span>
-                        </Link>
-                        <Link className="text-sm btn btn-square" to="/buy-plan">
+                        </a>
+                        <a
+                            href="https://valuetrades.online/dashboard/buy-plan"
+                            className="text-sm btn btn-square "
+                        >
                             <span className="btn-inner--icon d-block">
-                                <i className="fa-solid fa-chart-pie fa-2x"></i>
+                                <i className="fas fa-hand-holding-seedling fa-2x" />
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Trading Plans</span>
-                        </Link>
+                        </a>
+                        <a
+                            href="https://valuetrades.online/dashboard/myplans/All"
+                            className="text-sm btn btn-square  "
+                        >
+                            <span className="btn-inner--icon d-block">
+                                <i className="far fa-hand-holding-seedling fa-2x" />
+                            </span>
+                            <span className="pt-2 btn-inner--icon d-block">My Plans</span>
+                        </a>
+                        <a
+                            href="https://valuetrades.online/dashboard/referuser"
+                            className="text-sm btn btn-square "
+                        >
+                            <span className="btn-inner--icon d-block">
+                                <i className="fas fa-retweet fa-2x" />
+                            </span>
+                            <span className="pt-2 btn-inner--icon d-block">Referrals</span>
+                        </a>
                     </div>
                     {/* Misc area */}
                     <div className="card bg-gradient-warning">
@@ -131,10 +173,15 @@ export default function Payment() {
                             <p className="mb-4 text-white">
                                 Contact our 24/7 customer support center
                             </p>
-                            <Link className="btn btn-sm btn-block btn-white rounded-pill" to="/contact">Contact Us</Link>
+                            <a
+                                href="https://valuetrades.online/dashboard/support"
+                                className="btn btn-sm btn-block btn-white rounded-pill"
+                            >
+                                Contact Us
+                            </a>
                         </div>
                     </div>
-                </div>
+                </div>{" "}
                 {/* Content */}
                 <div className="main-content position-relative">
                     {/* Main nav */}
@@ -146,12 +193,16 @@ export default function Payment() {
                         <div className="container-fluid">
                             {/* Brand + Toggler (for mobile devices) */}
                             <div className="pl-4 d-block d-md-none">
-                                <Link to="/dashboard" className="navbar-brand">
+                                <a
+                                    className="navbar-brand"
+                                    href="https://valuetrades.online/dashboard"
+                                >
                                     <img
                                         src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
                                         className="navbar-brand-img"
-                                        alt="..." />
-                                </Link>
+                                        alt="..."
+                                    />
+                                </a>
                             </div>
                             {/* User's navbar */}
                             <div className="ml-auto navbar-user d-lg-none">
@@ -163,7 +214,7 @@ export default function Payment() {
                                             data-action="sidenav-pin"
                                             data-target="#sidenav-main"
                                         >
-                                            <i className="fa fa-bars" />
+                                            <i className="far fa-bars" />
                                         </a>
                                     </li>
                                     <li className="nav-item dropdown dropdown-animate">
@@ -180,15 +231,24 @@ export default function Payment() {
                                             </span>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                                            <h6 className="px-0 dropdown-header">Hi, {user.full_name}!</h6>
-                                            <Link className="dropdown-item" to="/account">
+                                            <h6 className="px-0 dropdown-header">Hi, sunday adeleke!</h6>
+                                            <a
+                                                href="https://valuetrades.online/dashboard/account-settings"
+                                                className="dropdown-item"
+                                            >
+                                                <i className="far fa-user" />
                                                 <span>My profile</span>
-                                            </Link>
+                                            </a>
                                             <div className="dropdown-divider" />
-                                            <Link to="#" className="dropdown-item text-danger">
-                                                <i className="fa fa-sign-out-alt" />
+                                            <a
+                                                className="dropdown-item text-danger"
+                                                href="https://valuetrades.online/logout"
+                                                onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();"
+                                            >
+                                                <i className="far fa-sign-out-alt" />
                                                 <span>Logout</span>
-                                            </Link>
+                                            </a>
                                             <form
                                                 id="logout-form"
                                                 action="https://valuetrades.online/logout"
@@ -198,7 +258,7 @@ export default function Payment() {
                                                 <input
                                                     type="hidden"
                                                     name="_token"
-                                                    defaultValue="5afAv7w3xU1kzTYm1HcRaxUhndTvtCtjUq87rcZr"
+                                                    defaultValue="7536KJUbxS10OC1e0YDD0woKFjM3PpdRK64C86vf"
                                                 />
                                             </form>
                                         </div>
@@ -219,7 +279,7 @@ export default function Payment() {
                                             data-action="sidenav-pin"
                                             data-target="#sidenav-main"
                                         >
-                                            <i className="fa fa-bars" />
+                                            <i className="far fa-bars" />
                                         </a>
                                     </li>
                                     <li className="nav-item dropdown dropdown-animate">
@@ -237,22 +297,30 @@ export default function Payment() {
                                                 </span>
                                                 <div className="ml-2 d-none d-lg-block">
                                                     <span className="mb-0 text-sm font-weight-bold">
-                                                        {user.full_name}
+                                                        sunday adeleke
                                                     </span>
                                                 </div>
                                             </div>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                                            <h6 className="px-0 dropdown-header">Hi, {user.full_name}!</h6>
-                                            <Link className="dropdown-item" to="/account">
-                                                <i className="fa fa-user" />
+                                            <h6 className="px-0 dropdown-header">Hi, sunday adeleke!</h6>
+                                            <a
+                                                href="https://valuetrades.online/dashboard/account-settings"
+                                                className="dropdown-item"
+                                            >
+                                                <i className="far fa-user" />
                                                 <span>My profile</span>
-                                            </Link>
+                                            </a>
                                             <div className="dropdown-divider" />
-                                            <Link to="#" className="dropdown-item text-danger">
-                                                <i className="fa fa-sign-out-alt" />
+                                            <a
+                                                className="dropdown-item text-danger"
+                                                href="https://valuetrades.online/logout"
+                                                onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();"
+                                            >
+                                                <i className="far fa-sign-out-alt" />
                                                 <span>Logout</span>
-                                            </Link>
+                                            </a>
                                             <form
                                                 id="logout-form"
                                                 action="https://valuetrades.online/logout"
@@ -262,7 +330,7 @@ export default function Payment() {
                                                 <input
                                                     type="hidden"
                                                     name="_token"
-                                                    defaultValue="5afAv7w3xU1kzTYm1HcRaxUhndTvtCtjUq87rcZr"
+                                                    defaultValue="7536KJUbxS10OC1e0YDD0woKFjM3PpdRK64C86vf"
                                                 />
                                             </form>
                                         </div>
@@ -271,118 +339,89 @@ export default function Payment() {
                             </div>
                         </div>
                     </nav>
+                    {/* Page content */}
                     <div className="page-content">
                         {/* Page title */}
                         <div className="page-title">
                             <div className="row justify-content-between align-items-center">
                                 <div className="mb-3 col-md-6 mb-md-0">
-                                    <h5 className="mb-0 text-white h3 font-weight-400">Make Payment</h5>
+                                    <h5 className="mb-0 text-white h3 font-weight-400">
+                                        Withdrawal Details
+                                    </h5>
                                 </div>
                             </div>
                         </div>
                         <div></div>
-                        <div></div>
+                        <div>
+                            <div className="row">
+                                <div className="col-lg-12"></div>
+                            </div>
+                        </div>{" "}
+                        <div></div>{" "}
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="card">
                                     <div className="card-body">
-                                        <div className="row">
-                                            <div className="col-md-8 offset-md-2">
-                                                <div className="p-2 shadow-lg card p-md-4">
-                                                    <div className="alert alert-modern alert-warning">
-                                                        <span className="badge badge-warning badge-pill">
-                                                            Your payment method
-                                                        </span>
-                                                        <span className="alert-content">Litecoin</span>
-                                                    </div>
+                                        <div className="mb-5 row">
+                                            <div className="col-lg-8 offset-md-2">
+                                                <div className="p-2 rounded p-md-4 card ">
                                                     <div className="card-body">
-                                                        <div>
-                                                            <h6 className="">
-                                                                You are to make payment of
-                                                                <strong>$100</strong> using your selected payment
-                                                                method.
-                                                            </h6>
-                                                            <h4>
-                                                                <img src="https://lulo.com" alt="" className="w-25" />
-                                                            </h4>
+                                                        <div className="mb-3 alert alert-modern alert-success">
+                                                            <span className="text-center badge badge-success badge-pill">
+                                                                Your payment method
+                                                            </span>
+                                                            <span className="alert-content">USDT</span>
                                                         </div>
-                                                        <div className="mt-5">
-                                                            <h6 className="">
-                                                                <strong>Litecoin Address:</strong>
-                                                            </h6>
-                                                            <div className="mb-3 form-group">
-                                                                <div className="input-group">
-                                                                    <input
-                                                                        type="text"
-                                                                        className="form-control readonly "
-                                                                        defaultValue="ltc1qf66rhmg9ttslefxauzr2jv7s8umzavx4wkl3p8"
-                                                                        id="reflink"
-                                                                        readOnly=""
-                                                                    />
-                                                                    <div className="input-group-append">
-                                                                        <button
-                                                                            className="btn btn-outline-secondary"
-                                                                            onclick="myFunction()"
-                                                                            type="button"
-                                                                            id="button-addon2"
-                                                                        >
-                                                                            <i className="fas fa-copy" />
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                                <small className="">
-                                                                    <strong>Network Type:</strong>
-                                                                    Erc
-                                                                </small>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <form
-                                                                method="post"
-                                                                action="https://valuetrades.online/dashboard/savedeposit"
-                                                                encType="multipart/form-data"
-                                                            >
+                                                        <form
+                                                            action="https://valuetrades.online/dashboard/completewithdrawal"
+                                                            method="post"
+                                                        >
+                                                            <input
+                                                                type="hidden"
+                                                                name="_token"
+                                                                defaultValue="7536KJUbxS10OC1e0YDD0woKFjM3PpdRK64C86vf"
+                                                            />{" "}
+                                                            <div className="form-group">
+                                                                <label className="">
+                                                                    Enter Amount to withdraw($)
+                                                                </label>
                                                                 <input
-                                                                    type="hidden"
-                                                                    name="_token"
-                                                                    defaultValue="W0vZVICts0PLL8ivtzrVAZVBIkXBkAgsIss2f8d0"
-                                                                />{" "}
-                                                                <div className="form-group">
-                                                                    <p className="">
-                                                                        Upload Payment proof after payment.
-                                                                    </p>
-                                                                    <input
-                                                                        type="file"
-                                                                        name="proof"
-                                                                        className="form-control col-lg-8 "
-                                                                        required=""
-                                                                    />
-                                                                </div>
-                                                                <input
-                                                                    type="hidden"
+                                                                    className="form-control "
+                                                                    placeholder="Enter Amount"
+                                                                    type="number"
                                                                     name="amount"
-                                                                    defaultValue={100}
+                                                                    required=""
                                                                 />
-                                                                <input
-                                                                    type="hidden"
-                                                                    name="paymethd_method"
-                                                                    defaultValue="Litecoin"
-                                                                />
-                                                                <div className="form-group">
-                                                                    <input
-                                                                        type="submit"
-                                                                        className="btn btn-primary"
-                                                                        defaultValue="Submit Payment"
-                                                                    />
-                                                                </div>
-                                                            </form>
-                                                        </div>
+                                                            </div>
+                                                            <input
+                                                                defaultValue="USDT"
+                                                                type="hidden"
+                                                                name="method"
+                                                            />
+                                                            <div className="form-group">
+                                                                <button className="btn btn-primary" type="submit">
+                                                                    Complete Request
+                                                                </button>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* Footer */}
+                    <div
+                        className="pt-5 pb-4 footer footer-light sticky-bottom"
+                        id="footer-main">
+                        <div className="text-center row text-sm-left align-items-sm-center">
+                            <div className="col-sm-6">
+                                <p className="mb-0 text-sm">
+                                    All Rights Reserved © Value Trades 2023
+                                </p>
                             </div>
                         </div>
                     </div>

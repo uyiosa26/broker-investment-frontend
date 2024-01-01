@@ -275,7 +275,7 @@ export default function Signup() {
                                                             <option value="Estonia">Estonia</option>
                                                             <option value="Ethiopia">Ethiopia</option>
                                                             <option value="Falkland Islands">Falkland Islands</option>
-                                                            <option value="Faroe Islands">Faroe Islands</option>
+                                                            <option value="faoe Islands">faoe Islands</option>
                                                             <option value="Fiji">Fiji</option>
                                                             <option value="Finland">Finland</option>
                                                             <option value="France">France</option>

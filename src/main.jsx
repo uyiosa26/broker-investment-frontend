@@ -15,6 +15,9 @@ import Profile from './pages/profile/profile.jsx';
 import About from './pages/about/about.jsx';
 import Contact from './pages/contact/contact.jsx';
 import Payment from './pages/payment/payment.jsx';
+import History from './pages/history/history.jsx';
+import Withdraw from './pages/withdraw/withdraw.jsx';
+import Confirm from './pages/withdraw/confirm.jsx';
 
 const router = createBrowserRouter([
   {
@@ -59,6 +62,18 @@ const router = createBrowserRouter([
        {
         path: "/payment",
         element: <Payment />
+      },
+      {
+        path: "/transactions",
+        element: <History />
+      },
+      {
+        path: "/withdraw",
+        element: <Withdraw />
+      },
+      {
+        path: "/confirm-withraw",
+        element: <Confirm />
       }
     ]
   },

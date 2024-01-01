@@ -73,7 +73,7 @@ export default function Navbar() {
                                 className="shadow btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3"
                             >
                                 <span className="btn-inner--icon">
-                                    <i className="far fa-coins" />
+                                    <i className="fa fa-coins" />
                                 </span>
                                 <span className="btn-inner--text">{user.balance}</span>
                             </a>
@@ -88,7 +88,7 @@ export default function Navbar() {
                     <Link className="text-sm btn btn-square active" to="/dashboard">
 
                         <span className="btn-inner--icon d-block">
-                            <i className="far fa-home fa-2x" />
+                            <i className="fa fa-home fa-2x" />
                         </span>
                         <span className="pt-2 btn-inner--icon d-block">Home</span>
 
@@ -96,7 +96,7 @@ export default function Navbar() {
                     <Link className="text-sm btn btn-square  " to="/deposit">
 
                         <span className="btn-inner--icon d-block">
-                            <i className="far fa-download fa-2x" />
+                            <i className="fa fa-download fa-2x" />
                         </span>
                         <span className="pt-2 btn-inner--icon d-block">Deposit</span>
                     </Link>
@@ -127,7 +127,7 @@ export default function Navbar() {
                     </Link>
                     <Link className="text-sm btn btn-square" to="/">
                         <span className="btn-inner--icon d-block">
-                            <i className="far fa-hand-holding-seedling fa-2x" />
+                            <i className="fa fa-hand-holding-seedling fa-2x" />
                         </span>
                         <span className="pt-2 btn-inner--icon d-block">My Plans</span>
                     </Link>
@@ -172,7 +172,7 @@ export default function Navbar() {
                                         data-action="sidenav-pin"
                                         data-target="#sidenav-main"
                                     >
-                                        <i className="far fa-bars" />
+                                        <i className="fa fa-bars" />
                                     </a>
                                 </li>
                                 <li className="nav-item dropdown dropdown-animate">
@@ -195,7 +195,7 @@ export default function Navbar() {
                                         </Link>
                                         <div className="dropdown-divider" />
                                         <Link to="#" className="dropdown-item text-danger">
-                                            <i className="far fa-sign-out-alt" />
+                                            <i className="fa fa-sign-out-alt" />
                                             <span>Logout</span>
                                         </Link>
                                         <form
@@ -228,7 +228,7 @@ export default function Navbar() {
                                         data-action="sidenav-pin"
                                         data-target="#sidenav-main"
                                     >
-                                        <i className="far fa-bars" />
+                                        <i className="fa fa-bars" />
                                     </a>
                                 </li>
                                 <li className="nav-item dropdown dropdown-animate">
@@ -254,12 +254,12 @@ export default function Navbar() {
                                     <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
                                         <h6 className="px-0 dropdown-header">Hi, {user.full_name}!</h6>
                                         <Link className="dropdown-item" to="/account">
-                                            <i className="far fa-user" />
+                                            <i className="fa fa-user" />
                                             <span>My profile</span>
                                         </Link>
                                         <div className="dropdown-divider" />
                                         <Link to="#" className="dropdown-item text-danger">
-                                            <i className="far fa-sign-out-alt" />
+                                            <i className="fa fa-sign-out-alt" />
                                             <span>Logout</span>
                                         </Link>
                                         <form

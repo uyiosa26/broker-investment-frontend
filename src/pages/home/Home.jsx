@@ -107,34 +107,34 @@ export default function Home() {
                             {/* Navigation Menu*/}
                             <ul className="navigation-menu">
                                 <li>
-                                    <a href="https://valuetrades.online/about">About us</a>
+                                    <Link to="/about">About us</Link>
                                 </li>
                                 <li>
-                                    <a href="#pricing">Pricing</a>
+                                    <Link to="#pricing">Pricing</Link>
                                 </li>
                                 <li>
-                                    <a href="https://valuetrades.online/faq">Faq</a>
+                                    <Link to="/faq">Faq</Link>
                                 </li>
                                 <li className="last-elements">
-                                    <a href="https://valuetrades.online/contact">Contact</a>
+                                    <Link to="/contact">Contact</Link>
                                 </li>
                             </ul>
                             {/*end navigation menu*/}
                             <div className="buy-menu-btn d-none">
-                                <a
-                                    href="https://valuetrades.online/login"
+                                <Link
+                                    to="/login"
                                     target="_blank"
                                     className="btn btn-success"
                                 >
                                     Login
-                                </a>
-                                <a
-                                    href="https://valuetrades.online/register"
+                                </Link>
+                                <Link
+                                    to="/register"
                                     target="_blank"
                                     className="btn btn-success"
                                 >
                                     Get Started
-                                </a>
+                                </Link>
                             </div>
                             {/*end login button*/}
                         </div>
@@ -164,12 +164,12 @@ export default function Home() {
                                         goals by helping them trade and invest with ease
                                     </p>
                                     <div className="mt-4">
-                                        <a
-                                            href="https://valuetrades.online/register"
+                                        <Link
+                                            to="/register"
                                             className="pt-3 pb-3 pl-4 pr-4 btn btn-primary"
                                         >
                                             Create Free Account
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@ export default function Home() {
                         width: "100%"
                     }}
                 >
-                    <div style={{ height: 40, padding: 0, margin: 0, width: "100%" }}>
+                    {/* <div style={{ height: 40, padding: 0, margin: 0, width: "100%" }}>
                         <iframe
                             src="https://widget.coinlib.io/widget?type=horizontal_v2&theme=light&pref_coin_id=1505&invert_hover="
                             width="100%"
@@ -223,7 +223,7 @@ export default function Home() {
                             border={0}
                             style={{ border: 0, margin: 0, padding: 0 }}
                         />
-                    </div>
+                    </div> */}
                     <div
                         style={{
                             color: "#FFFFFF",
@@ -510,12 +510,12 @@ export default function Home() {
                                         of freely trading on the move, to experience truly liberating
                                         trading sessions.
                                     </p>
-                                    <a
-                                        href="https://valuetrades.online/about"
+                                    <Link
+                                        to="https://valuetrades.online/about"
                                         className="mt-3 h6 text-primary"
                                     >
                                         Find Out More <i className="mdi mdi-chevron-right" />
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                             {/*end col*/}
@@ -730,12 +730,12 @@ export default function Home() {
                                 {/*end col*/}
                                 <div className="mt-4 col-md-4 mt-sm-0">
                                     <div className="text-center text-md-right">
-                                        <a
-                                            href="https://valuetrades.online/register"
+                                        <Link
+                                            to="https://valuetrades.online/register"
                                             className="pt-3 pb-3 pl-4 pr-4 btn btn-light"
                                         >
                                             Create Free Account
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                                 {/*end col*/}
@@ -818,31 +818,31 @@ export default function Home() {
                                 <h5 className="text-light footer-head">Useful Links</h5>
                                 <ul className="mt-4 list-unstyled footer-list">
                                     <li>
-                                        <a href="https://valuetrades.online" className="text-foot">
+                                        <Link to="https://valuetrades.online" className="text-foot">
                                             <i className="mr-1 mdi mdi-chevron-right" />
                                             Home
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="https://valuetrades.online/about" className="text-foot">
+                                        <Link to="https://valuetrades.online/about" className="text-foot">
                                             <i className="mr-1 mdi mdi-chevron-right" />
                                             About us
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a
-                                            href="https://valuetrades.online/contact"
+                                        <Link
+                                            to="https://valuetrades.online/contact"
                                             className="text-foot"
                                         >
                                             <i className="mr-1 mdi mdi-chevron-right" />
                                             Contact Us
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="https://valuetrades.online/faq" className="text-foot">
+                                        <Link to="https://valuetrades.online/faq" className="text-foot">
                                             <i className="mr-1 mdi mdi-chevron-right" />
                                             Faq
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>

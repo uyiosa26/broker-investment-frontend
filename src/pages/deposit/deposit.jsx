@@ -1,6 +1,33 @@
 import { Link } from "react-router-dom"
+import { useEffect, useState } from "react"
+import supabase from "../../utils/client"
 
 export default function Deposit() {
+
+    const [user, setUser] = useState("")
+
+    const userToken = localStorage.getItem("userToken")
+
+    useEffect(() => {
+
+        const getData = async function () {
+
+            try {
+                const { data, error } = await supabase
+                    .from("users")
+                    .select("*")
+                    .eq("id", userToken)
+                if (error) return console.log(error.message)
+                setUser(data[0]);
+                console.log(user)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getData()
+
+    }, [])
+
     return (
         <>
             <style
@@ -95,19 +122,14 @@ export default function Deposit() {
                                 <i className="fas fa-user-circle fa-4x" />
                             </a>
                             <div className="mt-4">
-                                <h5 className="mb-0 text-white"> sunday adeleke</h5>
+                                <h5 className="mb-0 text-white">{user.full_name}</h5>
                                 <span className="mb-3 text-sm text-white d-block opacity-8">
                                     online
                                 </span>
-                                <a
-                                    href="#"
-                                    className="shadow btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3"
-                                >
-                                    <span className="btn-inner--icon">
-                                        <i className="far fa-coins" />
-                                    </span>
-                                    <span className="btn-inner--text">$0.00</span>
-                                </a>
+                                <Link to="#" className="shadow custom-btn btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3">
+                                    <i className="fa fa-coins"></i>
+                                    <span className="btn-inner--text">${user.balance}</span>
+                                </Link>
                             </div>
                         </div>
                         {/* User info */}
@@ -119,7 +141,7 @@ export default function Deposit() {
                         <Link className="text-sm btn btn-square active" to="/dashboard">
 
                             <span className="btn-inner--icon d-block">
-                                <i className="far fa-home fa-2x" />
+                                <i className="fa-solid fa-house fa-2x"></i>
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Home</span>
 
@@ -127,7 +149,7 @@ export default function Deposit() {
                         <Link className="text-sm btn btn-square  " to="/deposit">
 
                             <span className="btn-inner--icon d-block">
-                                <i className="far fa-download fa-2x" />
+                                <i className="fa-solid fa-circle-dollar-to-slot fa-2x"></i>
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Deposit</span>
                         </Link>
@@ -152,17 +174,10 @@ export default function Deposit() {
                         </Link>
                         <Link className="text-sm btn btn-square" to="/buy-plan">
                             <span className="btn-inner--icon d-block">
-                                <i className="fas fa-hand-holding-seedling fa-2x" />
+                                <i className="fa-solid fa-chart-pie fa-2x"></i>
                             </span>
                             <span className="pt-2 btn-inner--icon d-block">Trading Plans</span>
                         </Link>
-                        <Link className="text-sm btn btn-square" to="/">
-                            <span className="btn-inner--icon d-block">
-                                <i className="far fa-hand-holding-seedling fa-2x" />
-                            </span>
-                            <span className="pt-2 btn-inner--icon d-block">My Plans</span>
-                        </Link>
-
                     </div>
                     {/* Misc area */}
                     <div className="card bg-gradient-warning">
@@ -203,7 +218,7 @@ export default function Deposit() {
                                             data-action="sidenav-pin"
                                             data-target="#sidenav-main"
                                         >
-                                            <i className="far fa-bars" />
+                                            <i className="fa fa-bars" />
                                         </a>
                                     </li>
                                     <li className="nav-item dropdown dropdown-animate">
@@ -220,13 +235,13 @@ export default function Deposit() {
                                             </span>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                                            <h6 className="px-0 dropdown-header">Hi, sunday adeleke!</h6>
+                                            <h6 className="px-0 dropdown-header">Hi, {user.full_name}!</h6>
                                             <Link className="dropdown-item" to="/account">
                                                 <span>My profile</span>
                                             </Link>
                                             <div className="dropdown-divider" />
                                             <Link to="#" className="dropdown-item text-danger">
-                                                <i className="far fa-sign-out-alt" />
+                                                <i className="fa fa-sign-out-alt" />
                                                 <span>Logout</span>
                                             </Link>
                                             <form
@@ -259,7 +274,7 @@ export default function Deposit() {
                                             data-action="sidenav-pin"
                                             data-target="#sidenav-main"
                                         >
-                                            <i className="far fa-bars" />
+                                            <i className="fa fa-bars" />
                                         </a>
                                     </li>
                                     <li className="nav-item dropdown dropdown-animate">
@@ -277,20 +292,20 @@ export default function Deposit() {
                                                 </span>
                                                 <div className="ml-2 d-none d-lg-block">
                                                     <span className="mb-0 text-sm font-weight-bold">
-                                                        sunday adeleke
+                                                        {user.full_name}
                                                     </span>
                                                 </div>
                                             </div>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
-                                            <h6 className="px-0 dropdown-header">Hi, sunday adeleke!</h6>
+                                            <h6 className="px-0 dropdown-header">Hi, {user.full_name}!</h6>
                                             <Link className="dropdown-item" to="/account">
-                                                <i className="far fa-user" />
+                                                <i className="fa fa-user" />
                                                 <span>My profile</span>
                                             </Link>
                                             <div className="dropdown-divider" />
                                             <Link to="#" className="dropdown-item text-danger">
-                                                <i className="far fa-sign-out-alt" />
+                                                <i className="fa fa-sign-out-alt" />
                                                 <span>Logout</span>
                                             </Link>
                                             <form
@@ -381,7 +396,7 @@ export default function Deposit() {
                                                                                 className=""
                                                                                 style={{ width: 25 }}
                                                                             />
-                                                                            Litecoin
+                                                                            USDT
                                                                         </span>
                                                                         <span>
                                                                             <input
@@ -453,16 +468,7 @@ export default function Deposit() {
                                                         </div>
                                                     </div>
                                                     <div className="card-footer">
-                                                        <div className="actions d-flex justify-content-between">
-                                                            <a
-                                                                href="https://valuetrades.online/dashboard/accounthistory"
-                                                                className="action-item"
-                                                            >
-                                                                <span className="btn-inner--icon">
-                                                                    View deposit history
-                                                                </span>
-                                                            </a>
-                                                        </div>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -487,12 +493,6 @@ export default function Deposit() {
                     </div>
                 </div>
             </div>
-            {/* Scripts */}
-            {/* Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit */}
-            {/* Page JS */}
-            {/* Purpose JS */}
-            {/* Bootstrap Notify */}
-            {/* Bootstrap Notify */}
         </>
 
     )

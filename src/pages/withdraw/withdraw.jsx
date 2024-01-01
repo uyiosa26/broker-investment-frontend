@@ -1,17 +1,17 @@
-import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import supabase from "../../utils/client"
+import { useEffect, useState } from "react"
 
-export default function Plan() {
+export default function Withdraw() {
+
+    const navigate = useNavigate()
 
     const [user, setUser] = useState("")
-    const [value, setValue] = useState(200)
-
-    const wallet = user.balance;
 
     const userToken = localStorage.getItem("userToken")
 
     useEffect(() => {
+
 
         const getData = async function () {
 
@@ -30,18 +30,11 @@ export default function Plan() {
         getData()
 
     }, [])
-    
-    const handlePayment = function(e) {
-
-        e.preventDefault()
-
-        if(wallet < value|| wallet === undefined) return alert("Please Fund account to continue");
-    }
 
     return (
         <>
             <div className="container-fluid container-application">
-
+                {/* Sidenav */}
                 <div className="sidenav" id="sidenav-main">
                     {/* Sidenav header */}
                     <div className="sidenav-header d-flex align-items-center">
@@ -279,140 +272,135 @@ export default function Plan() {
                             </div>
                         </div>
                     </nav>
-
+                    {/* Page content */}
                     <div className="page-content">
-
+                        {/* Page title */}
                         <div className="page-title">
                             <div className="row justify-content-between align-items-center">
                                 <div className="mb-3 col-md-6 mb-md-0">
-                                    <h5 className="mb-0 text-white h3 font-weight-400">Get started with your investment.</h5>
+                                    <h5 className="mb-0 text-white h3 font-weight-400">
+                                        Place a withdrawal request
+                                    </h5>
                                 </div>
                             </div>
                         </div>
-
+                        <div></div> <div></div>{" "}
                         <div className="row">
-                            <div className="col-md-12">
+                            <div className="my-5 col-md-12">
                                 <div className="card">
                                     <div className="card-body">
-                                        <div>
-                                            <div className="mt-4 row">
-                                                <div className="col-md-8">
-
-                                                    <div className="mt-5">
-                                                        <div className="">
-                                                            <p>Choose Quick Amount to Invest</p>
-                                                        </div>
-                                                        <div className="flex-wrap mb-1 d-flex justify-content-start align-items-center">
-                                                            <button onClick={()=> setValue(100)} className="mb-2 border-black rounded-none btn btn-light" >$100</button>
-                                                            <button onClick={() => setValue(250)} className="mb-2 border-black rounded-none btn btn-light" >$250</button>
-                                                            <button onClick={() => setValue(500)} className="mb-2 border-black rounded-none btn btn-light" >$500</button>
-                                                            <button onClick={() => setValue(1000)} className="mb-2 border-black rounded-none btn btn-light" >$1,000</button>
-                                                            <button onClick={() => setValue(1500)} className="mb-2 border-black rounded-none btn btn-light" >$1,500</button>
-                                                            <button onClick={() => setValue(2000)} className="mb-2 border-black rounded-none btn btn-light" >$2,000</button>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="mt-5">
-                                                        <div className="">
-                                                            <p>Or Enter Your Amount</p>
-                                                            <div>
-                                                                <input type="number" value={value} required name="" id="" className="form-control d-block w-100" placeholder="1000" min="1000" max="100000" />
+                                        <div className="my-5 row d-flex nowrap">
+                                            <div className="mb-4 col-lg-4">
+                                                <div className="card-deck">
+                                                    <div className="text-center border-0 rounded-lg shadow-lg card card-pricing hover-scale-110 bg-primary popular">
+                                                        <div className="py-0 border-0 card-header">
+                                                            <span className="px-4 py-1 mx-auto bg-white shadow-sm h6 d-inline-block rounded-bottom">
+                                                                USDT
+                                                            </span>
+                                                            <div className="py-5">
+                                                                <img
+                                                                    src="https://valuetrades.online/dash2/img/svg/illustrations/method.svg"
+                                                                    alt="withdrawal method image"
+                                                                    srcSet=""
+                                                                    className="img-fluid img-center"
+                                                                    style={{ height: 90 }}
+                                                                />
                                                             </div>
                                                         </div>
-                                                    </div>
-
-                                                    <div className="mt-5">
-                                                        <p>Choose Payment Method</p>
-                                                    </div>
-                                                    <div className="select-menu2">
-                                                        <ul className="options2 d-block">
-                                                            <li className="mb-3 shadow option2 bg-light border border-primary" id="acnt">
-                                                                <i className="fas fa-wallet"></i>
-                                                                <span className="option-text2 d-block">Balance</span> <br />
-                                                                <span className="small">${user.balance}</span>
-                                                            </li>
-
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <div className="card">
-                                                <div className="card-body">
-                                                    <p>Your Investment Details</p>
-                                                    <div className="row">
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Name of plan</p>
-                                                            <span className="text-primary small">Starter</span>
+                                                        <hr className="my-0 divider divider-fade divider-dark" />
+                                                        <div className="card-body">
+                                                            <ul className="mb-4 text-white list-unstyled">
+                                                                <li>
+                                                                    <small>Minimum withdrawable amount</small>
+                                                                    <p className="text-white h5">$10</p>
+                                                                </li>
+                                                                <li>
+                                                                    <small>Maximum withdrawable amount</small>
+                                                                    <p className="text-white h5">$10,000</p>
+                                                                </li>
+                                                                <li>
+                                                                    Charge Type: <strong>percentage</strong>
+                                                                </li>
+                                                                <li>
+                                                                    Charges Amount:
+                                                                    <strong>0%</strong>
+                                                                </li>
+                                                                <li>
+                                                                    Duration: <strong>Instant</strong>
+                                                                </li>
+                                                            </ul>
+                                                            <form
+                                                                action="https://valuetrades.online/dashboard/enter-amount"
+                                                                method="POST"
+                                                            >
+                                                                <input
+                                                                    type="hidden"
+                                                                    name="_token"
+                                                                    defaultValue="7536KJUbxS10OC1e0YDD0woKFjM3PpdRK64C86vf"
+                                                                />{" "}
+                                                                <div className="form-group">
+                                                                    <input
+                                                                        type="hidden"
+                                                                        defaultValue="Bitcoin"
+                                                                        name="method"
+                                                                    />
+                                                                    <button onClick={()=> navigate("/confirm-withraw")}
+                                                                        className="mb-3 btn btn-sm btn-neutral">
+                                                                        <i className="fa fa-plus" /> Request withdrawal
+                                                                    </button>
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Plan Price</p>
-                                                            <span className="text-primary small">$1000</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Duration</p>
-                                                            <span className="text-primary small">1 Days</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Profit</p>
-                                                            <span className="text-primary small">
-                                                                1000%
-                                                                Daily
-                                                            </span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Minimum Deposit</p>
-                                                            <span className="text-primary small">$1000</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Maximum Deposit</p>
-                                                            <span className="text-primary small">$100000</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Minimum Return</p>
-                                                            <span className="text-primary small">10000%</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Maximum Return</p>
-                                                            <span className="text-primary small">1000000%</span>
-                                                        </div>
-                                                    </div>
-                                                    <hr />
-                                                    <div className="justify-content-between d-md-flex">
-                                                        <span className="small d-block d-md-inline">Payment method:</span>
-                                                        <span className="small text-primary">Account Balance</span>
-                                                    </div>
-                                                    <hr />
-                                                    <div className="justify-content-between d-md-flex">
-                                                        <span className="d-block d-md-inline font-weight-bold">Amount to Invest:</span>
-                                                        <span className="text-primary font-weight-bold">$0</span>
-                                                    </div>
-                                                    <div className="mt-3 text-center">
-                                                        <form onSubmit={handlePayment}>
-                                                            {<button className="px-3 btn btn-primary" type="submit">
-                                                                Confirm &amp; Invest
-                                                            </button>}
-                                                        </form>
-                                                        <span className="mt-2 small text-primary">
-                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        {/* Withdrawal Modal */}
+                                        <div id="withdrawdisabled" className="modal fade" role="dialog">
+                                            <div className="modal-dialog">
+                                                {/* Modal content*/}
+                                                <div className="modal-content">
+                                                    <div className="modal-header ">
+                                                        <h6 className="modal-title">Withdrawal Status</h6>
+                                                        <button
+                                                            type="button"
+                                                            className="close"
+                                                            data-dismiss="modal"
+                                                            aria-label="Close"
+                                                        >
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div className="modal-body ">
+                                                        <h6 className="">
+                                                            Withdrawal is Disabled at the moment, Please check back
+                                                            later
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/* /Withdrawals Modal */}
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
+                    {/* Footer */}
+                    <div
+                        className="pt-5 pb-4 footer footer-light sticky-bottom"
+                        id="footer-main"
+                    >
+                        <div className="text-center row text-sm-left align-items-sm-center">
+                            <div className="col-sm-6">
+                                <p className="mb-0 text-sm">
+                                    All Rights Reserved © Value Trades 2023
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-
-
         </>
     )
 }

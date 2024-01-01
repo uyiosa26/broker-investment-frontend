@@ -133,8 +133,8 @@ export default function Dashboard() {
                                 <span className="mb-3 text-sm text-white d-block opacity-8">
                                     online
                                 </span>
-                                <Link to="#" className="shadow btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3">
-                                    <span className="btn-inner--icon"><i className="far fa-coins"></i></span>
+                                <Link to="#" className="shadow custom-btn btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3">
+                                    <i className="fa fa-coins"></i>
                                     <span className="btn-inner--text">$0.00</span>
                                 </Link>
                             </div>
@@ -248,7 +248,7 @@ export default function Dashboard() {
                                             </Link>
                                             <div className="dropdown-divider" />
                                             <Link to="#" className="dropdown-item text-danger">
-                                                <i className="far fa-sign-out-alt" />
+                                                <i className="fa fa-sign-out-alt" />
                                                 <span>Logout</span>
                                             </Link>
                                             <form
@@ -281,7 +281,7 @@ export default function Dashboard() {
                                             data-action="sidenav-pin"
                                             data-target="#sidenav-main"
                                         >
-                                            <i className="far fa-bars" />
+                                            <i className="fa fa-bars" />
                                         </a>
                                     </li>
                                     <li className="nav-item dropdown dropdown-animate">
@@ -307,12 +307,12 @@ export default function Dashboard() {
                                         <div className="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
                                             <h6 className="px-0 dropdown-header">Hi, {user.full_name}!</h6>
                                             <Link className="dropdown-item" to="/account">
-                                                <i className="far fa-user" />
+                                                <i className="fa fa-user" />
                                                 <span>My profile</span>
                                             </Link>
                                             <div className="dropdown-divider" />
                                             <Link to="#" className="dropdown-item text-danger">
-                                                <i className="far fa-sign-out-alt" />
+                                                <i className="fa fa-sign-out-alt" />
                                                 <span>Logout</span>
                                             </Link>
                                             <form
@@ -489,12 +489,12 @@ export default function Dashboard() {
                                                                     You do not have an active investment plan at the
                                                                     moment.
                                                                 </p>
-                                                                <a
-                                                                    href="https://valuetrades.online/dashboard/buy-plan"
+                                                                <Link
+                                                                    to="/buy-plan"
                                                                     className="px-3 btn btn-primary"
                                                                 >
                                                                     Buy a plan
-                                                                </a>
+                                                                </Link>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -513,13 +513,7 @@ export default function Dashboard() {
                                             <div className="col-12">
                                                 <div className="card">
                                                     <div className="card-body">
-                                                        <div className="mb-2 text-right">
-                                                            <a href="https://valuetrades.online/dashboard/accounthistory">
-                                                                {" "}
-                                                                <i className="fas fa-clipboard" /> View all
-                                                                transactions
-                                                            </a>
-                                                        </div>
+                                                        
                                                         <div className=" table-responsive">
                                                             <table className="table table-striped">
                                                                 <thead>
@@ -543,28 +537,7 @@ export default function Dashboard() {
                                         <div className="mt-4 row">
                                             <div className="col-md-6">
                                                 <div className="card">
-                                                    <div className="card-body">
-                                                        <h5 className="text-black">Refer Us &amp; Earn</h5>
-                                                        <p>Use the below link to invite your friends.</p>
-                                                        <div className="mb-3 input-group">
-                                                            <input
-                                                                type="text"
-                                                                className="form-control myInput readonly"
-                                                                defaultValue="https://valuetrades.online/ref/justinehive12k"
-                                                                id="reflink"
-                                                                readOnly=""
-                                                            />
-                                                            <div className="input-group-append">
-                                                                <button
-                                                                    className="btn btn-outline-primary"
-                                                                    onclick="myFunction()"
-                                                                    type="button"
-                                                                >
-                                                                    <i className="fas fa-copy" />
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
