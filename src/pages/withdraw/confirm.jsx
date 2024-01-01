@@ -1,4 +1,34 @@
+import { Link} from "react-router-dom"
+import supabase from "../../utils/client"
+import { useEffect, useState } from "react"
+
 export default function Confirm() {
+
+    const [user, setUser] = useState("")
+
+    const userToken = sessionStorage.getItem("userToken")
+
+    useEffect(() => {
+
+
+        const getData = async function () {
+
+            try {
+                const { data, error } = await supabase
+                    .from("users")
+                    .select("*")
+                    .eq("id", userToken)
+                if (error) return console.log(error.message)
+                setUser(data[0]);
+                console.log(user)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getData()
+
+    }, [])
+
     return (
         <>
             <div className="container-fluid container-application">
@@ -6,13 +36,13 @@ export default function Confirm() {
                 <div className="sidenav" id="sidenav-main">
                     {/* Sidenav header */}
                     <div className="sidenav-header d-flex align-items-center">
-                        <a className="navbar-brand" href="https://valuetrades.online/dashboard">
+                        <Link className="navbar-brand" to="/dashboard">
                             <img
                                 src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
                                 className="navbar-brand-img"
                                 alt="logo"
                             />
-                        </a>
+                        </Link>
                         <div className="ml-auto">
                             {/* Sidenav toggler */}
                             <div
@@ -58,7 +88,7 @@ export default function Confirm() {
                     {/* Application nav */}
                     <div className="clearfix nav-application">
                         <a
-                            href="https://valuetrades.online/dashboard"
+                            to="/dashboard"
                             className="text-sm btn btn-square "
                         >
                             <span className="btn-inner--icon d-block">
@@ -195,7 +225,7 @@ export default function Confirm() {
                             <div className="pl-4 d-block d-md-none">
                                 <a
                                     className="navbar-brand"
-                                    href="https://valuetrades.online/dashboard"
+                                    to="/dashboard"
                                 >
                                     <img
                                         src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
