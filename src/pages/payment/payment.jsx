@@ -7,7 +7,7 @@ export default function Payment() {
     const [user, setUser] = useState("")
 
 
-    const userToken = localStorage.getItem("userToken")
+    const userToken = sessionStorage.getItem("userToken")
 
     useEffect(() => {
 

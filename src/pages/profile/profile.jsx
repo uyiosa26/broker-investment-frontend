@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import supabase from "../../utils/client"
 
 export default function Profile() {
 
     const [user, setUser] = useState("")
+    const [address, setAddress] = useState("")
+    const [userAddress, setUserAddress] = useState("")
   
-    const userToken = localStorage.getItem("userToken")
+    const userToken = sessionStorage.getItem("userToken")
 
-    useEffect(() => {
+    useMemo(() => {
 
         const getData = async function () {
 
@@ -19,14 +21,86 @@ export default function Profile() {
                     .eq("id", userToken)
                 if (error) return console.log(error.message)
                 setUser(data[0]);
+                setUserAddress(data[0].address)
                 console.log(user)
             } catch (error) {
                 console.log(error)
             }
         }
+
+
+        const getProfile = async function(){
+
+            try {
+                const { data, error } = await supabase
+                    .from("withdraw_address")
+                    .select("*")
+                    .eq("id", userToken)
+                if (error) return console.log(error.message)
+                setAddress(data[0].wallet);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
         getData()
 
+        getProfile()
+
     }, [])
+
+
+    const handleProfile = async function (e) {
+
+        e.preventDefault()
+
+        try {
+            const { data, error } = await supabase
+                .from('users')
+                .upsert(
+                    [{
+                        id: userToken,
+                        username: user.username,
+                        email: user.email,
+                        country: user.country,
+                        phone: user.phone,
+                        full_name: user.full_name,
+                        address: userAddress,
+                    },
+                    ],
+                    { onConflict: ['id'], returning: ['*'] }
+                )
+                .select()
+            if (error) return console.log(error.message)
+            setAddress(data[0].wallet);
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+
+    const handleWallet = async function (e) {
+        e.preventDefault()
+        try {
+            const { data, error } = await supabase
+                .from('withdraw_address')
+                .upsert(
+                    [{
+                            id: userToken,
+                            wallet: address,
+                        },
+                    ],
+                    { onConflict: ['id'], returning: ['*'] }
+                )
+                .select()
+            if (error) return new Error(error)
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <>
@@ -312,8 +386,7 @@ export default function Profile() {
                                                 <div className="tab-content">
                                                     <div className="tab-pane fade active show" id="per">
                                                         <form
-                                                            method="POST"
-                                                            action="javascript:void(0)"
+                                                            onSubmit={handleProfile}
                                                             id="updateprofileform"
                                                         >
                                                             <input
@@ -363,11 +436,12 @@ export default function Profile() {
                                                                 <div className="form-group col-md-6">
                                                                     <label className="">Address</label>
                                                                     <textarea
+                                                                        onChange={(e)=> setUserAddress(e.target.value)}
+                                                                        value={userAddress}
                                                                         className="form-control "
                                                                         placeholder="Full Address"
                                                                         name="address"
                                                                         row={3}
-                                                                        value={user.address || null}
                                                                     />
                                                                 </div>
                                                             </div>
@@ -378,8 +452,6 @@ export default function Profile() {
                                                     </div>
                                                     <div className="tab-pane fade" id="set">
                                                         <form
-                                                            method="post"
-                                                            action="javascript:void(0)"
                                                             id="updatewithdrawalinfo"
                                                         >
                                                             <input
@@ -397,10 +469,11 @@ export default function Profile() {
                                                                 <div className="form-row">
                                                                     <div className="form-group col-md-6">
                                                                         <label className="">USDT</label>
-                                                                        <input
+                                                                        <input 
+                                                                            onChange={(e)=> setAddress(e.target.value)}
+                                                                            value={address}
                                                                             type="text"
                                                                             name="btc_address"
-                                                                            defaultValue=""
                                                                             className="form-control "
                                                                             placeholder="Enter USDT Address"
                                                                         />
@@ -412,7 +485,7 @@ export default function Profile() {
                                                                    
                                                                 </div>
                                                             </fieldset>
-                                                            <button type="submit" className="px-5 btn btn-primary">
+                                                            <button onClick={handleWallet} className="px-5 btn btn-primary">
                                                                 Save
                                                             </button>
                                                         </form>

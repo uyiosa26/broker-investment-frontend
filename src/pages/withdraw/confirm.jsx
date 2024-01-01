@@ -47,7 +47,7 @@ export default function Confirm() {
                                     <span className="btn-inner--icon">
                                         <i className="far fa-coins" />
                                     </span>
-                                    <span className="btn-inner--text">$0.00</span>
+                                    <span className="btn-inner--text">${user.balance}</span>
                                 </a>
                             </div>
                         </div>

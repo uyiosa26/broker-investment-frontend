@@ -18,6 +18,7 @@ import Payment from './pages/payment/payment.jsx';
 import History from './pages/history/history.jsx';
 import Withdraw from './pages/withdraw/withdraw.jsx';
 import Confirm from './pages/withdraw/confirm.jsx';
+import Admin from './pages/admin/admin.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login/>
+      },
+      {
+        path: "/admin-area",
+        element: <Admin />
       },
       {
         path: "/register",

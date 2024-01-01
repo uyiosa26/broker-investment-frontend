@@ -19,7 +19,7 @@ export default function Login() {
             })
 
             if(data.user){
-                localStorage.setItem("userToken", data.user.id)
+                sessionStorage.setItem("userToken", data.user.id)
                 alert("Logged in succesfull")
                 navigate("/dashboard")
             } else {

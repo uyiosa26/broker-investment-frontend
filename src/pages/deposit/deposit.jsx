@@ -6,7 +6,7 @@ export default function Deposit() {
 
     const [user, setUser] = useState("")
 
-    const userToken = localStorage.getItem("userToken")
+    const userToken = sessionStorage.getItem("userToken")
 
     useEffect(() => {
 
@@ -461,7 +461,7 @@ export default function Deposit() {
                                                                     <span className="text-sm text-muted">-</span>
                                                                 </div>
                                                                 <div className="col-6">
-                                                                    <h6 className="mb-1">$0.00</h6>
+                                                                    <h6 className="mb-1">${user.balance}</h6>
                                                                     <span className="text-sm text-muted">Amount</span>
                                                                 </div>
                                                             </div>

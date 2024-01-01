@@ -6,9 +6,9 @@ export default function Dashboard() {
 
     const [user, setUser] = useState("")
 
-    const profit = Number(100) * 2.5
+    const profit = Number(user.balance) * 2.5
 
-    const userToken = localStorage.getItem("userToken")
+    const userToken = sessionStorage.getItem("userToken")
 
     useEffect(() => {
 
@@ -135,7 +135,7 @@ export default function Dashboard() {
                                 </span>
                                 <Link to="#" className="shadow custom-btn btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3">
                                     <i className="fa fa-coins"></i>
-                                    <span className="btn-inner--text">$0.00</span>
+                                    <span className="btn-inner--text">${user.balance}</span>
                                 </Link>
                             </div>
                         </div>
@@ -435,7 +435,7 @@ export default function Dashboard() {
                                                                 <h6 className="mb-1 text-muted">Total Deposit</h6>
                                                                 <span className="mb-0 h5 font-weight-bold">
                                                                     <span className="mb-0 h5 font-weight-bold ">
-                                                                        $0.00
+                                                                        ${user.balance}
                                                                     </span>
                                                                 </span>
                                                             </div>

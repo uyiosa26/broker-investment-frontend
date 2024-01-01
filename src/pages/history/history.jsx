@@ -6,7 +6,7 @@ export default function History() {
 
     const [user, setUser] = useState("")
 
-    const userToken = localStorage.getItem("userToken")
+    const userToken = sessionStorage.getItem("userToken")
 
     useEffect(() => {
 
@@ -71,7 +71,7 @@ export default function History() {
                                 </span>
                                 <Link to="#" className="shadow custom-btn btn btn-sm btn-white btn-icon rounded-pill hover-translate-y-n3">
                                     <i className="fa fa-coins"></i>
-                                    <span className="btn-inner--text">$0.00</span>
+                                    <span className="btn-inner--text">${user.balance}</span>
                                 </Link>
                             </div>
                         </div>

@@ -9,7 +9,7 @@ export default function Plan() {
 
     const wallet = user.balance;
 
-    const userToken = localStorage.getItem("userToken")
+    const userToken = sessionStorage.getItem("userToken")
 
     useEffect(() => {
 
@@ -30,12 +30,13 @@ export default function Plan() {
         getData()
 
     }, [])
-    
-    const handlePayment = function(e) {
+
+    const handlePayment = async function(e) {
 
         e.preventDefault()
 
-        if(wallet < value|| wallet === undefined) return alert("Please Fund account to continue");
+        if(wallet < value || wallet === undefined) return alert("Please Fund account to continue");
+  
     }
 
     return (

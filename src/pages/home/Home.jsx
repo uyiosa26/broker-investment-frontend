@@ -123,14 +123,12 @@ export default function Home() {
                             <div className="buy-menu-btn d-none">
                                 <Link
                                     to="/login"
-                                    target="_blank"
                                     className="btn btn-success"
                                 >
                                     Login
                                 </Link>
                                 <Link
                                     to="/register"
-                                    target="_blank"
                                     className="btn btn-success"
                                 >
                                     Get Started
