@@ -1,10 +1,12 @@
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import supabase from "../../utils/client"
 
 export default function History() {
 
     const [user, setUser] = useState("")
+
+    const [transactions, setTransactions] = useState([])
 
     const userToken = sessionStorage.getItem("userToken")
 
@@ -19,12 +21,29 @@ export default function History() {
                     .eq("id", userToken)
                 if (error) return console.log(error.message)
                 setUser(data[0]);
-                console.log(user)
             } catch (error) {
                 console.log(error)
             }
         }
+
+        const getTransactions = async function () {
+
+            try {
+                const { data, error } = await supabase
+                    .from("transactions")
+                    .select("*")
+                    .eq("user_id", userToken)
+                if (error) return console.log(error.message)
+                setTransactions(data);
+                console.log(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
         getData()
+
+        getTransactions()
 
     }, [])
 
@@ -285,7 +304,7 @@ export default function History() {
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="card">
-                                    <div style={{minHeight: "70vh"}} className="card-body">
+                                    <div style={{ minHeight: "70vh" }} className="card-body">
                                         <div className="tab-content" id="pills-tabContent">
                                             <div
                                                 className="tab-pane fade show active"
@@ -320,11 +339,11 @@ export default function History() {
                                                                     </label>
                                                                 </div>
                                                             </div>
-                                                           
+
                                                         </div>
                                                         <div className="row">
                                                             <div className="col-sm-12">
-                                                                <table style={{height: "100%"}}
+                                                                <table style={{ height: "100%" }}
                                                                     id="UserTable"
                                                                     className="UserTable table table-hover text- dataTable no-footer"
                                                                     role="grid"
@@ -380,31 +399,21 @@ export default function History() {
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr role="row" className="odd">
-                                                                            <td className="sorting_1">$200</td>
-                                                                            <td>Bitcoin</td>
-                                                                            <td>
-                                                                                <span className="badge badge-danger">
-                                                                                    Pending
-                                                                                </span>
-                                                                            </td>
-                                                                            <td>Sat, Dec 30, 2023 12:50 PM</td>
-                                                                        </tr>
-                                                                        <tr role="row" className="even">
-                                                                            <td className="sorting_1">$200</td>
-                                                                            <td>Bitcoin</td>
-                                                                            <td>
-                                                                                <span className="badge badge-danger">
-                                                                                    Pending
-                                                                                </span>
-                                                                            </td>
-                                                                            <td>Sat, Dec 30, 2023 12:50 PM</td>
-                                                                        </tr>
+                                                                        {transactions && transactions.map((transaction)=> (
+                                                                            <tr key={transaction.id} role="row" className="odd">
+                                                                                <td className="sorting_1">${transaction.value}</td>
+                                                                                <td>{transaction.payment_method}</td>
+                                                                                <td>
+                                                                                    <span className="badge badge-danger">{transaction.status}</span>
+                                                                                </td>
+                                                                                <td>{new window.Date(transaction.date).toLocaleString()}</td>
+                                                                            </tr>
+                                                                        ))}
                                                                     </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -694,7 +703,7 @@ export default function History() {
                                                                     Showing 0 to 0 of 0 entries
                                                                 </div>
                                                             </div>
-                                                           
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -716,10 +725,10 @@ export default function History() {
                                     All Rights Reserved © Value Trades 2023
                                 </p>
                             </div>
+                        </div>
                     </div>
-                   </div>
                 </div>
-                </div> 
+            </div>
 
         </>
     )

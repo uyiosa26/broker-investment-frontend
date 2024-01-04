@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
-import { useEffect, useState, useMemo } from "react"
+import { useState, useMemo } from "react"
 import supabase from "../../utils/client"
+import {toast} from "react-toastify"
 
 export default function Profile() {
 
@@ -73,7 +74,7 @@ export default function Profile() {
                 .select()
             if (error) return console.log(error.message)
             setAddress(data[0].wallet);
-            console.log(data)
+            toast.success("Profile updated")
         } catch (error) {
             console.log(error)
         }
@@ -84,7 +85,7 @@ export default function Profile() {
     const handleWallet = async function (e) {
         e.preventDefault()
         try {
-            const { data, error } = await supabase
+            const {error} = await supabase
                 .from('withdraw_address')
                 .upsert(
                     [{
@@ -96,7 +97,7 @@ export default function Profile() {
                 )
                 .select()
             if (error) return new Error(error)
-            console.log(data)
+            toast.success("Withdrawal address updated")
         } catch (error) {
             console.log(error)
         }

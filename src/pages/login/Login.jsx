@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import supabase from "../../utils/client"
 import { useState } from "react"
+import { toast } from "react-toastify"
 
 export default function Login() {
 
@@ -17,13 +18,14 @@ export default function Login() {
                 password,
                 email
             })
-
+            if (error) return toast.error(error.message)
             if(data.user){
+                toast.success("login Successfull")
                 sessionStorage.setItem("userToken", data.user.id)
-                alert("Logged in succesfull")
+                sessionStorage.setItem("auth", true)
                 navigate("/dashboard")
             } else {
-                console.log(error)
+                toast.error(error.message)
             }
 
         } catch (error) {

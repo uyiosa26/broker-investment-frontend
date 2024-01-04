@@ -9,7 +9,7 @@ export default function Admin() {
     const [edit, setEdit] = useState(false)
     const [balance, setBalance] = useState(0)
     const [id, setId] = useState("")
-    const [loading, setLoading] = useState(false)
+    // const [loading, setLoading] = useState(false)
 
 
     const getUsers = async function () {

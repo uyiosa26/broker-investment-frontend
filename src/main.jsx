@@ -19,6 +19,9 @@ import History from './pages/history/history.jsx';
 import Withdraw from './pages/withdraw/withdraw.jsx';
 import Confirm from './pages/withdraw/confirm.jsx';
 import Admin from './pages/admin/admin.jsx';
+import ConfirmDeposit from './pages/deposit/confirm-deposit.jsx';
+import PrivateRoute from './utils/private_routes.jsx';
+
 
 const router = createBrowserRouter([
   {
@@ -34,7 +37,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/admin-area",
-        element: <Admin />
+        element: <Admin/>
       },
       {
         path: "/register",
@@ -42,19 +45,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard/>
+        element: <PrivateRoute component={<Dashboard/>} />
       },
       {
         path: "/deposit",
-        element: <Deposit/>
+        element: <PrivateRoute component={<Deposit/>} />
       },
       {
         path: "/buy-plan",
-        element: <Plan/>
+        element: <PrivateRoute component={<Plan/>} />
       },
       {
         path: "/account",
-        element: <Profile/>
+        element: <PrivateRoute component={<Profile/>} />
       },
       {
         path: "/about",
@@ -62,32 +65,35 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <Contact />
+        element: <Contact/>
       },
        {
         path: "/payment",
-        element: <Payment />
+         element: <PrivateRoute component={<Payment/>} />
       },
       {
         path: "/transactions",
-        element: <History />
+        element: <PrivateRoute component={<History/>} />
       },
       {
         path: "/withdraw",
-        element: <Withdraw />
+        element: <PrivateRoute component={<Withdraw/>} />
       },
       {
         path: "/confirm-withraw",
-        element: <Confirm />
-      }
+        element: <PrivateRoute component={<Confirm/>} />
+      },
+      {
+        path: "/fund-account",
+        element: <PrivateRoute component={<ConfirmDeposit/>} />
+      },
     ]
   },
 ]);
 
 
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+     <RouterProvider router={router} />
   </React.StrictMode>,
 )

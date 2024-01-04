@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import supabase from "../../utils/client"
+import {toast} from "react-toastify"
 
 export default function Signup() {
 
@@ -16,15 +17,14 @@ export default function Signup() {
 
     const handleRegistration = async (e) => {
         e.preventDefault();
+        if(pass !== password) return toast.warn("Passwords do not match");
         try {
             const { data, error, } = await supabase.auth.signUp({
                 email,
                 password,
             });
-            console.log(data.user.id)
-            if (error) {
-                console.error('Error signing up:', error.message);
-            } else if (data.user.id) {
+            if (error) return  toast.warn(error.message);
+            else if (data.user.id) {
                 await supabase
                     .from('users')
                     .upsert([
@@ -38,7 +38,7 @@ export default function Signup() {
                         },
                     ]);
 
-                alert('Successfully signed up');
+                toast.success("Account created successfully")
                 navigate("/login")
             }
         } catch (error) {
@@ -78,7 +78,7 @@ export default function Signup() {
                                                             <circle cx="12" cy="7" r="4"></circle>
                                                         </svg>
                                                         <input value={username} onChange={(e)=> setUsername(e.target.value)} type="text" id="input1" className="pl-5 form-control" name="username"
-                                                            placeholder="Enter Unique Username" required="" />
+                                                            placeholder="Enter Unique Username" required />
 
                                                     </div>
                                                 </div>
@@ -98,7 +98,7 @@ export default function Signup() {
                                                             <polyline points="17 11 19 13 23 9"></polyline>
                                                         </svg>
                                                         <input type="text" onChange={(e) => setName(e.target.value)} className="pl-5 form-control" name="name" value={name}
-                                                            id="f_name" placeholder="Enter FullName" required="" />
+                                                            id="f_name" placeholder="Enter FullName" required />
 
                                                     </div>
                                                 </div>
@@ -119,7 +119,7 @@ export default function Signup() {
                                                             <polyline points="22,6 12,13 2,6"></polyline>
                                                         </svg>
                                                         <input onChange={(e) => setEmail(e.target.value)} type="email" className="pl-5 form-control" name="email" value={email}
-                                                            id="email" placeholder="name@example.com" required="" />
+                                                            id="email" placeholder="name@example.com" required />
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,7 +138,7 @@ export default function Signup() {
                                                             </path>
                                                         </svg>
                                                         <input onChange={(e) => setPhone(e.target.value)} type="phone" className="pl-5 form-control" name="phone" value={phone}
-                                                            id="phone" placeholder="Enter Phone number" required="" />
+                                                            id="phone" placeholder="Enter Phone number" required />
 
                                                     </div>
                                                 </div>
@@ -158,7 +158,7 @@ export default function Signup() {
                                                             </path>
                                                         </svg>
                                                         <input onChange={(e) => setPassword(e.target.value)} type="password" value={password} className="pl-5 form-control" name="password"
-                                                            id="password" placeholder="Enter Password" required="" />
+                                                            id="password" placeholder="Enter Password" required />
 
                                                     </div>
                                                 </div>
@@ -179,7 +179,7 @@ export default function Signup() {
                                                         </svg>
                                                         <input onChange={(e) => setPass(e.target.value)} type="password" className="pl-5 form-control"
                                                             name="password_confirmation" value={pass} id="confirm-password"
-                                                            placeholder="Confirm Password" required="" />
+                                                            placeholder="Confirm Password" required />
 
                                                     </div>
                                                 </div>
@@ -199,7 +199,7 @@ export default function Signup() {
                                                         </svg>
                                                         <select
                                                             className="pl-5 d-block w-100 px-2 py-3 border border-light rounded-right"
-                                                            name="country" onChange={(e) => setCountry(e.target.value)} value={country} id="country" required="">
+                                                            name="country" onChange={(e) => setCountry(e.target.value)} value={country} id="country" required>
                                                             <option selected="" disabled="">Choose Country</option>
                                                             <option value="Afganistan">Afghanistan</option>
                                                             <option value="Albania">Albania</option>

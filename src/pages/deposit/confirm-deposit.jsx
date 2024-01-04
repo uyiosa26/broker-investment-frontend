@@ -1,15 +1,18 @@
-import { Link} from "react-router-dom"
-import supabase from "../../utils/client"
+import supabase from "../../utils/client";
+import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 
-export default function Confirm() {
+export default function ConfirmDeposit() {
 
     const [user, setUser] = useState("")
 
     const userToken = sessionStorage.getItem("userToken")
 
-    useEffect(() => {
+    const method = localStorage.getItem("paymethod")
 
+    const amount = localStorage.getItem("amount");
+
+    useEffect(() => {
 
         const getData = async function () {
 
@@ -29,7 +32,32 @@ export default function Confirm() {
 
     }, [])
 
+    async function handleDeposit(e) {
+        e.preventDefault()
+
+        try {
+            const { data, error } = await supabase
+                .from('transactions')
+                .insert([
+                    {
+                        user_id: userToken,
+                        value: amount,
+                        payment_method: method,
+                    },
+                ]);
+
+            if (error) {
+                console.error(error.message);
+            } else {
+                console.log(data);
+            }
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
+    }
+
     return (
+
         <>
             <div className="container-fluid container-application">
                 {/* Sidenav */}
@@ -276,65 +304,101 @@ export default function Confirm() {
                         <div className="page-title">
                             <div className="row justify-content-between align-items-center">
                                 <div className="mb-3 col-md-6 mb-md-0">
-                                    <h5 className="mb-0 text-white h3 font-weight-400">
-                                        Withdrawal Details
-                                    </h5>
+                                    <h5 className="mb-0 text-white h3 font-weight-400">Make Payment</h5>
                                 </div>
                             </div>
                         </div>
                         <div></div>
-                        <div>
-                            <div className="row">
-                                <div className="col-lg-12"></div>
-                            </div>
-                        </div>{" "}
-                        <div></div>{" "}
+                        <div></div>
                         <div className="row">
                             <div className="col-md-12">
                                 <div className="card">
                                     <div className="card-body">
-                                        <div className="mb-5 row">
-                                            <div className="col-lg-8 offset-md-2">
-                                                <div className="p-2 rounded p-md-4 card ">
+                                        <div className="row">
+                                            <div className="col-md-8 offset-md-2">
+                                                <div className="p-2 shadow-lg card p-md-4">
+                                                    <div className="alert alert-modern alert-warning">
+                                                        <span className="badge badge-warning badge-pill">
+                                                            Your payment method
+                                                        </span>
+                                                        <span className="alert-content">{method}</span>
+                                                    </div>
                                                     <div className="card-body">
-                                                        <div className="mb-3 alert alert-modern alert-success">
-                                                            <span className="text-center badge badge-success badge-pill">
-                                                                Your payment method
-                                                            </span>
-                                                            <span className="alert-content">USDT</span>
+                                                        <div>
+                                                            <h6 className="">
+                                                                You are to make payment of&nbsp;<strong>${amount}</strong> using your selected payment method.
+                                                            </h6>
+                                                            <h4>
+                                                                <img src="https://lulo.com" alt="" className="w-25" />
+                                                            </h4>
                                                         </div>
-                                                        <form
-                                                            action="https://valuetrades.online/dashboard/completewithdrawal"
-                                                            method="post"
-                                                        >
-                                                            <input
-                                                                type="hidden"
-                                                                name="_token"
-                                                                defaultValue="7536KJUbxS10OC1e0YDD0woKFjM3PpdRK64C86vf"
-                                                            />{" "}
-                                                            <div className="form-group">
-                                                                <label className="">
-                                                                    Enter Amount to withdraw($)
-                                                                </label>
+                                                        <div className="mt-5">
+                                                            <h6 className="">
+                                                                <strong>{method} Address:</strong>
+                                                            </h6>
+                                                            <div className="mb-3 form-group">
+                                                                <div className="input-group">
+                                                                    <input
+                                                                        type="text"
+                                                                        className="form-control readonly "
+                                                                        defaultValue="ltc1qf66rhmg9ttslefxauzr2jv7s8umzavx4wkl3p8"
+                                                                        id="reflink"
+                                                                        readOnly=""
+                                                                    />
+                                                                    <div className="input-group-append">
+                                                                        <button
+                                                                            className="btn btn-outline-secondary"
+                                                                            onclick="myFunction()"
+                                                                            type="button"
+                                                                            id="button-addon2"
+                                                                        >
+                                                                            <i className="fas fa-copy" />
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <small className="">
+                                                                    <strong>Network Type:</strong>
+                                                                    Erc
+                                                                </small>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <form onSubmit={handleDeposit}>
                                                                 <input
-                                                                    className="form-control "
-                                                                    placeholder="Enter Amount"
-                                                                    type="number"
+                                                                    type="hidden"
+                                                                    name="_token"
+                                                                    defaultValue="eNwQHqdSyGPbkx2mYmheJ7mherWWjq6b79oNKrqw"
+                                                                />{" "}
+                                                                <div className="form-group">
+                                                                    <p className="">
+                                                                        Upload Payment proof after payment.
+                                                                    </p>
+                                                                    <input
+                                                                        type="file"
+                                                                        name="proof"
+                                                                        className="form-control col-lg-8 "
+                                                                        required=""
+                                                                    />
+                                                                </div>
+                                                                <input
+                                                                    type="hidden"
                                                                     name="amount"
-                                                                    required=""
+                                                                    defaultValue={amount}
                                                                 />
-                                                            </div>
-                                                            <input
-                                                                defaultValue="USDT"
-                                                                type="hidden"
-                                                                name="method"
-                                                            />
-                                                            <div className="form-group">
-                                                                <button className="btn btn-primary" type="submit">
-                                                                    Complete Request
-                                                                </button>
-                                                            </div>
-                                                        </form>
+                                                                <input
+                                                                    type="hidden"
+                                                                    name="paymethd_method"
+                                                                    value={method}
+                                                                />
+                                                                <div className="form-group">
+                                                                    <input
+                                                                        type="submit"
+                                                                        className="btn btn-primary"
+                                                                        defaultValue="Submit Payment"
+                                                                    />
+                                                                </div>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -347,12 +411,16 @@ export default function Confirm() {
                     {/* Footer */}
                     <div
                         className="pt-5 pb-4 footer footer-light sticky-bottom"
-                        id="footer-main">
+                        id="footer-main"
+                    >
                         <div className="text-center row text-sm-left align-items-sm-center">
                             <div className="col-sm-6">
                                 <p className="mb-0 text-sm">
-                                    All Rights Reserved © Value Trades 2023
+                                    All Rights Reserved © Value Trades 2024
                                 </p>
+                            </div>
+                            <div className="text-right col-sm-6 text-md-center">
+                                
                             </div>
                         </div>
                     </div>

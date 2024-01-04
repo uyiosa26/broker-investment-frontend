@@ -1,10 +1,14 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import supabase from "../../utils/client"
+import { toast } from "react-toastify"
 
 export default function Deposit() {
 
+    const navigate = useNavigate()
+
     const [user, setUser] = useState("")
+    const [amount, setAmount] = useState("")
 
     const userToken = sessionStorage.getItem("userToken")
 
@@ -27,6 +31,24 @@ export default function Deposit() {
         getData()
 
     }, [])
+
+    function handleUsdt() {
+        localStorage.setItem("paymethod", "usdt")
+        localStorage.setItem("amount", amount)
+        toast.info("USDT is selected as payment method")
+    }
+
+    function handleBTC() {
+        localStorage.setItem("paymethod", "bitcoin")
+        localStorage.setItem("amount", amount)
+        toast.info("Bitcoin is selected as payment method")
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+        if(amount.length < 1 ) return toast.warn("Please enter amount value")
+        navigate("/fund-account")
+    }
 
     return (
         <>
@@ -345,11 +367,7 @@ export default function Deposit() {
                                     <div className="card-body">
                                         <div className="row">
                                             <div className="col-md-8">
-                                                <form
-                                                    action="javascript:;"
-                                                    method="post"
-                                                    id="submitpaymentform"
-                                                >
+                                                <form onSubmit={handleSubmit}>
                                                     <input
                                                         type="hidden"
                                                         name="_token"
@@ -358,10 +376,11 @@ export default function Deposit() {
                                                     <div className="row">
                                                         <div className="mb-4 col-md-12">
                                                             <h5 className="card-title ">Enter Amount</h5>
-                                                            <input
+                                                            <input onChange={(e)=> setAmount(e.target.value)}
                                                                 className="form-control "
                                                                 placeholder="Enter Amount"
                                                                 min={50}
+                                                                value={amount}
                                                                 type="number"
                                                                 name="amount"
                                                                 required=""
@@ -399,7 +418,7 @@ export default function Deposit() {
                                                                             USDT
                                                                         </span>
                                                                         <span>
-                                                                            <input
+                                                                            <input onChange={handleUsdt}
                                                                                 type="checkbox"
                                                                                 id="3customCheck1"
                                                                                 readOnly=""
@@ -430,6 +449,7 @@ export default function Deposit() {
                                                                         </span>
                                                                         <span>
                                                                             <input
+                                                                                onChange={handleBTC}
                                                                                 type="checkbox"
                                                                                 id="1customCheck1"
                                                                                 readOnly=""
@@ -443,7 +463,7 @@ export default function Deposit() {
                                                             <input
                                                                 type="submit"
                                                                 className="px-5 btn btn-primary btn-lg"
-                                                                defaultValue="Procced to Payment"
+                                                                // defaultValue="Procced to Payment"
                                                             />
                                                         </div>
                                                         <input type="hidden" id="lastchosen" defaultValue={0} />
