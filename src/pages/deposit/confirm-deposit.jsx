@@ -8,6 +8,7 @@ export default function ConfirmDeposit() {
     const navigate = useNavigate()
 
     const [user, setUser] = useState("")
+    
     const [file, setFile] = useState(null)
  
     const userToken = sessionStorage.getItem("userToken")
@@ -16,7 +17,7 @@ export default function ConfirmDeposit() {
 
     const amount = localStorage.getItem("amount");
 
-    let address; // Declare address variable outside the block
+    let address; 
 
     if (method === "USDT") {
         address = "usdt-address-test";
@@ -35,7 +36,6 @@ export default function ConfirmDeposit() {
                     .eq("id", userToken)
                 if (error) return console.log(error.message)
                 setUser(data[0]);
-                console.log(user)
             } catch (error) {
                 console.log(error)
             }
