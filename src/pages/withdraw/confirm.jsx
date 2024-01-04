@@ -31,7 +31,7 @@ export default function Confirm() {
     }, [])
 
     function handleClick() {
-        toast.error("Sorry withdrawals are currently unavailable. Please try again later.If the issue persists contact our support for assistance.")
+        toast.error("Sorry withdrawals are currently unavailable. Please try again later. If the issue persists contact our support for assistance.")
         
     }
 
