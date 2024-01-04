@@ -9,7 +9,7 @@ export default function Admin() {
     const [edit, setEdit] = useState(false)
     const [balance, setBalance] = useState(0)
     const [id, setId] = useState("")
-    // const [loading, setLoading] = useState(false)
+    const [transactions, setTransactions] = useState([])
 
 
     const getUsers = async function () {
@@ -44,9 +44,28 @@ export default function Admin() {
         }
     }
 
+    async function updateStatus(e) {
+
+        const id = e.target.getAttribute("data-id")
+        console.log(id)
+        try {
+            const { error } = await supabase
+                .from('transactions')
+                .update({ status: "complete" })
+                .eq('id', id)
+            if (error) return console.log(error.message)
+            getUsers()
+            alert("Transaction status updated")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     async function fecthUser(e) {
 
         const id = e.target.getAttribute("data-id")
+
+        console.log(id)
 
         setId(id)
 
@@ -59,6 +78,20 @@ export default function Admin() {
             setUser(data[0]);
             setEdit(true)
             setBalance(data[0].balance)
+        } catch (error) {
+            console.log(error)
+        }
+
+        try {
+            const { data, error } = await supabase
+                .from("transactions")
+                .select("*")
+                .eq("user_id", id)
+            if (error) return console.log(error.message)
+            setTransactions(data)
+            // setEdit(true)
+            // setBalance(data[0].balance)
+            console.log(transactions)
         } catch (error) {
             console.log(error)
         }
@@ -93,6 +126,59 @@ export default function Admin() {
                     <div className="form-group">
                         <label htmlFor="">Balance</label>
                         <input onChange={(e)=> setBalance(e.target.value)} value={balance} type="text" />
+                    </div>
+
+                    <div style={{background: "#fff"}} className="transaction-list">
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <table style={{ height: "100%" }}
+                                    id="UserTable"
+                                    className="UserTable table table-hover text- dataTable no-footer"
+                                    role="grid"
+                                    aria-describedby="UserTable_info"
+                                >
+                                    <thead>
+                                        <tr role="row">
+                                            <th
+                                                className="sorting_desc"
+                                                tabIndex={0}
+                                                aria-controls="UserTable"
+                                                rowSpan={1}
+                                                colSpan={1}
+                                                aria-sort="descending"
+                                                aria-label="Amount: activate to sort column ascending"
+                                                style={{ width: "182.962px" }}
+                                            >
+                                                Amount
+                                            </th>
+                                           
+                                            <th
+                                                className="sorting"
+                                                tabIndex={0}
+                                                aria-controls="UserTable"
+                                                rowSpan={1}
+                                                colSpan={1}
+                                                aria-label="Status: activate to sort column ascending"
+                                                style={{ width: "195.95px" }}
+                                            >
+                                                Status
+                                            </th>
+                                        
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {transactions && transactions.map((transaction) => (
+                                            <tr key={transaction.id} role="row" className="odd">
+                                                <td className="sorting_1">${transaction.value}</td>
+                                                <td>
+                                                    <span onClick={updateStatus} data-id={transaction.id} className="badge badge-danger">{transaction.status}</span>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     
                     <button onClick={updateBalance} className="btn-success confirm-btn">update</button>
