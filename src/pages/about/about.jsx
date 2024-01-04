@@ -288,7 +288,7 @@ export default function About() {
                                     <i className="mb-0 rounded uil uil-analysis d-block h3" />
                                 </div>
                                 <div className="card-body">
-                                    <h5 className="text-dark">Start Trading/Investing</h5>
+                                    <h5 className="text-dark">Start Investing</h5>
                                     <p className="mb-0 text-muted">
                                         Start trading with Indices commodities e.tc
                                     </p>

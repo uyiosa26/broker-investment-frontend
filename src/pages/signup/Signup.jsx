@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import supabase from "../../utils/client"
 import {toast} from "react-toastify"
+import logo from "../../assets/img/value.png"
 
 export default function Signup() {
 
@@ -56,7 +57,7 @@ export default function Signup() {
                         <div className="col-12 col-md-6 col-lg-6 col-sm-10 col-xl-6">
                             <div className="text-center">
                                 <a href="/"><img
-                                    src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
+                                    src={logo}
                                     alt="" className="mb-3 img-fluid auth__logo" /></a>
                             </div>
 

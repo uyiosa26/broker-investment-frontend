@@ -1,6 +1,8 @@
 import { Link} from "react-router-dom"
 import supabase from "../../utils/client"
 import { useEffect, useState } from "react"
+import logo from "../../assets/img/value.png"
+import {toast} from "react-toastify"
 
 export default function Confirm() {
 
@@ -29,6 +31,11 @@ export default function Confirm() {
 
     }, [])
 
+    function handleClick() {
+        toast.error("Sorry withdrawals are currently unavailable. Please try again later.If the issue persists contact our support for assistance.")
+        
+    }
+
     return (
         <>
             <div className="container-fluid container-application">
@@ -38,7 +45,7 @@ export default function Confirm() {
                     <div className="sidenav-header d-flex align-items-center">
                         <Link className="navbar-brand" to="/dashboard">
                             <img
-                                src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
+                                src={logo}
                                 className="navbar-brand-img"
                                 alt="logo"
                             />
@@ -147,7 +154,7 @@ export default function Confirm() {
                             <div className="pl-4 d-block d-md-none">
                                 <Link to="/dashboard" className="navbar-brand">
                                     <img
-                                        src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
+                                        src={logo}
                                         className="navbar-brand-img"
                                         alt="..." />
                                 </Link>
@@ -303,9 +310,8 @@ export default function Confirm() {
                                                             </span>
                                                             <span className="alert-content">USDT</span>
                                                         </div>
-                                                        <form
-                                                            action="https://valuetrades.online/dashboard/completewithdrawal"
-                                                            method="post"
+                                                        <form onSubmit={(e)=> e.preventDefault()}
+                                                            
                                                         >
                                                             <input
                                                                 type="hidden"
@@ -330,7 +336,7 @@ export default function Confirm() {
                                                                 name="method"
                                                             />
                                                             <div className="form-group">
-                                                                <button className="btn btn-primary" type="submit">
+                                                                <button  onClick={handleClick} className="btn btn-primary">
                                                                     Complete Request
                                                                 </button>
                                                             </div>

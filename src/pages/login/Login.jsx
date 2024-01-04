@@ -42,7 +42,7 @@ export default function Login() {
                         <div className="col-12 col-md-6 col-lg-6 col-sm-10 col-xl-6">
                             <div className="text-center">
                                 <a href="/"><img
-                                    src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
+                                    src={logo}
                                     alt="" className="mb-3 img-fluid auth__logo"/></a>
                             </div>
 

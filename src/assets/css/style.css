@@ -5137,3 +5137,8 @@ p {
   align-items: center;
   gap: 10px;
 }
+
+.navbar-brand-img {
+  height: 80px;
+  width: 40px;
+}

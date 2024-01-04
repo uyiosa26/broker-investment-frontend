@@ -89,8 +89,6 @@ export default function Admin() {
                 .eq("user_id", id)
             if (error) return console.log(error.message)
             setTransactions(data)
-            // setEdit(true)
-            // setBalance(data[0].balance)
             console.log(transactions)
         } catch (error) {
             console.log(error)

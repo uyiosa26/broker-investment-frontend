@@ -2,13 +2,14 @@ import supabase from "../../utils/client";
 import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
+import logo from "../../assets/img/value.png"
 
 export default function ConfirmDeposit() {
 
     const navigate = useNavigate()
 
     const [user, setUser] = useState("")
-    
+
     const [file, setFile] = useState(null)
  
     const userToken = sessionStorage.getItem("userToken")
@@ -139,7 +140,7 @@ export default function ConfirmDeposit() {
                     <div className="sidenav-header d-flex align-items-center">
                         <Link className="navbar-brand" to="/dashboard">
                             <img
-                                src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
+                                src={logo}
                                 className="navbar-brand-img"
                                 alt="logo"
                             />
@@ -248,7 +249,7 @@ export default function ConfirmDeposit() {
                             <div className="pl-4 d-block d-md-none">
                                 <Link to="/dashboard" className="navbar-brand">
                                     <img
-                                        src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
+                                        src={logo}
                                         className="navbar-brand-img"
                                         alt="..." />
                                 </Link>

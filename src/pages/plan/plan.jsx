@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import supabase from "../../utils/client"
+import logo from "../../assets/img/value.png"
 
 export default function Plan() {
 
@@ -48,7 +49,7 @@ export default function Plan() {
                     <div className="sidenav-header d-flex align-items-center">
                         <Link className="navbar-brand" to="/dashboard">
                             <img
-                                src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
+                                src={logo}
                                 className="navbar-brand-img"
                                 alt="logo"
                             />
@@ -157,7 +158,7 @@ export default function Plan() {
                             <div className="pl-4 d-block d-md-none">
                                 <Link to="/dashboard" className="navbar-brand">
                                     <img
-                                        src="https://valuetrades.online/storage/app/public/photos/6XnjHMDGr02c8SZKHkaNzl6aA4dEtvfvCjkntkgG.png"
+                                        src={logo}
                                         className="navbar-brand-img"
                                         alt="..." />
                                 </Link>
