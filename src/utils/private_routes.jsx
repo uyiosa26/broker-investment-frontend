@@ -6,16 +6,16 @@ function PrivateRoute({ component }) {
 
     const navigate = useNavigate();
 
-    const token = localStorage.getItem("token")
+    const auth = sessionStorage.getItem("auth")
 
     useEffect(() => {
 
-        if (!token) {
+        if (!auth) {
             navigate("/");
         }
     }, []);
 
-    return token ? component : navigate("/login");
+    return auth ? component : navigate("/login");
 }
 
 export default PrivateRoute;

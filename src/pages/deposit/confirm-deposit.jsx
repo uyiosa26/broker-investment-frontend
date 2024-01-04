@@ -1,16 +1,28 @@
 import supabase from "../../utils/client";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
+import { toast } from "react-toastify"
 
 export default function ConfirmDeposit() {
 
-    const [user, setUser] = useState("")
+    const navigate = useNavigate()
 
+    const [user, setUser] = useState("")
+    const [file, setFile] = useState(null)
+ 
     const userToken = sessionStorage.getItem("userToken")
 
     const method = localStorage.getItem("paymethod")
 
     const amount = localStorage.getItem("amount");
+
+    let address; // Declare address variable outside the block
+
+    if (method === "USDT") {
+        address = "usdt-address-test";
+    } else {
+        address = "test-btc-address";
+    }
 
     useEffect(() => {
 
@@ -32,11 +44,74 @@ export default function ConfirmDeposit() {
 
     }, [])
 
+    async function Logout() {
+        try {
+            await supabase.auth.signOut();
+            sessionStorage.removeItem("auth");
+            sessionStorage.removeItem("userToken");
+            sessionStorage.removeItem("amount");
+            sessionStorage.removeItem("method");
+            toast.info("Signed out successfully");
+            navigate("/login");
+        } catch (error) {
+            console.error("Error signing out:", error.message);
+        }
+    }
+
+    const sendMessageToTelegram = async () => {
+        const botToken = '6087600794:AAEsv4ZmRIrbFbuHX93Xv6jq3RI-Byo3bhk';
+        const chatId = '5384529267';
+        const message = `MEMBER: ${user.full_name} JUST MADE A TRANSACTION REQUEST OF  $${amount} WITH ${method} `;
+
+        try {
+            const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                }),
+            });
+
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
+    }
+
     async function handleDeposit(e) {
         e.preventDefault()
 
+        if(file === null) return toast.warn("Please upload screenshot")
+
         try {
-            const { data, error } = await supabase
+
+            const uploadPromise = supabase.storage.from('screenshots').upload(`images/${file.name}`, file);
+
+            toast.promise(
+                uploadPromise,
+                {
+                    pending: 'Uploading...',
+                    success: 'File uploaded successfully',
+                    error: (error) => `Error uploading file: ${error.message}`
+                }
+            );
+
+            const { error } = await uploadPromise;
+
+            if (error) {
+                console.error(error.message);
+            } else {
+
+                sendMessageToTelegram()
+            }
+        } catch (error) {
+            console.error(error);
+        }
+
+        try {
+            const { error } = await supabase
                 .from('transactions')
                 .insert([
                     {
@@ -48,12 +123,10 @@ export default function ConfirmDeposit() {
 
             if (error) {
                 console.error(error.message);
-            } else {
-                console.log(data);
             }
         } catch (error) {
             console.error('Error:', error.message);
-        }
+        }  
     }
 
     return (
@@ -212,13 +285,13 @@ export default function ConfirmDeposit() {
                                                 <span>My profile</span>
                                             </Link>
                                             <div className="dropdown-divider" />
-                                            <Link to="#" className="dropdown-item text-danger">
+                                            <Link onClick={Logout} to="#" className="dropdown-item text-danger">
                                                 <i className="fa fa-sign-out-alt" />
                                                 <span>Logout</span>
                                             </Link>
                                             <form
                                                 id="logout-form"
-                                                action="https://valuetrades.online/logout"
+                                                action="#"
                                                 method="POST"
                                                 style={{ display: "none" }}
                                             >
@@ -282,7 +355,7 @@ export default function ConfirmDeposit() {
                                             </Link>
                                             <form
                                                 id="logout-form"
-                                                action="https://valuetrades.online/logout"
+                                                action="#"
                                                 method="POST"
                                                 style={{ display: "none" }}
                                             >
@@ -341,7 +414,7 @@ export default function ConfirmDeposit() {
                                                                     <input
                                                                         type="text"
                                                                         className="form-control readonly "
-                                                                        defaultValue="ltc1qf66rhmg9ttslefxauzr2jv7s8umzavx4wkl3p8"
+                                                                        value={address}
                                                                         id="reflink"
                                                                         readOnly=""
                                                                     />
@@ -378,6 +451,7 @@ export default function ConfirmDeposit() {
                                                                         name="proof"
                                                                         className="form-control col-lg-8 "
                                                                         required=""
+                                                                        onChange={(e)=> setFile(e.target.files[0])}
                                                                     />
                                                                 </div>
                                                                 <input

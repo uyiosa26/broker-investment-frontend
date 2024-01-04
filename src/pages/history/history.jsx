@@ -202,13 +202,13 @@ export default function History() {
                                                 <span>My profile</span>
                                             </Link>
                                             <div className="dropdown-divider" />
-                                            <Link to="#" className="dropdown-item text-danger">
+                                            {/* <Link to="#" className="dropdown-item text-danger">
                                                 <i className="far fa-sign-out-alt" />
                                                 <span>Logout</span>
-                                            </Link>
+                                            </Link> */}
                                             <form
                                                 id="logout-form"
-                                                action="https://valuetrades.online/logout"
+                                                action="#"
                                                 method="POST"
                                                 style={{ display: "none" }}
                                             >
@@ -272,7 +272,7 @@ export default function History() {
                                             </Link>
                                             <form
                                                 id="logout-form"
-                                                action="https://valuetrades.online/logout"
+                                                action="#"
                                                 method="POST"
                                                 style={{ display: "none" }}
                                             >

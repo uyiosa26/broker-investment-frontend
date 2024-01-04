@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState, useMemo } from "react"
 import supabase from "../../utils/client"
 import {toast} from "react-toastify"
@@ -10,6 +10,8 @@ export default function Profile() {
     const [userAddress, setUserAddress] = useState("")
   
     const userToken = sessionStorage.getItem("userToken")
+
+    const navigate = useNavigate()
 
     useMemo(() => {
 
@@ -49,6 +51,20 @@ export default function Profile() {
         getProfile()
 
     }, [])
+
+    async function Logout(navigate) {
+        try {
+            await supabase.auth.signOut();
+            sessionStorage.removeItem("auth");
+            sessionStorage.removeItem("userToken");
+            sessionStorage.removeItem("amount");
+            sessionStorage.removeItem("method");
+            toast.info("Signed out successfully");
+            navigate("/login");
+        } catch (error) {
+            console.error("Error signing out:", error.message);
+        }
+    }
 
 
     const handleProfile = async function (e) {
@@ -258,13 +274,13 @@ export default function Profile() {
                                                 <span>My profile</span>
                                             </Link>
                                             <div className="dropdown-divider" />
-                                            <Link to="#" className="dropdown-item text-danger">
+                                            <Link onClick={Logout} to="#" className="dropdown-item text-danger">
                                                 <i className="fa fa-sign-out-alt" />
                                                 <span>Logout</span>
                                             </Link>
                                             <form
                                                 id="logout-form"
-                                                action="https://valuetrades.online/logout"
+                                                action="#"
                                                 method="POST"
                                                 style={{ display: "none" }}
                                             >
@@ -328,7 +344,7 @@ export default function Profile() {
                                             </Link>
                                             <form
                                                 id="logout-form"
-                                                action="https://valuetrades.online/logout"
+                                                action="#"
                                                 method="POST"
                                                 style={{ display: "none" }}
                                             >

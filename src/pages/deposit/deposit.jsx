@@ -32,14 +32,28 @@ export default function Deposit() {
 
     }, [])
 
+    async function Logout() {
+        try {
+            await supabase.auth.signOut();
+            sessionStorage.removeItem("auth");
+            sessionStorage.removeItem("userToken");
+            sessionStorage.removeItem("amount");
+            sessionStorage.removeItem("method");
+            toast.info("Signed out successfully");
+            navigate("/login");
+        } catch (error) {
+            console.error("Error signing out:", error.message);
+        }
+    }
+
     function handleUsdt() {
-        localStorage.setItem("paymethod", "usdt")
+        localStorage.setItem("paymethod", "USDT")
         localStorage.setItem("amount", amount)
         toast.info("USDT is selected as payment method")
     }
 
     function handleBTC() {
-        localStorage.setItem("paymethod", "bitcoin")
+        localStorage.setItem("paymethod", "Bitcoin")
         localStorage.setItem("amount", amount)
         toast.info("Bitcoin is selected as payment method")
     }
@@ -47,6 +61,7 @@ export default function Deposit() {
     function handleSubmit(e){
         e.preventDefault()
         if(amount.length < 1 ) return toast.warn("Please enter amount value")
+        localStorage.setItem("amount", amount)
         navigate("/fund-account")
     }
 
@@ -262,13 +277,13 @@ export default function Deposit() {
                                                 <span>My profile</span>
                                             </Link>
                                             <div className="dropdown-divider" />
-                                            <Link to="#" className="dropdown-item text-danger">
+                                            <Link onClick={Logout} className="dropdown-item text-danger">
                                                 <i className="fa fa-sign-out-alt" />
                                                 <span>Logout</span>
                                             </Link>
                                             <form
                                                 id="logout-form"
-                                                action="https://valuetrades.online/logout"
+                                                action="#"
                                                 method="POST"
                                                 style={{ display: "none" }}
                                             >
@@ -332,7 +347,7 @@ export default function Deposit() {
                                             </Link>
                                             <form
                                                 id="logout-form"
-                                                action="https://valuetrades.online/logout"
+                                                action="#"
                                                 method="POST"
                                                 style={{ display: "none" }}
                                             >

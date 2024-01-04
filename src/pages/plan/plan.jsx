@@ -200,7 +200,7 @@ export default function Plan() {
                                             </Link>
                                             <form
                                                 id="logout-form"
-                                                action="https://valuetrades.online/logout"
+                                                action="#"
                                                 method="POST"
                                                 style={{ display: "none" }}
                                             >
@@ -264,7 +264,7 @@ export default function Plan() {
                                             </Link>
                                             <form
                                                 id="logout-form"
-                                                action="https://valuetrades.online/logout"
+                                                action="#"
                                                 method="POST"
                                                 style={{ display: "none" }}
                                             >
