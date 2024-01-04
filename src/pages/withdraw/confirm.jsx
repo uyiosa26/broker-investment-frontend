@@ -22,7 +22,6 @@ export default function Confirm() {
                     .eq("id", userToken)
                 if (error) return console.log(error.message)
                 setUser(data[0]);
-                console.log(user)
             } catch (error) {
                 console.log(error)
             }

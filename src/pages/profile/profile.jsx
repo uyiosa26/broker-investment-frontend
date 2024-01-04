@@ -26,7 +26,6 @@ export default function Profile() {
                 if (error) return console.log(error.message)
                 setUser(data[0]);
                 setUserAddress(data[0].address)
-                console.log(user)
             } catch (error) {
                 console.log(error)
             }
