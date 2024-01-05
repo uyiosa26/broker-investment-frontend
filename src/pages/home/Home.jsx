@@ -547,14 +547,14 @@ export default function Home() {
                                         <span className="px-4 py-2 mb-0 rounded-lg d-inline-block bg-soft-primary h6 text-primary">
                                             Starter
                                         </span>
-                                        <h2 className="mt-3 mb-0 font-weight-bold">$ 1000</h2>
-                                        <p className="text-muted">1 Days</p>
+                                        <h2 className="mt-3 mb-0 font-weight-bold">$ 100</h2>
+                                        <p className="text-muted">2 Days</p>
                                         <ul className="pt-3 list-unstyled border-top">
                                             <li className="mb-0 h6 text-muted">
                                                 <span className="mr-2 text-primary h5">
                                                     <i className="align-middle uil uil-check-circle" />
                                                 </span>
-                                                Min. Possible deposit: $1000
+                                                Min. Possible deposit: $100
                                             </li>
                                             <li className="mb-0 h6 text-muted">
                                                 <span className="mr-2 text-primary h5">
@@ -566,7 +566,7 @@ export default function Home() {
                                                 <span className="mr-2 text-primary h5">
                                                     <i className="align-middle uil uil-check-circle" />
                                                 </span>
-                                                $10000 Minimum return
+                                                $250 Minimum return
                                             </li>
                                             <li className="mb-0 h6 text-muted">
                                                 <span className="mr-2 text-primary h5">
@@ -872,7 +872,7 @@ export default function Home() {
                             <div className="col-sm-6">
                                 <div className="text-sm-left">
                                     <p className="mb-0">
-                                        © Copyright 2023 Value Trades All Rights Reserved.
+                                        © Copyright 2024 Value Trades All Rights Reserved.
                                     </p>
                                 </div>
                             </div>

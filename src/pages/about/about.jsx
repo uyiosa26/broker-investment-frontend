@@ -466,7 +466,7 @@ export default function About() {
                         <div className="col-sm-6">
                             <div className="text-sm-left">
                                 <p className="mb-0">
-                                    © Copyright 2023 Value Trades All Rights Reserved.
+                                    © Copyright 2024 Value Trades All Rights Reserved.
                                 </p>
                             </div>
                         </div>

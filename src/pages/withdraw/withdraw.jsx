@@ -394,7 +394,7 @@ export default function Withdraw() {
                         <div className="text-center row text-sm-left align-items-sm-center">
                             <div className="col-sm-6">
                                 <p className="mb-0 text-sm">
-                                    All Rights Reserved © Value Trades 2023
+                                    All Rights Reserved © Value Trades 2024
                                 </p>
                             </div>
                         </div>
