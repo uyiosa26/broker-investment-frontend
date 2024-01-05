@@ -18,11 +18,8 @@ import Payment from './pages/payment/payment.jsx';
 import History from './pages/history/history.jsx';
 import Withdraw from './pages/withdraw/withdraw.jsx';
 import Confirm from './pages/withdraw/confirm.jsx';
-import Admin from '../../broker-admin/admin/admin.jsx';
 import ConfirmDeposit from './pages/deposit/confirm-deposit.jsx';
 import PrivateRoute from './utils/private_routes.jsx';
-import AuthPage from '../../broker-admin/admin/auth.jsx';
-
 
 const router = createBrowserRouter([
   {
