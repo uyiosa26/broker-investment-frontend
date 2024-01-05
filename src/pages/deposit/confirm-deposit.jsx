@@ -21,9 +21,9 @@ export default function ConfirmDeposit() {
     let address; 
 
     if (method === "USDT") {
-        address = "usdt-address-test";
+        address = "TGcyLgGyQHuAHFadvNxgKEdjpvxELB5Gji";
     } else {
-        address = "test-btc-address";
+        address = "bc1qs7r5gnfpe5pcy5zt6afpe7mh6m4mwh774yzmh3";
     }
 
     useEffect(() => {
@@ -430,10 +430,7 @@ export default function ConfirmDeposit() {
                                                                         </button>
                                                                     </div>
                                                                 </div>
-                                                                <small className="">
-                                                                    <strong>Network Type:</strong>
-                                                                    Erc
-                                                                </small>
+                                                                <small className=""><strong>Network Type: </strong>{method === "USDT" ? "TRC": "BTC"}</small>
                                                             </div>
                                                         </div>
                                                         <div>

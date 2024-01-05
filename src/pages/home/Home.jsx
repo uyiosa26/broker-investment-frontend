@@ -71,22 +71,22 @@ export default function Home() {
                     <div className="container">
                         {/* Logo container*/}
                         <div>
-                            <a className="logo" href="/">
+                            <Link className="logo" to="/">
                                 <img
                                     src="https://valuetrades.online/temp/images/value.png"
                                     height={35}
                                     alt=""
                                     className="mr-2"
                                 />
-                            </a>
+                            </Link>
                         </div>
                         <div className="buy-button">
-                            <a href="login" className="mr-3 btn btn-primary login-btn-success">
+                            <Link to="/login" className="mr-3 btn btn-primary login-btn-success">
                                 login
-                            </a>
-                            <a href="register" className="btn btn-primary login-btn-success ">
+                            </Link>
+                            <Link to="/register" className="btn btn-primary login-btn-success ">
                                 Get Started
-                            </a>
+                            </Link>
                         </div>
                         {/*end login button*/}
                         {/* End Logo container*/}

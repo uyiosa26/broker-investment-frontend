@@ -474,7 +474,7 @@ export default function Signup() {
 
                                             <div className="text-center col-12">
                                                 <p className="mt-3 mb-0"><small className="mr-2 text-dark">Already have an account
-                                                </small> <Link className="text-dark font-weight-bold">Login</Link></p>
+                                                </small> <Link to="/login" className="text-dark font-weight-bold">Login</Link></p>
                                             </div>
 
                                             <div className="text-center col-12">
