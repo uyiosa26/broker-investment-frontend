@@ -404,7 +404,7 @@ export default function History() {
                                                                                 <td className="sorting_1">${transaction.value}</td>
                                                                                 <td>{transaction.payment_method}</td>
                                                                                 <td>
-                                                                                    <span className="badge badge-danger">{transaction.status}</span>
+                                                                                    <span className={transaction.status === "complete" ? "badge badge-success" : "badge badge-danger"}>{transaction.status}</span>
                                                                                 </td>
                                                                                 <td>{new window.Date(transaction.date).toLocaleString()}</td>
                                                                             </tr>
