@@ -116,7 +116,7 @@ export default function Login() {
                                                 
                                                 <div className="text-center col-12">
                                                     <p className="mt-3 mb-0"><small className="mr-2 text-dark">Don't have an account
-                                                        ?</small> <Link to="https://valuetrades.online/register"
+                                                        ?</small> <Link to="/register"
                                                             className="text-dark font-weight-bold">Sign Up</Link></p>
                                                 </div>
                                                 
