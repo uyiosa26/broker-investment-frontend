@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import supabase from "../../utils/client"
 import logo from "../../assets/img/value.png"
+import { toast } from "react-toastify"
 
 export default function Plan() {
+
+    const navigate = useNavigate()
 
     const [user, setUser] = useState("")
     const [value, setValue] = useState(200)
@@ -31,13 +34,47 @@ export default function Plan() {
 
     }, [])
 
+    console.log(userToken)
+
     const handlePayment = async function(e) {
 
         e.preventDefault()
 
         if(wallet < value || wallet === undefined) return alert("Insuficient funds Please fund account to continue");
-  
+
+        try {
+            const { data, error } = await supabase
+                .from('plans')
+                .insert([
+                    {
+                        plan_id: userToken,
+                        amount: value,
+                        status: "active",
+                    },
+                ]);
+
+            if (error) {
+                console.error(error.message);
+            }
+            console.log(data)
+        } catch (error) {
+            console.error('Error:', error.message);
+        }
+
+        try {
+            const { error } = await supabase
+                .from('users')
+                .update({ balance: user.balance - value })
+                .eq('id', userToken)
+            if (error) return console.log(error.message)
+            toast.success("Subscribed to plan succesfull")
+            navigate("/dashboard")
+        } catch (error) {
+            console.log(error)
+        }
     }
+  
+    
 
     return (
         <>
@@ -388,7 +425,7 @@ export default function Plan() {
                                                     <hr />
                                                     <div className="justify-content-between d-md-flex">
                                                         <span className="d-block d-md-inline font-weight-bold">Amount to Invest:</span>
-                                                        <span className="text-primary font-weight-bold">$0</span>
+                                                        <span className="text-primary font-weight-bold">${value}</span>
                                                     </div>
                                                     <div className="mt-3 text-center">
                                                         <form onSubmit={handlePayment}>

@@ -36,7 +36,6 @@ export default function History() {
                     .eq("user_id", userToken)
                 if (error) return console.log(error.message)
                 setTransactions(data);
-                console.log(data)
             } catch (error) {
                 console.log(error)
             }

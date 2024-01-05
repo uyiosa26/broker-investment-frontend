@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import supabase from "../../utils/client"
 import { useState } from "react"
 import { toast } from "react-toastify"
+import logo from"../../assets/img/value.png"
 
 export default function Login() {
 

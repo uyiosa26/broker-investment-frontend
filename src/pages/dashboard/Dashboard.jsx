@@ -1,17 +1,36 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import supabase from "../../utils/client"
 import { useEffect, useState } from "react"
 import logo from "../../assets/img/value.png"
+import {toast} from "react-toastify"
+
 
 export default function Dashboard() {
 
-    const [user, setUser] = useState("")
+    const navigate = useNavigate()
 
-    const profit = Number(user.balance) * 2.5
+    const [user, setUser] = useState("")
+    const [transactions, setTransactions] = useState([])
+    const [plans, setPlan] = useState([])
+
+    const profit = Number(user.balance) + Number(user.bonus)
 
     const userToken = sessionStorage.getItem("userToken")
 
     useEffect(() => {
+
+        async function getPlans() {
+            try {
+                const { data, error } = await supabase
+                    .from("plans")
+                    .select("*")
+                    .eq("plan_id", userToken)
+                if (error) return console.log(error.message)
+                setPlan(data);
+            } catch (error) {
+                console.log(error)
+            }
+        }
 
         const getData = async function () {
 
@@ -26,9 +45,42 @@ export default function Dashboard() {
                 console.log(error)
             }
         }
+
+        const getTransactions = async function () {
+
+            try {
+                const { data, error } = await supabase
+                    .from("transactions")
+                    .select("*")
+                    .eq("user_id", userToken)
+                if (error) return console.log(error.message)
+                setTransactions(data);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
         getData()
 
+        getPlans()
+
+        getTransactions()
+
     }, [])
+
+    async function Logout() {
+        try {
+            await supabase.auth.signOut();
+            sessionStorage.removeItem("auth");
+            sessionStorage.removeItem("userToken");
+            sessionStorage.removeItem("amount");
+            sessionStorage.removeItem("method");
+            toast.info("Signed out successfully");
+            navigate("/login")
+        } catch (error) {
+            console.error("Error signing out:", error.message);
+        }
+    }
 
     return (
         <>
@@ -247,7 +299,7 @@ export default function Dashboard() {
                                                 <span>My profile</span>
                                             </Link>
                                             <div className="dropdown-divider" />
-                                            <Link to="#" className="dropdown-item text-danger">
+                                            <Link onClick={Logout} to="#" className="dropdown-item text-danger">
                                                 <i className="fa fa-sign-out-alt" />
                                                 <span>Logout</span>
                                             </Link>
@@ -413,7 +465,7 @@ export default function Dashboard() {
                                                             <div className="col">
                                                                 <h6 className="mb-1 text-muted">Bonus</h6>
                                                                 <span className="mb-0 h5 font-weight-bold">
-                                                                    ${profit}
+                                                                    ${user.bonus}
                                                                 </span>
                                                             </div>
                                                             <div className="col-auto">
@@ -476,7 +528,7 @@ export default function Dashboard() {
                                                 <div className="nk-block-head-content">
                                                     <h5 className="text-primary h5">
                                                         Active Plan(s){" "}
-                                                        <span className="text-base count">(0)</span>
+                                                        <span className="text-base count">({plans.length})</span>
                                                     </h5>
                                                 </div>
                                             </div>
@@ -484,18 +536,42 @@ export default function Dashboard() {
                                                 <div className="mt-4 row">
                                                     <div className="col-md-12">
                                                         <div className="py-4 card">
-                                                            <div className="text-center card-body">
+                                                            {plans ? <div className=" table-responsive">
+                                                                <table className="table table-striped">
+                                                                    <thead>
+                                                                        <tr className="bg-light">
+                                                                            <th>Amount</th>
+                                                                            <th>Duration</th>
+                                                                            <th>Status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        {plans && plans.map((plan) => (
+                                                                            <tr key={plan.id} role="row" className="odd">
+                                                                                <td className="sorting_1">${plan.amount}</td>
+                                                                                <td>
+                                                                                    <span className="badge">{plan.duration}</span>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <span className="badge badge-primary">{plan.status}</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                        ))}
+                                                                    </tbody>
+                                                                </table>
+                                                            </div> :<div className="text-center card-body">
                                                                 <p>
                                                                     You do not have an active investment plan at the
                                                                     moment.
                                                                 </p>
+                                                                
                                                                 <Link
                                                                     to="/buy-plan"
                                                                     className="px-3 btn btn-primary"
                                                                 >
                                                                     Buy a plan
                                                                 </Link>
-                                                            </div>
+                                                            </div> }
                                                         </div>
                                                     </div>
                                                 </div>
@@ -506,7 +582,7 @@ export default function Dashboard() {
                                                 <div className="nk-block-head-content">
                                                     <h6 className="text-primary h5">
                                                         Recent transactions{" "}
-                                                        <span className="text-base count">(0)</span>
+                                                        <span className="text-base count">({transactions ?  transactions.length : 0})</span>
                                                     </h6>
                                                 </div>
                                             </div>
@@ -518,15 +594,26 @@ export default function Dashboard() {
                                                             <table className="table table-striped">
                                                                 <thead>
                                                                     <tr className="bg-light">
-                                                                        <th>Date</th>
-                                                                        <th>Type</th>
                                                                         <th>Amount</th>
+                                                                        <th>method</th>
+                                                                        <th>Status</th>
+                                                                        <th>Date</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <tr>
-                                                                        <td colSpan={3}>No record yet</td>
-                                                                    </tr>
+                                                                    {transactions ? (null) : <tr>
+                                                                        <td colSpan = { 3 }>No record yet</td>
+                                                            </tr>}
+                                                                    {transactions && transactions.map((transaction) => (
+                                                                        <tr key={transaction.id} role="row" className="odd">
+                                                                            <td className="sorting_1">${transaction.value}</td>
+                                                                            <td>{transaction.payment_method}</td>
+                                                                            <td>
+                                                                                <span className={transaction.status === "complete" ? "badge badge-success" : "badge badge-danger"}>{transaction.status}</span>
+                                                                            </td>
+                                                                            <td>{new window.Date(transaction.date).toLocaleString()}</td>
+                                                                        </tr>
+                                                                    ))}
                                                                 </tbody>
                                                             </table>
                                                         </div>
