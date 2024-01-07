@@ -10,7 +10,7 @@ export default function Home() {
 
     useEffect(()=> {
         if(auth) return navigate("/dashboard")
-    })
+    },[])
 
     return (
         <>  
