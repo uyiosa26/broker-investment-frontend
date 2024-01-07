@@ -1,7 +1,16 @@
-import { Link } from "react-router-dom";
-import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
+import { Link, useNavigate } from "react-router-dom";
+import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
+import { useEffect } from "react";
 
 export default function Home() {
+
+    const navigate = useNavigate()
+
+    const auth = localStorage.getItem("auth")
+
+    useEffect(()=> {
+        if(auth) return navigate("/dashboard")
+    })
 
     return (
         <>  

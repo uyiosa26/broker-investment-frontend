@@ -13,7 +13,7 @@ export default function Plan() {
 
     const wallet = user.balance;
 
-    const userToken = sessionStorage.getItem("userToken")
+    const userToken = localStorage.getItem("userToken")
 
     useEffect(() => {
 

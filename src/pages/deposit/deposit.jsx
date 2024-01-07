@@ -11,7 +11,7 @@ export default function Deposit() {
     const [user, setUser] = useState("")
     const [amount, setAmount] = useState("")
 
-    const userToken = sessionStorage.getItem("userToken")
+    const userToken = localStorage.getItem("userToken")
 
     useEffect(() => {
 

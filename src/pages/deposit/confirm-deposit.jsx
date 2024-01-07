@@ -12,7 +12,7 @@ export default function ConfirmDeposit() {
 
     const [file, setFile] = useState(null)
  
-    const userToken = sessionStorage.getItem("userToken")
+    const userToken = localStorage.getItem("userToken")
 
     const method = localStorage.getItem("paymethod")
 

@@ -9,7 +9,7 @@ export default function History() {
 
     const [transactions, setTransactions] = useState([])
 
-    const userToken = sessionStorage.getItem("userToken")
+    const userToken = localStorage.getItem("userToken")
 
     useEffect(() => {
 

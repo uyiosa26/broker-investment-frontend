@@ -6,7 +6,7 @@ function PrivateRoute({ component }) {
 
     const navigate = useNavigate();
 
-    const auth = sessionStorage.getItem("auth")
+    const auth = localStorage.getItem("auth")
 
     useEffect(() => {
 

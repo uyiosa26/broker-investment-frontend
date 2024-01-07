@@ -22,8 +22,9 @@ export default function Login() {
             if (error) return toast.error(error.message)
             if(data.user){
                 toast.success("login Successfull")
-                sessionStorage.setItem("userToken", data.user.id)
-                sessionStorage.setItem("auth", true)
+                localStorage.setItem("userToken", data.user.id)
+                localStorage.setItem("userToken", data.user.id)
+                localStorage.setItem("auth", true)
                 navigate("/dashboard")
             } else {
                 toast.error(error.message)

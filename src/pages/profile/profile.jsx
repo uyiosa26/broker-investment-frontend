@@ -10,7 +10,7 @@ export default function Profile() {
     const [address, setAddress] = useState("")
     const [userAddress, setUserAddress] = useState("")
   
-    const userToken = sessionStorage.getItem("userToken")
+    const userToken = localStorage.getItem("userToken")
 
     const navigate = useNavigate()
 

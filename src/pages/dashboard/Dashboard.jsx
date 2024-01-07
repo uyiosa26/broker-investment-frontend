@@ -15,7 +15,7 @@ export default function Dashboard() {
 
     const profit = Number(user.balance) + Number(user.bonus)
 
-    const userToken = sessionStorage.getItem("userToken")
+    const userToken = localStorage.getItem("userToken")
 
     useEffect(() => {
 
