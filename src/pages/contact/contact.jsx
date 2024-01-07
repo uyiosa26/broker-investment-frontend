@@ -1,3 +1,4 @@
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 export default function Contact() {
     return (
             <>
@@ -208,6 +209,9 @@ export default function Contact() {
                                     </div>
                                 </div>
                             </div>
+                        <TawkMessengerReact
+                            propertyId="659a7a298d261e1b5f506cc7"
+                            widgetId="default" />
                             {/*end col*/}
                             <div className="pt-2 mt-4 col-md-4 mt-sm-0 pt-sm-0">
                                 <div className="text-center border-0 card features feature-clean">
