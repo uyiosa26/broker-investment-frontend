@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 
 export default function Home() {
 
@@ -844,6 +845,9 @@ export default function Home() {
                                     </li>
                                 </ul>
                             </div>
+                            <TawkMessengerReact
+                                propertyId="659a7a298d261e1b5f506cc7"
+                                widgetId="default" />
                             {/*end col*/}
                             <div className="pt-2 mt-4 col-lg-4 col-md-4 mt-sm-0 pt-sm-0">
                                 <h5 className="text-light footer-head">Contact Details</h5>
