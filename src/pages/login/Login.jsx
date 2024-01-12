@@ -123,7 +123,7 @@ export default function Login() {
                                                 
 
                                                 <div className="text-center col-12">
-                                                    <p className="mt-4 mb-0"><small className="mr-2 text-dark">© Copyright 2023 &nbsp; Value
+                                                    <p className="mt-4 mb-0"><small className="mr-2 text-dark">© Copyright 2024 &nbsp; Value
                                                         Trades &nbsp; All Rights Reserved.</small>
                                                     </p>
                                                 </div>
