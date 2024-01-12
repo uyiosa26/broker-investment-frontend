@@ -186,12 +186,12 @@ export default function Contact() {
                             <div className="col-md-4">
                                 <div className="text-center border-0 card features feature-clean">
                                     <div className="mx-auto text-center icons text-primary">
-                                        <i className="mb-0 rounded uil uil-phone d-block h3" />
+                                    <i className="fa-brands fa-whatsapp fa-2x"></i>
                                     </div>
                                     <div className="mt-3 content">
                                         <h5 className="font-weight-bold">Phone Number</h5>
                                     <Link href="tel:." className="text-primary">
-                                            .
+                                        +34631820824
                                     </Link>
                                     </div>
                                 </div>
