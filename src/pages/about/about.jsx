@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom"
+
 export default function About() {
     return (
         <>
@@ -78,22 +80,22 @@ export default function About() {
                 <div className="container">
                     {/* Logo container*/}
                     <div>
-                        <a className="logo" href="/">
+                        <Link className="logo" to="/">
                             <img
                                 src="https://valuetrades.online/temp/images/value.png"
                                 height={35}
                                 alt=""
                                 className="mr-2"
                             />
-                        </a>
+                        </Link>
                     </div>
                     <div className="buy-button">
-                        <a href="login" className="mr-3 btn btn-primary login-btn-success">
+                        <Link to="/login" className="mr-3 btn btn-primary login-btn-success">
                             login
-                        </a>
-                        <a href="register" className="btn btn-primary login-btn-success ">
+                        </Link>
+                        <Link to="/register" className="btn btn-primary login-btn-success ">
                             Get Started
-                        </a>
+                        </Link>
                     </div>
                     {/*end login button*/}
                     {/* End Logo container*/}
@@ -114,34 +116,34 @@ export default function About() {
                         {/* Navigation Menu*/}
                         <ul className="navigation-menu">
                             <li className="active">
-                                <a href="https://valuetrades.online/about">About us</a>
+                                <Link to="/about">About us</Link>
                             </li>
                             <li>
-                                <a href="#pricing">Pricing</a>
+                                <Link to="#pricing">Pricing</Link>
                             </li>
                             <li>
-                                <a href="https://valuetrades.online/faq">Faq</a>
+                                <Link to="/faq">Faq</Link>
                             </li>
                             <li className="last-elements">
-                                <a href="https://valuetrades.online/contact">Contact</a>
+                                <Link to="/contact">Contact</Link>
                             </li>
                         </ul>
                         {/*end navigation menu*/}
                         <div className="buy-menu-btn d-none">
-                            <a
-                                href="https://valuetrades.online/login"
+                            <Link
+                                to="/login"
                                 target="_blank"
                                 className="btn btn-success"
                             >
                                 Login
-                            </a>
-                            <a
-                                href="https://valuetrades.online/register"
+                            </Link>
+                            <Link
+                                to="/register"
                                 target="_blank"
                                 className="btn btn-success"
                             >
                                 Get Started
-                            </a>
+                            </Link>
                         </div>
                         {/*end login button*/}
                     </div>
@@ -162,7 +164,7 @@ export default function About() {
                                     <nav aria-label="breadcrumb" className="d-inline-block">
                                         <ul className="mb-0 bg-white rounded shadow breadcrumb">
                                             <li className="breadcrumb-item">
-                                                <a href="/">Value Trades</a>
+                                                <Link to="/">Value Trades</Link>
                                             </li>
                                             <li className="breadcrumb-item active" aria-current="page">
                                                 About Us
@@ -224,13 +226,13 @@ export default function About() {
                                     takes few minutes to setup your own investment management or pool
                                     trading platform.
                                 </p>
-                                <a
-                                    href="https://valuetrades.online/login"
+                                <Link
+                                    to="/login"
                                     className="mt-3 btn btn-primary"
                                 >
                                     Invest now
                                     <i className="mdi mdi-chevron-right" />
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         {/*end col*/}
@@ -322,12 +324,12 @@ export default function About() {
                             {/*end col*/}
                             <div className="mt-4 col-md-4 mt-sm-0">
                                 <div className="text-center text-md-right">
-                                    <a
-                                        href="https://valuetrades.online/register"
+                                    <Link
+                                        to="/register"
                                         className="pt-3 pb-3 pl-4 pr-4 btn btn-light"
                                     >
                                         Create Free Account
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                             {/*end col*/}
@@ -410,25 +412,25 @@ export default function About() {
                             <h5 className="text-light footer-head">Useful Links</h5>
                             <ul className="mt-4 list-unstyled footer-list">
                                 <li>
-                                    <a href="https://valuetrades.online" className="text-foot">
+                                    <Link to="/" className="text-foot">
                                         <i className="mr-1 mdi mdi-chevron-right" />
                                         Home
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a href="https://valuetrades.online/about" className="text-foot">
+                                    <Link to="/about" className="text-foot">
                                         <i className="mr-1 mdi mdi-chevron-right" />
                                         About us
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a
-                                        href="https://valuetrades.online/contact"
+                                    <Link
+                                        to="/contact"
                                         className="text-foot"
                                     >
                                         <i className="mr-1 mdi mdi-chevron-right" />
                                         Contact Us
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <a href="https://valuetrades.online/faq" className="text-foot">

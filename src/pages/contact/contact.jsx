@@ -1,4 +1,5 @@
 import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
+import {Link} from "react-router-dom"
 export default function Contact() {
     return (
             <>
@@ -210,7 +211,7 @@ export default function Contact() {
                                 </div>
                             </div>
                         <TawkMessengerReact
-                            propertyId="659a7a298d261e1b5f506cc7"
+                            propertyId="5f6fbbd0f0e7167d00140e2d"
                             widgetId="default" />
                             {/*end col*/}
                             <div className="pt-2 mt-4 col-md-4 mt-sm-0 pt-sm-0">
@@ -480,31 +481,31 @@ export default function Contact() {
                                 <h5 className="text-light footer-head">Useful Links</h5>
                                 <ul className="mt-4 list-unstyled footer-list">
                                     <li>
-                                        <a href="https://valuetrades.online" className="text-foot">
+                                        <Link to="/" className="text-foot">
                                             <i className="mr-1 mdi mdi-chevron-right" />
                                             Home
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="https://valuetrades.online/about" className="text-foot">
+                                        <Link to="/about" className="text-foot">
                                             <i className="mr-1 mdi mdi-chevron-right" />
                                             About us
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a
-                                            href="https://valuetrades.online/contact"
+                                        <Link
+                                            to="/contact"
                                             className="text-foot"
                                         >
                                             <i className="mr-1 mdi mdi-chevron-right" />
                                             Contact Us
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="https://valuetrades.online/faq" className="text-foot">
+                                        <Link to="/faq" className="text-foot">
                                             <i className="mr-1 mdi mdi-chevron-right" />
                                             Faq
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
@@ -520,7 +521,7 @@ export default function Contact() {
                                     <h6>
                                         <i className="mr-1 mdi mdi-email"> </i>Email Address
                                     </h6>
-                                    <p>support@valuetrade.live</p>
+                                    {/* <p>support@valuetrade.live</p> change support email here */}
                                 </div>
                             </div>
                             {/*end col*/}

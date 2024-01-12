@@ -20,6 +20,8 @@ import Withdraw from './pages/withdraw/withdraw.jsx';
 import Confirm from './pages/withdraw/confirm.jsx';
 import ConfirmDeposit from './pages/deposit/confirm-deposit.jsx';
 import PrivateRoute from './utils/private_routes.jsx';
+import Reset from './pages/login/resetPassword.jsx';
+import Change from './pages/login/change-password.jsx';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +62,14 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact/>
+      },
+      {
+        path: "/reset-password",
+        element: <Change />
+      },
+      {
+        path: "/forgot-password",
+        element: <Reset />
       },
        {
         path: "/payment",

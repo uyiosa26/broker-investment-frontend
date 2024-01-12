@@ -855,7 +855,7 @@ export default function Home() {
                                 </ul>
                             </div>
                             <TawkMessengerReact
-                                propertyId="659a7a298d261e1b5f506cc7"
+                                propertyId="5f6fbbd0f0e7167d00140e2d"
                                 widgetId="default" />
                             {/*end col*/}
                             <div className="pt-2 mt-4 col-lg-4 col-md-4 mt-sm-0 pt-sm-0">

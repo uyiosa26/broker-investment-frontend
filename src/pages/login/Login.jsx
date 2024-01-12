@@ -103,7 +103,7 @@ export default function Login() {
                                                             </div>
                                                         </div>
                                                         <p className="mb-0 forgot-pass"><Link
-                                                            to="https://valuetrades.online/forgot-password"
+                                                        to="/forgot-password"
                                                             className="text-dark font-weight-bold">Forgot password ?</Link></p>
                                                     </div>
                                                 </div>
