@@ -101,34 +101,34 @@ export default function Contact() {
                             {/* Navigation Menu*/}
                             <ul className="navigation-menu">
                                 <li>
-                                    <a href="https://valuetrades.online/about">About us</a>
+                                <Link to="/about">About us</Link>
                                 </li>
                                 <li>
-                                    <a href="#pricing">Pricing</a>
+                                <Link to="#pricing">Pricing</Link>
                                 </li>
                                 <li>
-                                    <a href="https://valuetrades.online/faq">Faq</a>
+                                <Link to="/faq">Faq</Link>
                                 </li>
                                 <li className="last-elements active">
-                                    <a href="https://valuetrades.online/contact">Contact</a>
+                                <Link to="/contact">Contact</Link>
                                 </li>
                             </ul>
                             {/*end navigation menu*/}
                             <div className="buy-menu-btn d-none">
-                                <a
+                            <Link
                                     href="https://valuetrades.online/login"
                                     target="_blank"
                                     className="btn btn-success"
                                 >
                                     Login
-                                </a>
-                                <a
+                            </Link>
+                            <Link
                                     href="https://valuetrades.online/register"
                                     target="_blank"
                                     className="btn btn-success"
                                 >
                                     Get Started
-                                </a>
+                            </Link>
                             </div>
                             {/*end login button*/}
                         </div>
@@ -190,9 +190,9 @@ export default function Contact() {
                                     </div>
                                     <div className="mt-3 content">
                                         <h5 className="font-weight-bold">Phone Number</h5>
-                                        <a href="tel:." className="text-primary">
+                                    <Link href="tel:." className="text-primary">
                                             .
-                                        </a>
+                                    </Link>
                                     </div>
                                 </div>
                             </div>

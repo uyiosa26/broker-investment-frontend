@@ -52,6 +52,10 @@ export default function Deposit() {
         toast.info("USDT is selected as payment method")
     }
 
+    function handleGcash() {
+        toast.info("G cash deposit is not available right now please contact support for futher assistance")
+    }
+
     function handleBTC() {
         localStorage.setItem("paymethod", "Bitcoin")
         localStorage.setItem("amount", amount)
@@ -434,6 +438,26 @@ export default function Deposit() {
                                                                         </span>
                                                                         <span>
                                                                             <input onChange={handleUsdt}
+                                                                                type="checkbox"
+                                                                                id="3customCheck1"
+                                                                                readOnly=""
+                                                                            />
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="rounded shadow ">
+                                                                    <div className="card-body d-flex justify-content-between align-items-center">
+                                                                        <span className="">
+                                                                            <img
+                                                                                src="https://lulo.com"
+                                                                                alt=""
+                                                                                className=""
+                                                                                style={{ width: 25 }}
+                                                                            />
+                                                                            G-CASH
+                                                                        </span>
+                                                                        <span>
+                                                                            <input onChange={handleGcash}
                                                                                 type="checkbox"
                                                                                 id="3customCheck1"
                                                                                 readOnly=""
