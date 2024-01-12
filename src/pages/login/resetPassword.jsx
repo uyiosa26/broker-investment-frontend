@@ -10,7 +10,7 @@ export default function Reset() {
 async function handleReset(e) {
     e.preventDefault()
     await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: 'https://broker-samson.onrender.com/reset-password',
+        redirectTo: 'https://www.valuetrades.site/forgot-password',
     })
     toast.success("A password reset link has been sent to your email")
 
