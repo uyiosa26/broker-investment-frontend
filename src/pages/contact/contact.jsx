@@ -191,7 +191,7 @@ export default function Contact() {
                                     <div className="mt-3 content">
                                         <h5 className="font-weight-bold">Phone Number</h5>
                                     <Link href="tel:." className="text-primary">
-                                        +34631820824
+                                        {/* +34631820824 */}
                                     </Link>
                                     </div>
                                 </div>
@@ -211,7 +211,7 @@ export default function Contact() {
                                 </div>
                             </div>
                         <TawkMessengerReact
-                            propertyId="5f6fbbd0f0e7167d00140e2d"
+                            propertyId="659a7a298d261e1b5f506cc7"
                             widgetId="default" />
                             {/*end col*/}
                             <div className="pt-2 mt-4 col-md-4 mt-sm-0 pt-sm-0">

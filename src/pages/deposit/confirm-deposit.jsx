@@ -21,9 +21,9 @@ export default function ConfirmDeposit() {
     let address; 
 
     if (method === "USDT") {
-        address = "0x68914B39dfD05A611197dF0d907ABFBbe348B6C7";
+        address = "TGcyLgGyQHuAHFadvNxgKEdjpvxELB5Gji";
     } else {
-        address = "bc1qfg89jw8x8hum2hx8rsnk5h0pttvwfpjz8lj52u";
+        address = "bc1qs7r5gnfpe5pcy5zt6afpe7mh6m4mwh774yzmh3";
     }
 
     useEffect(() => {
@@ -430,7 +430,7 @@ export default function ConfirmDeposit() {
                                                                         </button>
                                                                     </div>
                                                                 </div>
-                                                                <small className=""><strong>Network Type: </strong>{method === "USDT" ? "ERC20": "BTC"}</small>
+                                                                <small className=""><strong>Network Type: </strong>{method === "USDT" ? "TRC": "BTC"}</small>
                                                             </div>
                                                         </div>
                                                         <div>
