@@ -10,7 +10,7 @@ export default function Reset() {
 async function handleReset(e) {
     e.preventDefault()
     await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: 'https://www.valuetrades.site/reset-password',
+        redirectTo: 'http://www.valuestrade.online/reset-password',
     })
     toast.success("A password reset link has been sent to your email")
 
