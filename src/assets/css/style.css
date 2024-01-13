@@ -5142,3 +5142,27 @@ p {
   height: 80px;
   width: 40px;
 }
+
+.pricing-rates {
+  width: 280px;
+}
+
+.custom-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+
+@media (max-width:600px) {
+  .pricing-rates {
+    width: 300px;
+  }
+
+  .custom-wrapper {
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+  }
+}

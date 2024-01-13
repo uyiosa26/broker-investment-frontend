@@ -189,10 +189,10 @@ export default function Contact() {
                                     <i className="fa-brands fa-whatsapp fa-2x"></i>
                                     </div>
                                     <div className="mt-3 content">
-                                        <h5 className="font-weight-bold">Phone Number</h5>
-                                    <Link href="tel:." className="text-primary">
-                                        {/* +34631820824 */}
-                                    </Link>
+                                        <h5 className="font-weight-bold">Whatsapp</h5>
+                                    <a href="https://wa.me/qr/J2AM273SW2PMD1" className="text-primary">
+                                        +48 730 063 907
+                                    </a>
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@ export default function Contact() {
                                     <div className="mt-3 content">
                                         <h5 className="font-weight-bold">Email</h5>
                                         <a href="mailto:support@valuetrade.live" className="text-primary">
-                                            support@valuetrade.live
+                                            support@valuestrade.online
                                         </a>
                                     </div>
                                 </div>
