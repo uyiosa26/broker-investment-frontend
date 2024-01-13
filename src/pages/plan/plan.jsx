@@ -341,12 +341,12 @@ export default function Plan() {
                                                             <p>Choose Quick Amount to Invest</p>
                                                         </div>
                                                         <div className="flex-wrap mb-1 d-flex justify-content-start align-items-center">
-                                                            <button onClick={()=> setValue(100)} className="mb-2 border-black rounded-none btn btn-light" >$100</button>
-                                                            <button onClick={() => setValue(250)} className="mb-2 border-black rounded-none btn btn-light" >$250</button>
+                                                            <button onClick={()=> setValue(50)} className="mb-2 border-black rounded-none btn btn-light" >$50</button>
+                                                            <button onClick={() => setValue(200)} className="mb-2 border-black rounded-none btn btn-light" >$200</button>
                                                             <button onClick={() => setValue(500)} className="mb-2 border-black rounded-none btn btn-light" >$500</button>
                                                             <button onClick={() => setValue(1000)} className="mb-2 border-black rounded-none btn btn-light" >$1,000</button>
-                                                            <button onClick={() => setValue(1500)} className="mb-2 border-black rounded-none btn btn-light" >$1,500</button>
-                                                            <button onClick={() => setValue(2000)} className="mb-2 border-black rounded-none btn btn-light" >$2,000</button>
+                                                            <button onClick={() => setValue(2000)} className="mb-2 border-black rounded-none btn btn-light" >$2000</button>
+                                                            <button onClick={() => setValue(5000)} className="mb-2 border-black rounded-none btn btn-light" >$5,000</button>
                                                         </div>
                                                     </div>
 
@@ -379,43 +379,39 @@ export default function Plan() {
                                         <div className="col-md-4">
                                             <div className="card">
                                                 <div className="card-body">
-                                                    <p>Your Investment Details</p>
+                                                    <p>Investment Plan Details</p>
                                                     <div className="row">
                                                         <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Name of plan</p>
-                                                            <span className="text-primary small">Starter</span>
+                                                            <p className="mb-0 small">Basic plan</p>
+                                                            <span className="text-primary small d-block">$50 minimum</span>
+                                                            <span className="text-primary small">24 Hrs</span>
+                                                            <span className="text-primary small d-block">11% return</span>
                                                         </div>
                                                         <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Plan Price</p>
-                                                            <span className="text-primary small">$1000</span>
+                                                            <p className="mb-0 small">Standard plan</p>
+                                                            <span className="text-primary small d-block">$500 minimum</span>
+                                                            <span className="text-primary small">24 Hrs</span>
+                                                            <span className="text-primary small d-block">25% return</span>
                                                         </div>
                                                         <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Duration</p>
-                                                            <span className="text-primary small">1 Days</span>
+                                                            <p className="mb-0 small">Premium plan</p>
+                                                            <span className="text-primary small d-block">$2000 minimum</span>
+                                                            <span className="text-primary small">48 Hrs</span>
+                                                            <span className="text-primary small d-block">50% return</span>
                                                         </div>
                                                         <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Profit</p>
-                                                            <span className="text-primary small">
-                                                                1000%
-                                                                Daily
-                                                            </span>
+                                                            <p className="mb-0 small">Gold plan</p>
+                                                            <span className="text-primary small d-block">$5000 minimum</span>
+                                                            <span className="text-primary small">48 Hrs</span>
+                                                            <span className="text-primary small d-block">75% return</span>
                                                         </div>
                                                         <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Minimum Deposit</p>
-                                                            <span className="text-primary small">$1000</span>
+                                                            <p className="mb-0 small">Ultimate Plan</p>
+                                                            <span className="text-primary small d-block">$10000 minimum</span>
+                                                            <span className="text-primary small">72 Hrs</span>
+                                                            <span className="text-primary small d-block">100% return</span>
                                                         </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Maximum Deposit</p>
-                                                            <span className="text-primary small">$100000</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Minimum Return</p>
-                                                            <span className="text-primary small">10000%</span>
-                                                        </div>
-                                                        <div className="mb-3 col-md-6">
-                                                            <p className="mb-0 small">Maximum Return</p>
-                                                            <span className="text-primary small">1000000%</span>
-                                                        </div>
+                                                
                                                     </div>
                                                     <hr />
                                                     <div className="justify-content-between d-md-flex">

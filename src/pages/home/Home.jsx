@@ -555,41 +555,71 @@ export default function Home() {
                                 <div className="p-4 border-0 rounded-md shadow card pricing-rates business-rate">
                                     <div className="p-0 card-body">
                                         <span className="px-4 py-2 mb-0 rounded-lg d-inline-block bg-soft-primary h6 text-primary">
-                                            Starter
+                                            BASIC PLAN
                                         </span>
-                                        <h2 className="mt-3 mb-0 font-weight-bold">$ 100</h2>
-                                        <p className="text-muted">2 Days</p>
+                                        {/* <h2 className="mt-3 mb-0 font-weight-bold">$100</h2> */}
+                                        <p className="text-muted mt-2">24 HOURS</p>
                                         <ul className="pt-3 list-unstyled border-top">
                                             <li className="mb-0 h6 text-muted">
                                                 <span className="mr-2 text-primary h5">
                                                     <i className="align-middle uil uil-check-circle" />
                                                 </span>
-                                                Min. Possible deposit: $100
+                                                Min. Possible deposit: $50
                                             </li>
                                             <li className="mb-0 h6 text-muted">
                                                 <span className="mr-2 text-primary h5">
                                                     <i className="align-middle uil uil-check-circle" />
                                                 </span>
-                                                Max. Possible deposit: $100000
+                                                Max. Possible deposit: $500
                                             </li>
                                             <li className="mb-0 h6 text-muted">
                                                 <span className="mr-2 text-primary h5">
                                                     <i className="align-middle uil uil-check-circle" />
                                                 </span>
-                                                $250 Minimum return
+                                                11% Minimum return
+                                            </li>
+                                           
+                                        </ul>
+                                        <div className="mt-4">
+                                            <a href="login" className="btn btn-block btn-primary">
+                                                Buy Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/*end col*/}
+                            {/*end col*/}
+                        </div>
+                        <div className="row">
+                            <div className="pt-2 mt-4 col-lg-4 col-md-6">
+                                <div className="p-4 border-0 rounded-md shadow card pricing-rates business-rate">
+                                    <div className="p-0 card-body">
+                                        <span className="px-4 py-2 mb-0 rounded-lg d-inline-block bg-soft-primary h6 text-primary">
+                                            STANDARD PLAN
+                                        </span>
+                                        {/* <h2 className="mt-3 mb-0 font-weight-bold">$100</h2> */}
+                                        <p className="text-muted mt-2">24 HOURS</p>
+                                        <ul className="pt-3 list-unstyled border-top">
+                                            <li className="mb-0 h6 text-muted">
+                                                <span className="mr-2 text-primary h5">
+                                                    <i className="align-middle uil uil-check-circle" />
+                                                </span>
+                                                Min. Possible deposit: $500
                                             </li>
                                             <li className="mb-0 h6 text-muted">
                                                 <span className="mr-2 text-primary h5">
                                                     <i className="align-middle uil uil-check-circle" />
                                                 </span>
-                                                $1000000 Maximum return
+                                                Max. Possible deposit: $199
                                             </li>
                                             <li className="mb-0 h6 text-muted">
                                                 <span className="mr-2 text-primary h5">
                                                     <i className="align-middle uil uil-check-circle" />
                                                 </span>
-                                                $10 Gift Bonus
+                                                25% Minimum return
                                             </li>
+
                                         </ul>
                                         <div className="mt-4">
                                             <a href="login" className="btn btn-block btn-primary">
@@ -603,7 +633,129 @@ export default function Home() {
                             {/*end col*/}
                         </div>
                         {/*end row*/}
-                    </div>
+                        <div className="row">
+                            <div className="pt-2 mt-4 col-lg-4 col-md-6">
+                                <div className="p-4 border-0 rounded-md shadow card pricing-rates business-rate">
+                                    <div className="p-0 card-body">
+                                        <span className="px-4 py-2 mb-0 rounded-lg d-inline-block bg-soft-primary h6 text-primary">
+                                            PREMIUM PLAN
+                                        </span>
+                                        {/* <h2 className="mt-3 mb-0 font-weight-bold">$100</h2> */}
+                                        <p className="text-muted mt-2">48 HOURS</p>
+                                        <ul className="pt-3 list-unstyled border-top">
+                                            <li className="mb-0 h6 text-muted">
+                                                <span className="mr-2 text-primary h5">
+                                                    <i className="align-middle uil uil-check-circle" />
+                                                </span>
+                                                Min. Possible deposit: $2000
+                                            </li>
+                                            <li className="mb-0 h6 text-muted">
+                                                <span className="mr-2 text-primary h5">
+                                                    <i className="align-middle uil uil-check-circle" />
+                                                </span>
+                                                Max. Possible deposit: $4999
+                                            </li>
+                                            <li className="mb-0 h6 text-muted">
+                                                <span className="mr-2 text-primary h5">
+                                                    <i className="align-middle uil uil-check-circle" />
+                                                </span>
+                                                50% Minimum return
+                                            </li>
+
+                                        </ul>
+                                        <div className="mt-4">
+                                            <a href="login" className="btn btn-block btn-primary">
+                                                Buy Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {/*end col*/}
+                            {/*end col*/}
+                        </div>
+                        <div className="row">
+                            <div className="pt-2 mt-4 col-lg-4 col-md-6">
+                                <div className="p-4 border-0 rounded-md shadow card pricing-rates business-rate">
+                                    <div className="p-0 card-body">
+                                        <span className="px-4 py-2 mb-0 rounded-lg d-inline-block bg-soft-primary h6 text-primary">
+                                            GOLD PLAN
+                                        </span>
+                                        {/* <h2 className="mt-3 mb-0 font-weight-bold">$100</h2> */}
+                                        <p className="text-muted mt-2">48 HOURS</p>
+                                        <ul className="pt-3 list-unstyled border-top">
+                                            <li className="mb-0 h6 text-muted">
+                                                <span className="mr-2 text-primary h5">
+                                                    <i className="align-middle uil uil-check-circle" />
+                                                </span>
+                                                Min. Possible deposit: $5000
+                                            </li>
+                                            <li className="mb-0 h6 text-muted">
+                                                <span className="mr-2 text-primary h5">
+                                                    <i className="align-middle uil uil-check-circle" />
+                                                </span>
+                                                Max. Possible deposit: $9999
+                                            </li>
+                                            <li className="mb-0 h6 text-muted">
+                                                <span className="mr-2 text-primary h5">
+                                                    <i className="align-middle uil uil-check-circle" />
+                                                </span>
+                                                75% Minimum return
+                                            </li>
+
+                                        </ul>
+                                        <div className="mt-4">
+                                            <a href="login" className="btn btn-block btn-primary">
+                                                Buy Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {/*end col*/}
+                            {/*end col*/}
+                        </div>
+                        <div className="row">
+                            <div className="pt-2 mt-4 col-lg-4 col-md-6">
+                                <div className="p-4 border-0 rounded-md shadow card pricing-rates business-rate">
+                                    <div className="p-0 card-body">
+                                        <span className="px-4 py-2 mb-0 rounded-lg d-inline-block bg-soft-primary h6 text-primary">
+                                            ULTIMATE PLAN
+                                        </span>
+                                        {/* <h2 className="mt-3 mb-0 font-weight-bold">$100</h2> */}
+                                        <p className="text-muted mt-2">72 HOURS</p>
+                                        <ul className="pt-3 list-unstyled border-top">
+                                            <li className="mb-0 h6 text-muted">
+                                                <span className="mr-2 text-primary h5">
+                                                    <i className="align-middle uil uil-check-circle" />
+                                                </span>
+                                                Min. Possible deposit: $10,000
+                                            </li>
+                                            <li className="mb-0 h6 text-muted">
+                                                <span className="mr-2 text-primary h5">
+                                                    <i className="align-middle uil uil-check-circle" />
+                                                </span>
+                                                Max. Possible deposit: $50,000
+                                            </li>
+                                            <li className="mb-0 h6 text-muted">
+                                                <span className="mr-2 text-primary h5">
+                                                    <i className="align-middle uil uil-check-circle" />
+                                                </span>
+                                                100% Minimum return
+                                            </li>
+
+                                        </ul>
+                                        <div className="mt-4">
+                                            <a href="login" className="btn btn-block btn-primary">
+                                                Buy Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                     {/*end container*/}
                 </section>
                 {/* End Pricing Section Start */}
