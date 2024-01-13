@@ -4,13 +4,13 @@ import { useEffect } from "react";
 
 export default function Home() {
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const auth = localStorage.getItem("auth")
 
-    // useEffect(()=> {
-    //     if(auth) return navigate("/dashboard")
-    // },[])
+    useEffect(()=> {
+        if(auth) return navigate("/dashboard")
+    },[])
 
     return (
         <>  

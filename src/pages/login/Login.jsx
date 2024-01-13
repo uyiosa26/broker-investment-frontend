@@ -10,9 +10,9 @@ export default function Login() {
 
     const auth = localStorage.getItem("auth")
 
-     useEffect(()=> {
-        if(auth) return navigate("/dashboard")
-    },[])
+    //  useEffect(()=> {
+    //     if(auth) return navigate("/dashboard")
+    // },[])
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
