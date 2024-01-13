@@ -6,7 +6,7 @@ import logo from"../../assets/img/value.png"
 
 export default function Login() {
 
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     // const auth = localStorage.getItem("auth")
 
