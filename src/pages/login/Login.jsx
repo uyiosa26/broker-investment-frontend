@@ -1,15 +1,22 @@
 import { Link, useNavigate } from "react-router-dom"
 import supabase from "../../utils/client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { toast } from "react-toastify"
 import logo from"../../assets/img/value.png"
 
 export default function Login() {
 
+     const navigate = useNavigate()
+
+    const auth = localStorage.getItem("auth")
+
+     useEffect(()=> {
+        if(auth) return navigate("/dashboard")
+    },[])
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const navigate = useNavigate()
 
     const handleLogin = async function(e){
         e.preventDefault()

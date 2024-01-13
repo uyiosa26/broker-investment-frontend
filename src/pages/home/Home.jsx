@@ -4,13 +4,13 @@ import { useEffect } from "react";
 
 export default function Home() {
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const auth = localStorage.getItem("auth")
 
-    useEffect(()=> {
-        if(auth) return navigate("/dashboard")
-    },[])
+    // useEffect(()=> {
+    //     if(auth) return navigate("/dashboard")
+    // },[])
 
     return (
         <>  
@@ -550,6 +550,7 @@ export default function Home() {
                             {/*end col*/}
                         </div>
                         {/*end row*/}
+                        <div className="custom-wrapper">
                         <div className="row">
                             <div className="pt-2 mt-4 col-lg-4 col-md-6">
                                 <div className="p-4 border-0 rounded-md shadow card pricing-rates business-rate">
@@ -756,6 +757,7 @@ export default function Home() {
                             </div>
                             </div>
                         </div>
+                    </div>
                     {/*end container*/}
                 </section>
                 {/* End Pricing Section Start */}
