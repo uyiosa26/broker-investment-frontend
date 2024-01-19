@@ -354,7 +354,7 @@ export default function Plan() {
                                                         <div className="">
                                                             <p>Or Enter Your Amount</p>
                                                             <div>
-                                                                <input type="number" onChange={(e)=> setValue(e.value.target)} value={value} required name="" id="" className="form-control d-block w-100" placeholder="1000" min="1000" max="100000" />
+                                                                <input type="number" onChange={(e)=> setValue(e.target.value)} value={value} required name="" id="" className="form-control d-block w-100" placeholder="1000" min="1000" max="100000" />
                                                             </div>
                                                         </div>
                                                     </div>
