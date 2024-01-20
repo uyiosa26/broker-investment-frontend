@@ -427,7 +427,7 @@ export default function Dashboard() {
                                                     <div className="card-body">
                                                         <div className="row">
                                                             <div className="col">
-                                                                <h6 className="mb-1 text-muted">Account balance</h6>
+                                                                <h6 className="mb-1 text-muted">Wallet balance</h6>
                                                                 <span className="mb-0 h5 font-weight-bold">
                                                                     ${Number(user.balance)}
                                                                 </span>
@@ -488,7 +488,7 @@ export default function Dashboard() {
                                                     <div className="card-body">
                                                         <div className="row">
                                                             <div className="col">
-                                                                <h6 className="mb-1 text-muted">Total</h6>
+                                                                <h6 className="mb-1 text-muted">Total Account Balance</h6>
                                                                 <span className="mb-0 h5 font-weight-bold">
                                                                     <span className="mb-0 h5 font-weight-bold ">
                                                                         ${total}
