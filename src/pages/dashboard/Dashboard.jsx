@@ -84,7 +84,7 @@ export default function Dashboard() {
 
     const totalDeposit = transactions.reduce((accumulator, transaction) => accumulator + Number(transaction.value), 0);
 
-    let total = totalDeposit + tradingBalance + Number(user.balance)
+    let total = Number(user.bonus) + tradingBalance + Number(user.balance)
 
     return (
         <>
