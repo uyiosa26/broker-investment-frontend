@@ -564,7 +564,7 @@ export default function Dashboard() {
                                                 <div className="mt-4 row">
                                                     <div className="col-md-12">
                                                         <div className="py-4 card">
-                                                            {plans ? <div className=" table-responsive">
+                                                            {plans.length > 0 ? <div className=" table-responsive">
                                                                 <table className="table table-striped">
                                                                     <thead>
                                                                         <tr className="bg-light">
