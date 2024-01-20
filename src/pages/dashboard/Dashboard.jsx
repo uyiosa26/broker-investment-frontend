@@ -13,8 +13,6 @@ export default function Dashboard() {
     const [transactions, setTransactions] = useState([])
     const [plans, setPlan] = useState([])
 
-    const profit = Number(user.balance) + Number(user.bonus)
-
     const userToken = localStorage.getItem("userToken")
 
     useEffect(() => {
@@ -81,6 +79,12 @@ export default function Dashboard() {
             console.error("Error signing out:", error.message);
         }
     }
+
+    const tradingBalance = plans.reduce((accumulator, transaction) => accumulator + Number(transaction.amount), 0);
+
+    const totalDeposit = transactions.reduce((accumulator, transaction) => accumulator + Number(transaction.value), 0);
+
+    let total = totalDeposit + tradingBalance + Number(user.balance)
 
     return (
         <>
@@ -425,7 +429,7 @@ export default function Dashboard() {
                                                             <div className="col">
                                                                 <h6 className="mb-1 text-muted">Account balance</h6>
                                                                 <span className="mb-0 h5 font-weight-bold">
-                                                                    ${user.balance}
+                                                                    ${Number(user.balance)}
                                                                 </span>
                                                             </div>
                                                             <div className="col-auto">
@@ -443,9 +447,9 @@ export default function Dashboard() {
                                                     <div className="card-body">
                                                         <div className="row">
                                                             <div className="col">
-                                                                <h6 className="mb-1 text-muted">Total Profit</h6>
+                                                                <h6 className="mb-1 text-muted">Trading Balance</h6>
                                                                 <span className="mb-0 h5 font-weight-bold">
-                                                                    ${profit}
+                                                                    ${tradingBalance}
                                                                 </span>
                                                             </div>
                                                             <div className="col-auto">
@@ -463,9 +467,9 @@ export default function Dashboard() {
                                                     <div className="card-body">
                                                         <div className="row">
                                                             <div className="col">
-                                                                <h6 className="mb-1 text-muted">Bonus</h6>
+                                                                <h6 className="mb-1 text-muted">Trading Profits</h6>
                                                                 <span className="mb-0 h5 font-weight-bold">
-                                                                    ${user.bonus}
+                                                                    ${Number(user.bonus)}
                                                                 </span>
                                                             </div>
                                                             <div className="col-auto">
@@ -484,10 +488,10 @@ export default function Dashboard() {
                                                     <div className="card-body">
                                                         <div className="row">
                                                             <div className="col">
-                                                                <h6 className="mb-1 text-muted">Total Deposit</h6>
+                                                                <h6 className="mb-1 text-muted">Total</h6>
                                                                 <span className="mb-0 h5 font-weight-bold">
                                                                     <span className="mb-0 h5 font-weight-bold ">
-                                                                        ${user.balance}
+                                                                        ${total}
                                                                     </span>
                                                                 </span>
                                                             </div>
@@ -500,6 +504,30 @@ export default function Dashboard() {
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div className="col-xl-4 col-md-6">
+                                                <div className="card card-stats">
+                                                    {/* Card body */}
+                                                    <div className="card-body">
+                                                        <div className="row">
+                                                            <div className="col">
+                                                                <h6 className="mb-1 text-muted">Total Deposit</h6>
+                                                                <span className="mb-0 h5 font-weight-bold">
+                                                                    <span className="mb-0 h5 font-weight-bold ">
+                                                                        ${totalDeposit}
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                            <div className="col-auto">
+                                                                <div className="text-white icon bg-gradient-primary rounded-circle icon-shape">
+                                                                    <i className="fas fa-arrow-alt-circle-down" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div className="col-xl-4 col-md-6">
                                                 <div className="card card-stats">
                                                     {/* Card body */}
@@ -510,7 +538,7 @@ export default function Dashboard() {
                                                                     Total Withdrawal
                                                                 </h6>
                                                                 <span className="mb-0 h5 font-weight-bold ">
-                                                                    $0.00
+                                                                    $0
                                                                 </span>
                                                             </div>
                                                             <div className="col-auto">
