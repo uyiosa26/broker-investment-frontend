@@ -69,10 +69,10 @@ export default function Dashboard() {
     async function Logout() {
         try {
             await supabase.auth.signOut();
-            sessionStorage.removeItem("auth");
-            sessionStorage.removeItem("userToken");
-            sessionStorage.removeItem("amount");
-            sessionStorage.removeItem("method");
+            localStorage.removeItem("auth");
+            localStorage.removeItem("userToken");
+            localStorage.removeItem("amount");
+            localStorage.removeItem("method");
             toast.info("Signed out successfully");
             navigate("/login")
         } catch (error) {
