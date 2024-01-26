@@ -5166,3 +5166,8 @@ p {
     justify-content: center;
   }
 }
+
+.lock-img {
+  width: 50px;
+  height: auto;
+}

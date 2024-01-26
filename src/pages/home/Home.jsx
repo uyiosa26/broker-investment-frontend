@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
 import { useEffect } from "react";
+import lock from "../../assets/img/lock-solid.svg"
+import shield from "../../assets/img/shield.svg"
 
 export default function Home() {
 
@@ -184,11 +186,14 @@ export default function Home() {
                             {/*end col*/}
                             <div className="pt-2 mt-4 col-lg-6 col-md-5 mt-sm-0 pt-sm-0">
                                 <div className="position-relative">
-                                    <img
-                                        src="https://valuetrades.online/storage/app/public/photos/eQZW9KTA66MfDXmmsM7VzwfBuleCSRBpoyjaivei.jpg"
+                                    {/* <img
+                                        src={lock}
                                         className="mx-auto roundedd img-fluid d-block"
                                         alt=""
-                                    />
+                                    /> */}
+                                    {/* <div className="mx-auto roundedd img-fluid d-block">
+                                        <FontAwesomeIcon icon="fa-regular fa-lock" style={{ color: "#B197FC", }} />
+                                    </div> */}
                                 </div>
                             </div>
                             {/*end col*/}
@@ -263,9 +268,8 @@ export default function Home() {
                                 <div className="text-center border-0 rounded card">
                                     <div className="card-body">
                                         <div className="p-3 shadow bg-soft-primary roundedd d-inline-block">
-                                            <img
-                                                src="https://valuetrades.online/temp/images/icon/key.svg"
-                                                className="avatar avatar-small"
+                                            <img className="lock-img"
+                                                src={lock}
                                                 alt=""
                                             />
                                         </div>
@@ -290,7 +294,7 @@ export default function Home() {
                                     <div className="card-body">
                                         <div className="p-3 shadow bg-soft-primary roundedd d-inline-block">
                                             <img
-                                                src="https://valuetrades.online/temp/images/icon/locked.svg"
+                                                src={shield}
                                                 className="avatar avatar-small"
                                                 alt=""
                                             />
