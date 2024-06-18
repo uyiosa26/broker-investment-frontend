@@ -21,9 +21,9 @@ export default function ConfirmDeposit() {
     let address; 
 
     if (method === "USDT") {
-        address = "TGcyLgGyQHuAHFadvNxgKEdjpvxELB5Gji";
+        address = "TNypSYhn2oXPSfWiyBmFAqqgwVhy2XYig";
     } else {
-        address = "bc1qs7r5gnfpe5pcy5zt6afpe7mh6m4mwh774yzmh3";
+        address = "bc1qwm29h2ygzvxh22f8qnmdhpz48evr57legcyxlc";
     }
 
     useEffect(() => {
