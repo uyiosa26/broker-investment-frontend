@@ -249,7 +249,7 @@ export default function Contact() {
                     href="mailto:Valuesfxtrade@gmail.com"
                     className="text-primary"
                   >
-                    support@valuestrade.online
+                    Valuesfxtrade@gmail.com
                   </a>
                 </div>
               </div>
