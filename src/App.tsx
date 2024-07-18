@@ -66,12 +66,6 @@ export default function App() {
             />
           </div>
           <div className="flex w-full items-center justify-center">
-            {/* <button
-              type="submit"
-              className="uppercase py-[12px] rounded-md text-white border-none outline-none bg-green-700 px-[80px] w-fit text-[14px] font-[500]"
-            >
-              login
-            </button> */}
             <Button>
               {loading ? (
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />

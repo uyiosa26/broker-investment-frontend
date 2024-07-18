@@ -1,7 +1,6 @@
 // import "./dashboard.css";
 import supabase from "../../../utils/client.js";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Header from "../../components/header.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,8 +23,6 @@ type User = {
 };
 
 export default function Dashboard() {
-  const navigate = useNavigate();
-
   const [users, setUsers] = useState<Users[]>([]);
   const [user, setUser] = useState<User[]>([]);
   const [edit, setEdit] = useState(false);
@@ -46,12 +43,6 @@ export default function Dashboard() {
   useEffect(() => {
     getUsers();
   }, []);
-
-  async function signOut() {
-    const { error } = await supabase.auth.signOut();
-    localStorage.removeItem("auth");
-    navigate("/");
-  }
 
   async function updateBalance(e) {
     e.preventDefault();
