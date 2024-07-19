@@ -5,9 +5,6 @@ import { useNavigate } from "react-router-dom";
 export default function Header() {
   const navigate = useNavigate();
 
-  const isAuthorized = localStorage.getItem("auth");
-  //   console.log(isAuthorized);
-
   async function signOut() {
     const { error } = await supabase.auth.signOut();
     localStorage.removeItem("auth");

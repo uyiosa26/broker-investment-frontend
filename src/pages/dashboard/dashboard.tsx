@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/header.js";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Profile from "../../components/profile.js";
 
 interface Users {
   full_name: string;
@@ -182,31 +183,7 @@ export default function Dashboard() {
           </div>
         </div>
       )}
-      {edit ? (
-        <section className="z-25 bg-blue-400 absolute w-full top-0 left-0 h-screen">
-          <div className="container mx-auto">
-            <div className="flex flex-col lg:flex-row">
-              <div className="pt-[2rem]">
-                <img
-                  className="w-[100px] h-auto object-cover mx-auto"
-                  src="/img/avatar.png"
-                  alt="avatar"
-                />
-              </div>
-              <div>
-                <table>
-                  <thead className="capitalize">
-                    <th>amouth</th>
-                    <th>method</th>
-                    <th>status</th>
-                    <th></th>
-                  </thead>
-                </table>
-              </div>
-            </div>
-          </div>
-        </section>
-      ) : null}
+      {edit ? <Profile /> : null}
     </section>
   );
 }
