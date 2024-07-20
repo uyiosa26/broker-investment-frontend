@@ -59,7 +59,7 @@ export default function Profile() {
   return (
     <section className="z-25 bg-white absolute w-full top-0 left-0 h-screen">
       <div className="container mx-auto">
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col py-[.8rem]">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div>
@@ -77,9 +77,9 @@ export default function Profile() {
             <Button variant="destructive">close</Button>
           </div>
           <div>
-            <div className="flex flex-col lg:flex-row">
-              <div className="w-[200px] h-[120px] border-black mx-auto"></div>
-              <div className="w-[200px] h-[120px] border-black mx-auto"></div>
+            <div className="flex flex-col my-[20px] py-[1rem] gap-4 lg:flex-row">
+              <div className="w-[80%] h-[100px] border lg:w-[200px] lg:h-[120px] border-black mx-auto"></div>
+              <div className="w-[80%] h-[100px] border lg:w-[200px] lg:h-[120px] border-black mx-auto"></div>
             </div>
           </div>
           <div>
