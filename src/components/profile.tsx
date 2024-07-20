@@ -8,9 +8,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import supabase from "../../utils/client.js";
-
 import { MdOutlineModeEdit } from "react-icons/md";
 
 import {
@@ -22,58 +22,6 @@ import {
 import { IoMdWallet } from "react-icons/io";
 
 import { Button } from "./ui/button";
-
-const invoices = [
-  {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
-    status: "complete",
-  },
-  {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
-    status: "complete",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-    status: "complete",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-    status: "pending",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-    status: "complete",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-    status: "pending",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
-    status: "complete",
-  },
-];
 
 export default function Profile(props) {
   const { user, toggle, transactions, edit } = props;
@@ -88,6 +36,8 @@ export default function Profile(props) {
         .update({ balance: wallet })
         .eq("id", id);
       if (error) return console.log(error.message);
+      toast.success("Wallet Balance Updated");
+      return;
     } catch (error) {
       console.log(error);
     }
@@ -100,7 +50,8 @@ export default function Profile(props) {
         .update({ bonus: bonus })
         .eq("id", id);
       if (error) return console.log(error.message);
-      toast.success("balance updated");
+      toast.success("Bonus Balance Updated");
+      return;
     } catch (error) {
       console.log(error);
     }
@@ -221,27 +172,30 @@ export default function Profile(props) {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {invoices.map((item) => (
-                    <TableRow key={item.invoice}>
+                  {transactions.map((transaction) => (
+                    <TableRow key={transaction.id}>
                       <TableCell className="font-medium">
-                        ${item.invoice}
+                        ${transaction.value}
                       </TableCell>
                       <TableCell>
                         <p
                           className={`p-[2px] text-white text-center ${
-                            item.status === "complete"
+                            transaction.status === "complete"
                               ? "bg-green-500"
                               : "bg-red-500"
                           }`}
                         >
-                          {item.status}
+                          {transaction.status}
                         </p>
                       </TableCell>
-                      <TableCell>{item.paymentMethod}</TableCell>
+                      <TableCell>{transaction.payment_method}</TableCell>
                       <TableCell>
                         <div className="w-full flex items-center justify-center">
-                          <button className="text-md py-[8px] w-fit mx-auto rounded-md bg-green-700 text-[#fafafa] px-[26px] font-semibold">
-                            Approve
+                          <button
+                            disabled={transaction.status === "complete"}
+                            className="text-[11px] py-[8px] uppercase w-fit mx-auto rounded-md bg-green-700 text-[#fafafa] px-[26px] font-semibold"
+                          >
+                            Aprove
                           </button>
                         </div>
                       </TableCell>
@@ -253,6 +207,7 @@ export default function Profile(props) {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </section>
   );
 }

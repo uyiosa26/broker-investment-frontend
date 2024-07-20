@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Header from "../../components/header.js";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "../../components/profile.js";
+import { Toaster } from "@/components/ui/toaster";
 
 interface Users {
   full_name: string;
@@ -21,11 +22,18 @@ interface User {
   email: string;
 }
 
+interface Transactions {
+  id: string;
+  payment_method: string;
+  status: string;
+  value: string;
+}
+
 export default function Dashboard() {
   const [users, setUsers] = useState<Users[]>([]);
   const [user, setUser] = useState<User[]>([]);
   const [edit, setEdit] = useState(false);
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTransactions] = useState<Transactions[]>([]);
 
   const getUsers = async function () {
     try {
@@ -148,6 +156,7 @@ export default function Dashboard() {
             />
           )
         : null}
+      <Toaster />
     </section>
   );
 }
