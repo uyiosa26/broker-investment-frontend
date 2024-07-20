@@ -1,8 +1,6 @@
-// import "./dashboard.css";
 import supabase from "../../../utils/client.js";
 import { useEffect, useState } from "react";
 import Header from "../../components/header.js";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "../../components/profile.js";
 
@@ -15,21 +13,19 @@ interface Users {
   bonus: string;
 }
 
-type User = {
+interface User {
   full_name: string;
   balance: string;
   id: string;
   bonus: string;
   email: string;
-};
+}
 
 export default function Dashboard() {
   const [users, setUsers] = useState<Users[]>([]);
   const [user, setUser] = useState<User[]>([]);
   const [edit, setEdit] = useState(false);
-  const [balance, setBalance] = useState(0);
   const [transactions, setTransactions] = useState([]);
-  const [bonus, setBonus] = useState("");
 
   const getUsers = async function () {
     try {
@@ -45,45 +41,6 @@ export default function Dashboard() {
     getUsers();
   }, []);
 
-  async function updateBalance(e) {
-    e.preventDefault();
-    try {
-      const { error } = await supabase
-        .from("users")
-        .update({ balance: balance })
-        .eq("id", id);
-      if (error) return console.log(error.message);
-    } catch (error) {
-      console.log(error);
-    }
-    try {
-      const { error } = await supabase
-        .from("users")
-        .update({ bonus: bonus })
-        .eq("id", id);
-      if (error) return console.log(error.message);
-      toast.success("balance updated");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function updateStatus(e) {
-    const id = e.target.getAttribute("data-id");
-    console.log(id);
-    try {
-      const { error } = await supabase
-        .from("transactions")
-        .update({ status: "complete" })
-        .eq("id", id);
-      if (error) return console.log(error.message);
-      getUsers();
-      toast.success("Transaction status updated");
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   async function fecthUser(id: string) {
     console.log(id);
     try {
@@ -94,8 +51,6 @@ export default function Dashboard() {
       if (error) return console.log(error.message);
       setUser(data[0]);
       setEdit(true);
-      setBalance(data[0].balance);
-      setBonus(data[0].bonus);
     } catch (error) {
       console.log(error);
     }
@@ -183,7 +138,16 @@ export default function Dashboard() {
           </div>
         </div>
       )}
-      {edit ? <Profile /> : null}
+      {edit
+        ? user && (
+            <Profile
+              user={user}
+              transactions={transactions}
+              toggle={setEdit}
+              edit={edit}
+            />
+          )
+        : null}
     </section>
   );
 }

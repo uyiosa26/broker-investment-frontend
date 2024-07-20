@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -7,6 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+
+import supabase from "../../utils/client.js";
 
 import { MdOutlineModeEdit } from "react-icons/md";
 
@@ -72,7 +75,37 @@ const invoices = [
   },
 ];
 
-export default function Profile() {
+export default function Profile(props) {
+  const { user, toggle, transactions, edit } = props;
+
+  const [wallet, setWallet] = useState(user.balance);
+  const [bonus, setBonus] = useState(user.bonus);
+
+  async function updateWallet(id: string) {
+    try {
+      const { error } = await supabase
+        .from("users")
+        .update({ balance: wallet })
+        .eq("id", id);
+      if (error) return console.log(error.message);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function updateBonus(id: string) {
+    try {
+      const { error } = await supabase
+        .from("users")
+        .update({ bonus: bonus })
+        .eq("id", id);
+      if (error) return console.log(error.message);
+      toast.success("balance updated");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <section className="z-25 bg-white absolute w-full top-0 left-0 h-screen">
       <div className="container mx-auto">
@@ -87,11 +120,15 @@ export default function Profile() {
                 />
               </div>
               <div className="capitalize">
-                <p className="text-md font-bold text-[#3a3d45]">System Admin</p>
-                <p className="text-sm font-light">admin@gmail.com</p>
+                <p className="text-md font-bold text-[#3a3d45]">
+                  {user.full_name}
+                </p>
+                <p className="text-sm font-light">{user.email}</p>
               </div>
             </div>
-            <Button variant="destructive">close</Button>
+            <Button onClick={() => toggle(!edit)} variant="destructive">
+              close
+            </Button>
           </div>
           <div>
             <div className="flex flex-col my-[20px] py-[1rem] gap-4 lg:flex-row">
@@ -99,8 +136,8 @@ export default function Profile() {
                 <div className="w-[90%] bg-[#3a3d45] text-[#fafafa] p-[1rem] border lg:w-[45%] lg:h-[120px] mx-auto">
                   <div className="flex items-center justify-center gap-1 mx-auto w-[80%]">
                     <IoMdWallet className="text-[1.5rem] pt-[5px]" />
-                    <p className="font-bold text-[2.5rem]">
-                      850.20{" "}
+                    <p className="font-bold text-xl">
+                      {user.balance}{" "}
                       <sub className="uppercase font-medium text-sm">usd</sub>
                     </p>
                     <PopoverTrigger>
@@ -117,11 +154,16 @@ export default function Profile() {
                       Wallet balance
                     </label>
                     <input
+                      value={wallet}
+                      onChange={(e) => setWallet(e.target.value)}
                       id="wallet"
-                      className="w-full text-[#3a3d45] border-[#3a3d45] border-[1px] mt-[10px] p-[10px] text-md"
+                      className="w-full text-black font-bold border-[#3a3d45] border-[1px] mt-[10px] p-[10px] text-md"
                       type="text"
                     />
-                    <button className="py-[10px] w-full my-[10px] bg-green-700 text-white rounded-md font-semibold text-md">
+                    <button
+                      onClick={() => updateWallet(user.id)}
+                      className="py-[10px] w-full my-[10px] bg-green-700 text-white rounded-md font-semibold text-md"
+                    >
                       Update
                     </button>
                   </div>
@@ -131,8 +173,8 @@ export default function Profile() {
                 <div className="w-[90%] bg-[#3a3d45] text-[#fafafa] p-[1rem] border-[1px] lg:w-[45%] lg:h-[120px] mx-auto">
                   <div className="flex items-center justify-center gap-1 mx-auto w-[80%]">
                     <IoMdWallet className="text-[1.5rem] pt-[5px]" />
-                    <p className="font-bold text-[2.5rem]">
-                      850.20{" "}
+                    <p className="font-bold text-2xl">
+                      {user.bonus}{" "}
                       <sub className="uppercase font-medium text-sm">usd</sub>
                     </p>
                     <PopoverTrigger>
@@ -149,11 +191,16 @@ export default function Profile() {
                       investment balance
                     </label>
                     <input
+                      value={bonus}
+                      onChange={(e) => setBonus(e.target.value)}
                       id="wallet"
-                      className="w-full text-[#3a3d45] border-[#3a3d45]  border-[1px] mt-[10px] p-[10px] text-md"
+                      className="w-full text-black font-bold border-[#3a3d45]  border-[1px] mt-[10px] p-[10px] text-md"
                       type="text"
                     />
-                    <button className="py-[10px] w-full my-[10px] bg-green-700 text-white rounded-md font-semibold text-md">
+                    <button
+                      onClick={() => updateBonus(user.id)}
+                      className="py-[10px] w-full my-[10px] bg-green-700 text-white rounded-md font-semibold text-md"
+                    >
                       Update
                     </button>
                   </div>
