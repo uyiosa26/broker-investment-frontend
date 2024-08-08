@@ -21,9 +21,9 @@ export default function ConfirmDeposit() {
     let address; 
 
     if (method === "USDT") {
-        address = "TNypSYhn2oXPSfWiyBmFAqqgwVhy2XYig";
+        address = import.meta.env.VITE_USDT_ADDRESS;
     } else {
-        address = "bc1qwm29h2ygzvxh22f8qnmdhpz48evr57legcyxlc";
+        address = import.meta.env.VITE_BTC_ADDRESS;
     }
 
     useEffect(() => {
