@@ -73,7 +73,7 @@ export default function AdminDashboard() {
                         ? Array.from({ length: 5 }).map((_, index) => (
                             <tr key={index}>
                               <td className="border-b border-gray-200">
-                                <Skeleton className="w-[40px] h-[40px] rounded-full" />
+                                <Skeleton className="w-[40px] mx-auto h-[40px] rounded-full" />
                               </td>
                               <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
                                 <div className="flex items-center">
@@ -95,7 +95,7 @@ export default function AdminDashboard() {
                             <tr key={user.id}>
                               <td className="border-b border-gray-200">
                                 <img
-                                  className="w-[40px] h-[40px] rounded-full object-cover"
+                                  className="w-[40px] mx-auto  h-[40px] rounded-full object-cover"
                                   src={avatar}
                                   alt="avatar"
                                 />
