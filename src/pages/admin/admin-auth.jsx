@@ -1,10 +1,9 @@
-// "use client";
-
-import { useState, useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import supabase from "@/utils/client";
 import { useNavigate } from "react-router-dom";
+
+const dbPassword = import.meta.env.VITE_ADMIN_PASSWORD;
+const dbUserName = import.meta.env.VITE_ADMIN_USERNAME;
 
 export default function AdminAuth() {
   const navigate = useNavigate();
@@ -14,27 +13,16 @@ export default function AdminAuth() {
     if (auth) return navigate("/admin-dashboard");
   }, []);
 
-  const [loading, setLoading] = useState(false);
-
-  async function Login(event) {
+  function Login(event) {
     event.preventDefault();
 
     const formdata = new FormData(event.currentTarget);
 
-    const email = formdata.get("email");
+    const username = formdata.get("username");
     const password = formdata.get("password");
 
-    setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
-    if (error) {
-      setLoading(false);
-      return alert("Invalid Credentials");
-    }
-    setLoading(false);
-    if (error) console.log(error);
+    if (dbPassword !== password && dbUserName !== username)
+      return alert("Invalid credentials");
     localStorage.setItem("admin_auth", "authenticated");
     navigate("/admin-dashboard");
   }
@@ -48,14 +36,14 @@ export default function AdminAuth() {
           </h1>
           <div className="mb-[20px]">
             <label className="font-[600]" htmlFor="email">
-              Email
+              Username
             </label>
             <input
               className="w-full text-[#111] p-[10px] mt-[10px] border-[1px] border-black"
-              type="email"
+              type="text"
               name="email"
-              placeholder="Enter Your Email"
-              id="email"
+              placeholder="Enter Your Username"
+              id="username"
               required
             />
           </div>
@@ -73,12 +61,7 @@ export default function AdminAuth() {
             />
           </div>
           <div className="flex w-full items-center justify-center">
-            <Button className="bg-black text-white">
-              {loading ? (
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              ) : null}
-              Login
-            </Button>
+            <Button className="bg-black text-white">Login</Button>
           </div>
         </form>
       </div>
