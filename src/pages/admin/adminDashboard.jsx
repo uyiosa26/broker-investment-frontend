@@ -4,8 +4,10 @@ import Header from "@/components/system/header";
 import Profile from "@/components/system/profile";
 import { Skeleton } from "@/components/ui/skeleton";
 import avatar from "../../assets/img/avatar.jpg";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminDashboard() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState([]);
   const [edit, setEdit] = useState(false);
@@ -23,7 +25,10 @@ export default function AdminDashboard() {
     }
   };
 
+  const auth = localStorage.getItem("admin_auth");
+
   useEffect(() => {
+    if (!auth) return navigate("/admin");
     getUsers();
   }, []);
 
@@ -75,18 +80,18 @@ export default function AdminDashboard() {
                               <td className="border-b border-gray-200">
                                 <Skeleton className="w-[40px] mx-auto h-[40px] rounded-full" />
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-3 text-sm">
                                 <div className="flex items-center">
                                   <Skeleton className="w-[100px] h-4 rounded-full" />
                                 </div>
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-3 text-sm">
                                 <Skeleton className="w-[100px] h-4 rounded-full" />
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-3 text-sm">
                                 <Skeleton className="w-[60px] h-4 rounded-full" />
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-3 text-sm">
                                 <Skeleton className="w-[40px] h-5 rounded-full" />
                               </td>
                             </tr>
