@@ -95,28 +95,28 @@ export default function AdminDashboard() {
                             <tr key={user.id}>
                               <td className="border-b border-gray-200">
                                 <img
-                                  className="w-[50px] h-[50px] rounded-full object-cover"
+                                  className="w-[40px] h-[40px] rounded-full object-cover"
                                   src={avatar}
                                   alt="avatar"
                                 />
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-4 py-2 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-3 text-sm">
                                 <div className="flex items-center">
                                   <p className="capitalize">{user.full_name}</p>
                                 </div>
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-5 py-2 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
                                 <p className="whitespace-no-wrap">
                                   {user.email}
                                 </p>
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-5 py-2 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
                                 <p className="whitespace-no-wrap">
                                   <b className="font-[500]">$</b>
                                   {user.balance}
                                 </p>
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-5 py-2 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
                                 <button
                                   onClick={() => fetchUser(user.id)}
                                   className="uppercase font-[600] rounded-md text-white bg-green-700 py-[7px] px-[24px] text-[11px]"
