@@ -75,18 +75,18 @@ export default function AdminDashboard() {
                               <td className="border-b border-gray-200">
                                 <Skeleton className="w-[40px] h-[40px] rounded-full" />
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
                                 <div className="flex items-center">
                                   <Skeleton className="w-[100px] h-4 rounded-full" />
                                 </div>
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
                                 <Skeleton className="w-[100px] h-4 rounded-full" />
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
                                 <Skeleton className="w-[60px] h-4 rounded-full" />
                               </td>
-                              <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                              <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
                                 <Skeleton className="w-[40px] h-5 rounded-full" />
                               </td>
                             </tr>
@@ -111,7 +111,7 @@ export default function AdminDashboard() {
                                 </p>
                               </td>
                               <td className="border-b border-gray-200 bg-white px-2 py-2 text-sm">
-                                <p className="whitespace-no-wrap">
+                                <p className="whitespace-no-wrap text-center">
                                   <b className="font-[500]">$</b>
                                   {user.balance}
                                 </p>
