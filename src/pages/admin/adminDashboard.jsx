@@ -126,7 +126,7 @@ export default function AdminDashboard() {
                                   onClick={() => fetchUser(user.id)}
                                   className="uppercase font-[600] rounded-md text-white bg-green-700 py-[7px] px-[24px] text-[11px]"
                                 >
-                                  edit
+                                  Manage
                                 </button>
                               </td>
                             </tr>
