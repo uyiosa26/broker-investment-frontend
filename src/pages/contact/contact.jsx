@@ -232,7 +232,7 @@ export default function Contact() {
                     href="https://wa.me/qr/J2AM273SW2PMD1"
                     className="text-primary"
                   >
-                    +48 730 063 907
+                    +17192139685
                   </a>
                 </div>
               </div>
