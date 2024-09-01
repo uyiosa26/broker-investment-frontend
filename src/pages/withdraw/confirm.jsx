@@ -26,7 +26,8 @@ export default function Confirm() {
     getData();
   }, []);
 
-  async function submitWithdrawal() {
+  async function submitWithdrawal(event) {
+    event.preventDefault();
     if (amount <= 99)
       return toast.error("Minimum withdrawal should be $100 or more");
     if (amount > Number(user.balance)) return toast.error("Not enough Balance");
