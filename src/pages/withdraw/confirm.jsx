@@ -26,7 +26,7 @@ export default function Confirm() {
     getData();
   }, []);
 
-  async function handleClick() {
+  async function submitWithdrawal() {
     if (amount <= 99)
       return toast.error("Minimum withdrawal should be $100 or more");
     if (amount > Number(user.balance)) return toast.error("Not enough Balance");
@@ -328,13 +328,28 @@ export default function Confirm() {
                               <span className="text-center badge badge-success badge-pill">
                                 Your payment method
                               </span>
-                              <span className="alert-content">Bitcoin</span>
+                              <span className="alert-content">USDT</span>
                             </div>
-                            <form onSubmit={(e) => e.preventDefault()}>
+                            <form onSubmit={submitWithdrawal}>
+                              <div className="form-group">
+                                <label className="">Enter USDT address</label>
+
+                                <input
+                                  className="form-control "
+                                  placeholder="USDT Address"
+                                  type="text"
+                                  name="address"
+                                  onChange={(event) =>
+                                    setAmount(Number(event.target.value))
+                                  }
+                                  required
+                                />
+                              </div>
                               <div className="form-group">
                                 <label className="">
                                   Enter Amount to withdraw($)
                                 </label>
+
                                 <input
                                   className="form-control "
                                   placeholder="Enter Amount"
@@ -343,6 +358,7 @@ export default function Confirm() {
                                   onChange={(event) =>
                                     setAmount(Number(event.target.value))
                                   }
+                                  required
                                 />
                               </div>
                               <input
@@ -352,7 +368,7 @@ export default function Confirm() {
                               />
                               <div className="form-group">
                                 <button
-                                  onClick={handleClick}
+                                  type="submit"
                                   className="btn btn-primary"
                                 >
                                   Complete Request
