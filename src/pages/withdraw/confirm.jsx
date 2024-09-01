@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 export default function Confirm() {
   const [user, setUser] = useState("");
   const [amount, setAmount] = useState(0);
+  const [account, setAccount] = useState("initial");
 
   const userToken = localStorage.getItem("userToken");
 
@@ -28,29 +29,64 @@ export default function Confirm() {
 
   async function submitWithdrawal(event) {
     event.preventDefault();
-    if (amount <= 99)
-      return toast.error("Minimum withdrawal should be $100 or more");
-    if (amount > Number(user.balance)) return toast.error("Not enough Balance");
+    if (account === "initial")
+      return toast.error("Please select account to withdraw from");
+    if (account === "wallet") {
+      if (amount <= 99)
+        return toast.error("Minimum withdrawal should be $100 or more");
+      if (amount > Number(user.balance))
+        return toast.error("Not enough Balance");
 
-    try {
-      const response = await supabase.from("transactions").insert([
-        {
-          user_id: user.id,
-          value: amount,
-          payment_method: "Bitcoin",
-          type: "withdrawal",
-        },
-      ]);
+      try {
+        const response = await supabase.from("transactions").insert([
+          {
+            user_id: user.id,
+            value: amount,
+            payment_method: "Bitcoin",
+            type: "withdrawal",
+          },
+        ]);
 
-      //   const request = await supabase.from("users").update({
-      //     balance: Number(user.balance) - Number(amount),
-      //   });
+        const request = await supabase
+          .from("users")
+          .update({
+            balance: Number(user.balance) - Number(amount),
+          })
+          .eq("id", user.id);
 
-      if (!response.error) return toast.success("Withdrawal request Submited");
-      console.log("funds gone");
-      return toast.error("Something went wrong");
-    } catch (error) {
-      console.log(error);
+        if (!response.error && !request.error)
+          return toast.success("Withdrawal request Submited");
+        console.log("funds gone");
+        return toast.error("Something went wrong"), request.error, response;
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      if (amount <= 99)
+        return toast.error("Minimum withdrawal should be $100 or more");
+      if (amount > Number(user.bonus)) return toast.error("Not enough Balance");
+
+      try {
+        const response = await supabase.from("transactions").insert([
+          {
+            user_id: user.id,
+            value: amount,
+            payment_method: "Bitcoin",
+            type: "withdrawal",
+          },
+        ]);
+
+        const request = await supabase.from("users").update({
+          balance: Number(user.bonus) - Number(amount).eq("id", user.id),
+        });
+
+        if (!response.error && !request.error)
+          return toast.success("Withdrawal request Submited");
+        console.log("funds gone");
+        return toast.error("Something went wrong");
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
@@ -332,6 +368,20 @@ export default function Confirm() {
                               <span className="alert-content">USDT</span>
                             </div>
                             <form onSubmit={submitWithdrawal}>
+                              <div className="form-group flex flex-col">
+                                <label className="">Select account</label>
+                                <select
+                                  className="form-select"
+                                  onChange={(event) =>
+                                    setAccount(event.target.value)
+                                  }
+                                  required
+                                >
+                                  <option selected>Select account</option>
+                                  <option value="wallet">Wallet balance</option>
+                                  <option value="bonus">Bonus balance</option>
+                                </select>
+                              </div>
                               <div className="form-group">
                                 <label className="">Enter USDT address</label>
 
