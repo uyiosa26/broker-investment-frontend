@@ -702,6 +702,7 @@ export default function Dashboard() {
                                     <th>method</th>
                                     <th>Status</th>
                                     <th>Date</th>
+                                    <th>Type</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -722,21 +723,38 @@ export default function Dashboard() {
                                         </td>
                                         <td>{transaction.payment_method}</td>
                                         <td>
-                                          <span
-                                            className={
-                                              transaction.status === "complete"
-                                                ? "badge badge-success"
-                                                : "badge badge-danger"
-                                            }
-                                          >
-                                            {transaction.status}
-                                          </span>
+                                          {transaction.type === "withdrawal" ? (
+                                            <span
+                                              className={
+                                                transaction.status ===
+                                                "complete"
+                                                  ? "badge badge-success"
+                                                  : "badge badge-dark"
+                                              }
+                                            >
+                                              {transaction.status === "complete"
+                                                ? "Paid out"
+                                                : "Pending"}
+                                            </span>
+                                          ) : (
+                                            <span
+                                              className={
+                                                transaction.status ===
+                                                "complete"
+                                                  ? "badge badge-success"
+                                                  : "badge badge-danger"
+                                              }
+                                            >
+                                              {transaction.status}
+                                            </span>
+                                          )}
                                         </td>
                                         <td>
                                           {new window.Date(
                                             transaction.date
                                           ).toLocaleString()}
                                         </td>
+                                        <td>{transaction.type}</td>
                                       </tr>
                                     ))}
                                 </tbody>
@@ -769,11 +787,7 @@ export default function Dashboard() {
               </div>
               <div className="text-right col-sm-6 text-md-center">
                 <div id="google_translate_element">
-                  <div
-                    className="skiptranslate goog-te-gadget"
-                    dir="ltr"
-                    style={{}}
-                  ></div>
+                  <div className="skiptranslate goog-te-gadget" dir="ltr"></div>
                 </div>
               </div>
             </div>
