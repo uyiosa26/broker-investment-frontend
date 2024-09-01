@@ -26,8 +26,6 @@ export default function Confirm() {
     getData();
   }, []);
 
-  console.log(amount);
-
   async function handleClick() {
     if (amount <= 99)
       return toast.error("Minimum withdrawal should be $100 or more");
@@ -342,7 +340,7 @@ export default function Confirm() {
                                   placeholder="Enter Amount"
                                   type="number"
                                   name="amount"
-                                  onClick={(event) =>
+                                  onChange={(event) =>
                                     setAmount(Number(event.target.value))
                                   }
                                 />
