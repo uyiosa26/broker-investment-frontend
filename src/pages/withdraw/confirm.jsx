@@ -76,9 +76,12 @@ export default function Confirm() {
           },
         ]);
 
-        const request = await supabase.from("users").update({
-          balance: Number(user.bonus) - Number(amount).eq("id", user.id),
-        });
+        const request = await supabase
+          .from("users")
+          .update({
+            balance: Number(user.bonus) - Number(amount),
+          })
+          .eq("id", user.id);
 
         if (!response.error && !request.error)
           return toast.success("Withdrawal request Submited");
