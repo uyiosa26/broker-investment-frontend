@@ -492,10 +492,10 @@ export default function Profile() {
                                                                             type="text"
                                                                             name="btc_address"
                                                                             className="form-control "
-                                                                            placeholder="Enter USDT Address"
+                                                                            placeholder="Enter Bitcoin Address"
                                                                         />
                                                                         <small className="">
-                                                                            Enter your USDT Address that will be used to
+                                                                            Enter your Bitcoin Address that will be used to
                                                                             withdraw your funds
                                                                         </small>
                                                                     </div>
