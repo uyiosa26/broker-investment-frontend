@@ -229,7 +229,7 @@ export default function Contact() {
                 <div className="mt-3 content">
                   <h5 className="font-weight-bold">Whatsapp</h5>
                   <a
-                    href="https://wa.me/qr/J2AM273SW2PMD1"
+                    href="https://wa.me/qr/MMZOMBCG7CEMB1"
                     className="text-primary"
                   >
                     +17192139685
