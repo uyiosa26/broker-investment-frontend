@@ -27,8 +27,10 @@ export default function Confirm() {
   }, []);
 
   async function handleClick() {
-    if (amount > user.balance) return toast.error("Not enough Balance");
-    if (amount < 100) return toast.error("Minimum withdrawal should be $100");
+    if (amount < 100)
+      return toast.error("Minimum withdrawal should be $100 or more");
+    if (amount > Number(user.balance)) return toast.error("Not enough Balance");
+
     try {
       const response = await supabase.from("transactions").insert([
         {
@@ -44,6 +46,7 @@ export default function Confirm() {
       //   });
 
       if (!response.error) return toast.success("Withdrawal request Submited");
+      console.log("funds gone");
       return toast.error("Something went wrong");
     } catch (error) {
       console.log(error);
@@ -338,7 +341,7 @@ export default function Confirm() {
                                   type="number"
                                   name="amount"
                                   onClick={(event) =>
-                                    setAmount(event.target.value)
+                                    setAmount(Number(event.target.value))
                                   }
                                 />
                               </div>
