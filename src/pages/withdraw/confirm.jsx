@@ -79,7 +79,7 @@ export default function Confirm() {
         const request = await supabase
           .from("users")
           .update({
-            balance: Number(user.bonus) - Number(amount),
+            bonus: Number(user.bonus) - Number(amount),
           })
           .eq("id", user.id);
 
