@@ -85,6 +85,7 @@ export default function Confirm() {
 
         if (!response.error && !request.error)
           return toast.success("Withdrawal request Submited");
+        console.log(Number(user.balance, Number(amount)));
         console.log("funds gone");
         return toast.error("Something went wrong");
       } catch (error) {
