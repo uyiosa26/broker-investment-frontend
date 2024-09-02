@@ -42,7 +42,7 @@ export default function Confirm() {
           {
             user_id: user.id,
             value: amount,
-            payment_method: "Bitcoin",
+            payment_method: "USDT",
             type: "withdrawal",
           },
         ]);
