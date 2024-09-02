@@ -293,7 +293,7 @@ export default function Withdraw() {
                           <div className="text-center border-0 rounded-lg shadow-lg card card-pricing hover-scale-110 bg-primary popular">
                             <div className="py-0 border-0 card-header">
                               <span className="px-4 py-1 mx-auto bg-white shadow-sm h6 d-inline-block rounded-bottom">
-                                Bitcoin
+                                USDT
                               </span>
                               <div className="py-5">
                                 {/* <img
