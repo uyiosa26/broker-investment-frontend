@@ -83,10 +83,13 @@ export default function Dashboard() {
     0
   );
 
-  const totalDeposit = transactions.reduce(
-    (accumulator, transaction) => accumulator + Number(transaction.value),
-    0
-  );
+  const totalDeposit = transactions
+    .filter((item) => item.type === "deposit")
+    .reduce((acc, item) => acc + (Number(item.value) || 0), 0);
+
+  const totalWithdrawal = transactions
+    .filter((item) => item.type === "withdrawal")
+    .reduce((acc, item) => acc + (Number(item.value) || 0), 0);
 
   let total = Number(user.bonus) + tradingBalance + Number(user.balance);
 
@@ -595,7 +598,7 @@ export default function Dashboard() {
                                   <Skeleton className="h-5 w-[160px]" />
                                 ) : (
                                   <span className="mb-0 h5 font-weight-bold ">
-                                    $0
+                                    ${totalWithdrawal}
                                   </span>
                                 )}
                               </div>

@@ -321,7 +321,7 @@ export default function Withdraw() {
                                 </li>
                                 <li>
                                   Charges Amount:
-                                  <strong>0%</strong>
+                                  <strong>5%</strong>
                                 </li>
                                 <li>
                                   Duration: <strong>Instant</strong>
