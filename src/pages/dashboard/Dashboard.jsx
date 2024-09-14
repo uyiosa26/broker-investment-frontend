@@ -49,7 +49,7 @@ export default function Dashboard() {
         const { data, error } = await supabase
           .from("transactions")
           .select("*")
-          .order("created_at", { ascending: false })
+          .order("date", { ascending: false })
           .eq("user_id", userToken);
         if (error) return console.log(error.message);
         setTransactions(data);
