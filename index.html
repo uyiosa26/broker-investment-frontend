@@ -71,11 +71,19 @@
     <script src="./src/assets/js/owl.carousel.min.js" type="module"></script>
     <script src="./src/assets/js/owl.init.js" type="module"></script>
     <script src="./src/assets/js/purpose.js" type="module"></script>
-    <script>
-      $(".navbar-toggle").on("click", function (event) {
-        $(this).toggleClass("open");
-        $("#navigation").slideToggle(400);
-      });
-    </script>
+    <!-- <script>
+      document
+        .querySelector(".navbar-toggle")
+        .addEventListener("click", function () {
+          this.classList.toggle("open");
+
+          const nav = document.getElementById("navigation");
+          if (nav.style.display === "block") {
+            nav.style.display = "none";
+          } else {
+            nav.style.display = "block";
+          }
+        });
+    </script> -->
   </body>
 </html>

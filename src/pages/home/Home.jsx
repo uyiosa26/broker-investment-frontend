@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import TawkMessengerReact from "@tawk.to/tawk-messenger-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import lock from "../../assets/img/lock-solid.svg";
 import shield from "../../assets/img/shield.svg";
 
@@ -8,6 +8,12 @@ export default function Home() {
   const navigate = useNavigate();
 
   const auth = localStorage.getItem("auth");
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
     if (auth) return navigate("/dashboard");
@@ -88,8 +94,6 @@ export default function Home() {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.4.47/css/materialdesignicons.css"
           integrity="sha512-/bZeHtNhCNHsuODhywlz53PIfvrJbAmm7MUXWle/f8ro40mVNkPLz0I5VdiYyV030zepbBdMIty0Z3PRwjnfmg=="
-          crossorigin="anonymous"
-          referrerpolicy="no-referrer"
         />
         {/*Start of Tawk.to Script*/}
         {/* Navbar STart */}
@@ -125,7 +129,10 @@ export default function Home() {
             <div className="menu-extras">
               <div className="menu-item">
                 {/* Mobile menu toggle*/}
-                <a className="navbar-toggle">
+                <a
+                  className={`navbar-toggle ${isOpen ? "open" : ""}`}
+                  onClick={handleToggle}
+                >
                   <div className="lines">
                     <span />
                     <span />
@@ -135,7 +142,10 @@ export default function Home() {
                 {/* End mobile menu toggle*/}
               </div>
             </div>
-            <div id="navigation">
+            <div
+              id="navigation"
+              className={`navigation ${isOpen ? "open" : ""}`}
+            >
               {/* Navigation Menu*/}
               <ul className="navigation-menu">
                 <li>
